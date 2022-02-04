@@ -1,5 +1,3 @@
 # Octopus Deploy Training Workshop Repo
 
-## Here as a student?
-
-Please visit the [Workshop Instruction](workshop-instructions.md).
+## Here as a student? Please visit the [Workshop Instructions page](workshop-instructions.md).

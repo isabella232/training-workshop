@@ -1,4 +1,4 @@
-# This is the stub up the instructions for the workshop
+# This is the stub of the instructions for the workshop
 
 
 The student slug value is: [student-slug]

@@ -1,7 +1,7 @@
 # This is the stub of the instructions for the workshop
 
-
 The student slug value is: [student-slug]
+
 It will be replaced in many places for URL links to the Octopus space and azure websites.
 For example:
 

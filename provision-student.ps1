@@ -83,14 +83,14 @@ if (-not $skipSpace) {
 	Write-Warning "Space creation skipped."
 }
 
-
-$appEnvs = @("dev") #, "test", "prod"
+$appEnvs = @("dev", "test", "prod")
 
 $studentAppInfos = @()
 foreach ($appEnv in $appEnvs) {
 	$appInfo = [StudentAppInfo]::new()
 	$appInfo.AppEnvironment = $appEnv
 	$appInfo.AppSlug = "$studentSlug-$appEnv"
+	$appInfo.AppURL = "{student-app-url-$appEnv}"
 	$studentAppInfos += $appInfo
 }
 
@@ -100,13 +100,14 @@ if (!$skipAzure) {
 	$azCredential = New-Object -TypeName "System.Management.Automation.PSCredential" -ArgumentList $azUser, $azSecureSecret
 	Connect-AzAccount -ServicePrincipal -Credential $azCredential -Tenant $azTenantId
 	foreach ($studentApp in $studentAppInfos) {
+		Write-Host "Creating student application: $($studentApp.AppSlug) ..."
 		$azureApp = New-AzWebApp `
 		-ResourceGroupName $azResourceGroupName `
-		-AppServicePlan $azWebAppServicePlan
+		-AppServicePlan $azWebAppServicePlan `
 		-Name $studentApp.AppSlug `
 		-Location "West US 2" `
 #		-WhatIf
-		$studentApp.AppURL = $azureApp.DefaultHostName
+		$studentApp.AppURL = "https://$($azureApp.DefaultHostName)"
 	}
 
 } else {
@@ -123,7 +124,7 @@ if (!$skipGit) {
 	$instructionsDocText = $instructionsDocText.Replace("[student-slug]", $studentSlug).Replace("[space-id]", $studentSpaceId)
 
 	foreach ($studentAppInfo in $studentAppInfos) {
-		$token = "[student-app-hostname-$($studentAppInfo.AppEnvironment)]"
+		$token = "[student-app-url-$($studentAppInfo.AppEnvironment)]"
 		$instructionsDocText = $instructionsDocText.Replace($token, $studentAppInfo.AppURL)
 	}
 

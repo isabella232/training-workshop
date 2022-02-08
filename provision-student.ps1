@@ -1,20 +1,23 @@
 [CmdletBinding()]
 param (
 #	[Parameter(Mandatory=$true)]
-	[string] $studentName = "New Student",
+	[string] $studentName,
+	[string] $studentEmail,
 
 	[string] $githubUrl,
-
 	[securestring] $githubPAT,
 
 	[string] $octopusUrl,
 	[string] $octopusKey,
+
+	[string] $azTenantId,
+	[string] $azUser,
+	[string] $azSecret,
+
 	[switch] $skipGit,
 	[switch] $skipSpace,
 	[switch] $skipAzure,
-	[string] $azTenantId,
-	[string] $azUser,
-	[string] $azSecret
+	[switch] $skipUser
 )
 
 class StudentAppInfo {
@@ -27,45 +30,84 @@ if (Test-Path .) {
 	Write-Host ">>> Pre cleaning work directory"
 	Remove-Item * -Recurse -Force
 }
+$baseScriptDir = $PSScriptRoot
 
 $instructionsDocFile = ".\workshop-instructions.md"
 $azResourceGroupName = "training-workshop"
 $azWebAppServicePlan = "training-workshop-webapps"
+$automationUserId = "Users-23"
+
+$studentId = [System.Guid]::NewGuid()
+$studentSuffix = $studentId.ToString().Substring(0, 8)
 
 $studentNamePrefix = $studentName.Replace(" ", "").Substring(0,[System.Math]::Min(9, $studentName.Length))
-$studentId = [System.Guid]::NewGuid()
-$studentSlug = $studentId.ToString().Substring(0, 8)
-$studentSlug = "$studentNamePrefix-$studentSlug"
+$studentSlug = "$studentNamePrefix-$studentSuffix"
 $studentBranch = "student/$studentSlug"
 $studentSpaceId = "fake-$studentSlug"
 
+$odHeaders = @{ "X-Octopus-ApiKey" = $octopusKey }
+
 Write-Host "Provisioning student"
-Write-Host " - $studentName"
+Write-Host " - $studentName ($studentEmail)"
 Write-Host " - (slug: $studentSlug)"
 Write-Host "Working against:"
 Write-Host " - GitHub Repository: $githubUrl"
 Write-Host " -  Octopus Instance: $octopusUrl"
 
-if (-not $skipSpace) {
-	$header = @{ "X-Octopus-ApiKey" = $octopusKey }
+if (!$skipUser) {
+	Write-Host "Ensuring user exists in Octopus."
 
+	$response = (Invoke-WebRequest "$octopusURL/api/users?skip=0&take=2147483647" -Headers $odHeaders -Method Get -ErrorVariable octoError)
+	$allUsers = $response.Content | ConvertFrom-Json
+	$existingUser = ($allUsers.Items | Where-Object { $_.EmailAddress -eq $studentEmail })
+#	Write-Output $existingUser
+	if (!$existingUser) {
+		Write-Host "Creating new user"
+
+		$newUser = @{
+			DisplayName = $studentName
+			EmailAddress = $studentEmail
+			Username = $studentEmail
+			IsService = $false
+			IsActive = $true
+			Password = $studentId
+		} | ConvertTo-Json
+		Write-Host $newUser
+
+		$response = (Invoke-WebRequest "$octopusURL/api/users" -Headers $odHeaders -Method Post -Body $newUser -ErrorVariable octoError)
+		$newUser = $response.Content | ConvertFrom-Json
+		$userId = $newUser.Id
+		Write-Host "New user created: '$userId'"
+	} else {
+		$userId = $existingUser.Id
+		Write-Host "Found existing user: '$userId'"
+	}
+} else {
+	Write-Warning "User assurance skipped."
+}
+
+if (-not $skipSpace) {
 	$spaceName = $studentSlug
 	$description = "Space for workshop student $studentName."
-	$managersTeams = @("teams-everyone") # an array of team Ids to add to Space Managers
-	#$managerTeamMembers = @() # an array of user Ids to add to Space Managers
+	$managersTeams = @("Teams-1") # an array of team Ids to add to Space Managers
+	Write-Host "User ID: $userId"
+	if ($userId) {
+		Write-Host "Adding user as space manager"
+		$managerTeamMembers = @($userId, $automationUserId) # an array of user Ids to add to Space Managers
+	}
 
 	$body = @{
 		Name = $spaceName
 		Description = $description
 		SpaceManagersTeams = $managersTeams
-	#    SpaceManagersTeamMembers = $managerTeamMembers
+		SpaceManagersTeamMembers = $managerTeamMembers
 		IsDefault = $false
 		TaskQueueStopped = $false
 	} | ConvertTo-Json
 
 	$response = try {
 		Write-Host "Creating space '$spaceName'"
-		(Invoke-WebRequest $octopusURL/api/spaces -Headers $header -Method Post -Body $body -ErrorVariable octoError)
+		(Invoke-WebRequest $octopusURL/api/spaces -Headers $odHeaders -Method Post -Body $body -ErrorVariable octoError)
 	} catch [System.Net.WebException] {
 		$_.Exception.Response
 	}
@@ -79,6 +121,16 @@ if (-not $skipSpace) {
 
 	#Write-Host $space
 	$studentSpaceId = $space.Id
+
+	Write-Host "Add the workshop azure account to the space"
+	& $baseScriptDir\add-azure-account.ps1 `
+		-octopusUrl $octopusURL -octopusKey $octopusKey `
+		-azSubscription $azSubscriptionId `
+		-azTenantId $azTenantId `
+		-azClientId $azUser `
+		-azSecret $azSecret `
+		-spaceId $studentSpaceId
+	
 } else {
 	Write-Warning "Space creation skipped."
 }

@@ -65,7 +65,7 @@ if (!$skipUser) {
 		Write-Host "Creating new user"
 
 		$newUser = @{
-			DisplayName = $studentName
+			DisplayName = "Student - $studentName"
 			EmailAddress = $studentEmail
 			Username = $studentEmail
 			IsService = $false

@@ -1,6 +1,6 @@
 [CmdletBinding()]
 param (
-#	[Parameter(Mandatory=$true)]
+	#	[Parameter(Mandatory=$true)]
 	[string] $studentName,
 	[string] $studentEmail,
 
@@ -13,6 +13,7 @@ param (
 	[string] $azTenantId,
 	[string] $azUser,
 	[string] $azSecret,
+	[string] $azSubscriptionId,
 
 	[switch] $skipGit,
 	[switch] $skipSpace,
@@ -30,15 +31,15 @@ if (!$skipGit) {
 	if ((Get-Location).ToString().EndsWith("workspace")) {
 		Write-Host ">>> Pre cleaning workspace directory"
 		Remove-Item -Path "$PSScriptRoot\..\..\workspace\*" -Recurse -Force
-	} else {
+	}
+ else {
 		Write-Error "Complete provisioning requires running from the 'workspace' directory (outside of this repo's root; see admin/testing/readme.md)"
 		exit
+	}
 }
-} else {
+else {
 	Write-Warning "Skipping Git operation, skipping run location safety check and workspace dir cleanup."
 }
-
-$baseScriptDir = $PSScriptRoot
 
 $instructionsDocFile = ".\workshop-instructions.md"
 $azResourceGroupName = "training-workshop"
@@ -48,7 +49,7 @@ $automationUserId = "Users-23"
 $studentId = [System.Guid]::NewGuid()
 $studentSuffix = $studentId.ToString().Substring(0, 8)
 
-$studentNamePrefix = $studentName.Replace(" ", "").Substring(0,[System.Math]::Min(9, $studentName.Length))
+$studentNamePrefix = $studentName.Replace(" ", "").Substring(0, [System.Math]::Min(9, $studentName.Length))
 $studentSlug = "$studentNamePrefix-$studentSuffix"
 $studentBranch = "student/$studentSlug"
 $studentSpaceId = "fake-$studentSlug"
@@ -68,7 +69,7 @@ if (!$skipUser) {
 	$response = (Invoke-WebRequest "$octopusURL/api/users?skip=0&take=2147483647" -Headers $odHeaders -Method Get -ErrorVariable octoError)
 	$allUsers = $response.Content | ConvertFrom-Json
 	$existingUser = ($allUsers.Items | Where-Object { $_.EmailAddress -eq $studentEmail })
-#	Write-Output $existingUser
+	#	Write-Output $existingUser
 	if (!$existingUser) {
 		Write-Host "Creating new user"
 
@@ -86,11 +87,13 @@ if (!$skipUser) {
 		$newUser = $response.Content | ConvertFrom-Json
 		$userId = $newUser.Id
 		Write-Host "New user created: '$userId'"
-	} else {
+	}
+ else {
 		$userId = $existingUser.Id
 		Write-Host "Found existing user: '$userId'"
 	}
-} else {
+}
+else {
 	Write-Warning "User assurance skipped."
 }
 
@@ -116,7 +119,8 @@ if (-not $skipSpace) {
 	$response = try {
 		Write-Host "Creating space '$spaceName'"
 		(Invoke-WebRequest $octopusURL/api/spaces -Headers $odHeaders -Method Post -Body $body -ErrorVariable octoError)
-	} catch [System.Net.WebException] {
+	}
+	catch [System.Net.WebException] {
 		$_.Exception.Response
 	}
 
@@ -131,15 +135,34 @@ if (-not $skipSpace) {
 	$studentSpaceId = $space.Id
 
 	Write-Host "Add the workshop azure account to the space"
-	& $baseScriptDir\add-azure-account.ps1 `
+	."$PSScriptRoot\add-azure-account.ps1" `
 		-octopusUrl $octopusURL -octopusKey $octopusKey `
 		-azSubscription $azSubscriptionId `
 		-azTenantId $azTenantId `
 		-azClientId $azUser `
 		-azSecret $azSecret `
-		-spaceId $studentSpaceId
-	
-} else {
+		-spaceId $studentSpaceId `
+
+
+	$popLoc = Get-Location
+	Write-Host $popLoc
+	Write-Host "Setting location to $PSScriptRoot"
+	Set-Location $PSScriptRoot
+
+	$varSetName = "Slack Variables"
+	$varSetDesc = "Variables used for posting to Slack"
+
+	& terraform init
+	& terraform apply -auto-approve `
+		-var="apiKey=$octopusKey" -var="serverURL=$octopusURL" `
+		-var="space=$studentSpaceId" `
+		-var="variableSetName=$varSetName" -var="description=$varSetDesc" `
+		-var="slack_url=someurl" -var="slack_key=ABC123" `
+
+	Write-Host "Setting location to $popLoc"
+	Set-Location $popLoc
+}
+else {
 	Write-Warning "Space creation skipped."
 }
 
@@ -162,15 +185,16 @@ if (!$skipAzure) {
 	foreach ($studentApp in $studentAppInfos) {
 		Write-Host "Creating student application: $($studentApp.AppSlug) ..."
 		$azureApp = New-AzWebApp `
-		-ResourceGroupName $azResourceGroupName `
-		-AppServicePlan $azWebAppServicePlan `
-		-Name $studentApp.AppSlug `
-		-Location "West US 2" `
-#		-WhatIf
-		$studentApp.AppURL = "https://$($azureApp.DefaultHostName)"
+			-ResourceGroupName $azResourceGroupName `
+			-AppServicePlan $azWebAppServicePlan `
+			-Name $studentApp.AppSlug `
+			-Location "West US 2" `
+			#		-WhatIf
+			$studentApp.AppURL = "https://$($azureApp.DefaultHostName)"
 	}
 
-} else {
+}
+else {
 	Write-Warning "Azure resource creation skipped."
 }
 
@@ -194,7 +218,8 @@ if (!$skipGit) {
 	& git add $instructionsDocFile
 	& git commit -m "Create branch for $studentName"
 	& git push origin $studentBranch
-} else {
+}
+else {
 	Write-Warning "Git branch creation skipped."
 }
 

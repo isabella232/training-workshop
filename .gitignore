@@ -7,6 +7,9 @@
 localonly-*
 localonly/
 *.local.*
+*.tfstate*
+.terraform/
+.terraform.*
 
 *.rsuser
 *.suo

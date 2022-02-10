@@ -13,8 +13,9 @@ $randoStudent = ([System.Guid]:: NewGuid()).ToString().SubString(24)
 	-githubUrl $githubUrl -githubPAT $githubPAT `
 	-octopusUrl $octopusURL -octopusKey $octopusKey `
 	-azTenantId $azTenantId -azUser $azUser -azSecret $azSecret -azSubscriptionId $azSubscriptionId `
+	-studentName $randoStudent -studentEmail "$randoStudent@octopus.com" `
 	-skipAzure `
 	-skipGit `
-	-studentName $randoStudent -studentEmail "$randoStudent@octopus.com" `
+	
+#	-skipSpace `
 	# -studentName $studentName -studentEmail $studentEmail
-

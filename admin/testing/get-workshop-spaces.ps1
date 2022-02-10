@@ -8,4 +8,4 @@ $response = (Invoke-WebRequest "$octopusURL/api/spaces" -Headers $odHeaders -Met
 
 $spacesInfo = $response.Content | ConvertFrom-Json
 
-Write-Output $spacesInfo.Items | Where-Object [{ $_.Description -like "*for workshop*" }]
+Write-Output $spacesInfo.Items | Where-Object { $_.Description -like "*for workshop*" }

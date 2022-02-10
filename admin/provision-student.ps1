@@ -26,10 +26,18 @@ class StudentAppInfo {
 	[string]$AppSlug
 }
 
-if (Test-Path .) {
-	Write-Host ">>> Pre cleaning work directory"
-	Remove-Item * -Recurse -Force
+if (!$skipGit) {
+	if ((Get-Location).ToString().EndsWith("workspace")) {
+		Write-Host ">>> Pre cleaning workspace directory"
+		Remove-Item -Path "$PSScriptRoot\..\..\workspace\*" -Recurse -Force
+	} else {
+		Write-Error "Complete provisioning requires running from the 'workspace' directory (outside of this repo's root; see admin/testing/readme.md)"
+		exit
 }
+} else {
+	Write-Warning "Skipping Git operation, skipping run location safety check and workspace dir cleanup."
+}
+
 $baseScriptDir = $PSScriptRoot
 
 $instructionsDocFile = ".\workshop-instructions.md"

@@ -5,7 +5,7 @@ param (
 
 $baseScriptDir = $PSScriptRoot
 
-. $baseScriptDir\config.local.ps1
+. $baseScriptDir\load-config.ps1
 
 $odHeaders = @{ "X-Octopus-ApiKey" = $octopusKey }
 

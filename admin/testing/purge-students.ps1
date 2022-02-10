@@ -1,6 +1,6 @@
 $baseScriptDir = $PSScriptRoot 
 
-. $baseScriptDir\config.local.ps1 
+. $baseScriptDir\load-config.ps1 
 
 $users = .$baseScriptDir\get-users.ps1
 

@@ -5,7 +5,7 @@ param (
 
 $baseScriptDir = $PSScriptRoot
 
-. $baseScriptDir\config.local.ps1
+. $baseScriptDir\load-config.ps1
 
 if ($baseScriptDir -eq (Get-Location)) {
 	Write-Error "DO NOT RUN THIS FROM IT'S HOME DIRECTORY" 

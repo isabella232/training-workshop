@@ -12,6 +12,14 @@ provider "octopusdeploy" {
   space_id = var.space
 }
 
+resource "octopusdeploy_azure_service_principal" "workshop_principle" {
+  application_id  = var.azure_app_id
+  name            = "Workshop Azure Account"
+  password        = var.azure_sp_secret
+  subscription_id = var.azure_subscription
+  tenant_id       = var.azure_tenant_id
+}
+
 resource "octopusdeploy_library_variable_set" "student_var_set" {
   name        = var.variableSetName
   description = var.description

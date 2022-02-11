@@ -7,6 +7,23 @@ variable "apiKey" {
 	sensitive = true
 }
 
+variable "azure_tenant_id"{
+    type = string
+}
+
+variable "azure_subscription"{
+    type = string
+}
+
+variable "azure_app_id"{
+    type = string
+}
+
+variable "azure_sp_secret"{
+    type = string
+    sensitive = true
+}
+
 variable "space" {
     type = string
 }

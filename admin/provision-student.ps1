@@ -134,20 +134,22 @@ if (-not $skipSpace) {
 	#Write-Host $space
 	$studentSpaceId = $space.Id
 
-	Write-Host "Add the workshop azure account to the space"
-	."$PSScriptRoot\add-azure-account.ps1" `
-		-octopusUrl $octopusURL -octopusKey $octopusKey `
-		-azSubscription $azSubscriptionId `
-		-azTenantId $azTenantId `
-		-azClientId $azUser `
-		-azSecret $azSecret `
-		-spaceId $studentSpaceId `
-
+	# Write-Host "Add the workshop azure account to the space"
+	# ."$PSScriptRoot\add-azure-account.ps1" `
+	# 	-octopusUrl $octopusURL -octopusKey $octopusKey `
+	# 	-azSubscription $azSubscriptionId `
+	# 	-azTenantId $azTenantId `
+	# 	-azClientId $azUser `
+	# 	-azSecret $azSecret `
+	# 	-spaceId $studentSpaceId `
 
 	$popLoc = Get-Location
 	Write-Host $popLoc
 	Write-Host "Setting location to $PSScriptRoot"
 	Set-Location $PSScriptRoot
+	
+	# Remove any existing TF state (should only apply to testing)
+	Remove-Item *.tfstate*
 
 	$varSetName = "Slack Variables"
 	$varSetDesc = "Variables used for posting to Slack"
@@ -156,6 +158,10 @@ if (-not $skipSpace) {
 	& terraform apply -auto-approve `
 		-var="apiKey=$octopusKey" -var="serverURL=$octopusURL" `
 		-var="space=$studentSpaceId" `
+		-var="azure_tenant_id=$azTenantId" `
+		-var="azure_subscription=$azSubscriptionId" `
+		-var="azure_app_id=$azUser" `
+		-var="azure_sp_secret=$azSecret" `
 		-var="variableSetName=$varSetName" -var="description=$varSetDesc" `
 		-var="slack_url=someurl" -var="slack_key=ABC123" `
 

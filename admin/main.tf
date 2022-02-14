@@ -11,16 +11,24 @@ provider "octopusdeploy" {
   api_key   = var.apiKey
 }
 
+resource "octopusdeploy_user" "new_student" {
+  display_name  = var.student_display_name
+  email_address = var.student_email
+  is_active     = true
+  is_service    = false
+  password      = var.student_password
+  username      = var.student_username
+}
+
 resource "octopusdeploy_space" "student_space" {
   name                        = var.space_name
   description                 = var.space_description
   is_default                  = false
   is_task_queue_stopped       = false
-  space_managers_team_members = [var.student_userid, var.automation_userid]
+  space_managers_team_members = [octopusdeploy_user.new_student.id, var.automation_userid]
   space_managers_teams        = ["Teams-1"]
 }
 
-#  space_id = var.space
 provider "octopusdeploy" {
   alias = "space_student"
   address = var.serverURL

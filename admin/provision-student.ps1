@@ -51,10 +51,11 @@ $studentSuffix = $studentId.ToString().Substring(0, 8)
 
 $studentNamePrefix = $studentName.Replace(" ", "").Substring(0, [System.Math]::Min(9, $studentName.Length))
 $studentSlug = "$studentNamePrefix-$studentSuffix"
+$studentDisplayName = "Student - $studentName"
 $studentBranch = "student/$studentSlug"
-$studentSpaceId = "fake-$studentSlug"
+$studentSpaceId = "$studentSlug"
 
-$odHeaders = @{ "X-Octopus-ApiKey" = $octopusKey }
+#$odHeaders = @{ "X-Octopus-ApiKey" = $octopusKey }
 
 Write-Host "Provisioning student"
 Write-Host " - $studentName ($studentEmail)"
@@ -62,40 +63,6 @@ Write-Host " - (slug: $studentSlug)"
 Write-Host "Working against:"
 Write-Host " - GitHub Repository: $githubUrl"
 Write-Host " -  Octopus Instance: $octopusUrl"
-
-if (!$skipUser) {
-	Write-Host "Ensuring user exists in Octopus."
-
-	$response = (Invoke-WebRequest "$octopusURL/api/users?skip=0&take=2147483647" -Headers $odHeaders -Method Get -ErrorVariable octoError)
-	$allUsers = $response.Content | ConvertFrom-Json
-	$existingUser = ($allUsers.Items | Where-Object { $_.EmailAddress -eq $studentEmail })
-	#	Write-Output $existingUser
-	if (!$existingUser) {
-		Write-Host "Creating new user"
-
-		$newUser = @{
-			DisplayName = "Student - $studentName"
-			EmailAddress = $studentEmail
-			Username = $studentEmail
-			IsService = $false
-			IsActive = $true
-			Password = $studentId
-		} | ConvertTo-Json
-		Write-Host $newUser
-
-		$response = (Invoke-WebRequest "$octopusURL/api/users" -Headers $odHeaders -Method Post -Body $newUser -ErrorVariable octoError)
-		$newUser = $response.Content | ConvertFrom-Json
-		$userId = $newUser.Id
-		Write-Host "New user created: '$userId'"
-	}
- else {
-		$userId = $existingUser.Id
-		Write-Host "Found existing user: '$userId'"
-	}
-}
-else {
-	Write-Warning "User assurance skipped."
-}
 
 if (-not $skipSpace) {
 	$description = "Space for workshop student $studentName."
@@ -105,42 +72,6 @@ if (-not $skipSpace) {
 		Write-Host "Adding user as space manager"
 		$managerTeamMembers = @($userId, $automationUserId) # an array of user Ids to add to Space Managers
 	}
-
-	# $body = @{
-	# 	Name = $studentSlug
-	# 	Description = $description
-	# 	SpaceManagersTeams = $managersTeams
-	# 	SpaceManagersTeamMembers = $managerTeamMembers
-	# 	IsDefault = $false
-	# 	TaskQueueStopped = $false
-	# } | ConvertTo-Json
-
-	# $response = try {
-	# 	Write-Host "Creating space '$studentSlug'"
-	# 	(Invoke-WebRequest $octopusURL/api/spaces -Headers $odHeaders -Method Post -Body $body -ErrorVariable octoError)
-	# }
-	# catch [System.Net.WebException] {
-	# 	$_.Exception.Response
-	# }
-
-	# if ($octoError) {
-	# 	Write-Host "An error was encountered trying to create the space: $($octoError.Message)"
-	# 	exit
-	# }
-
-	# $space = $response.Content | ConvertFrom-Json
-
-	# #Write-Host $space
-	# $studentSpaceId = $space.Id
-
-	# Write-Host "Add the workshop azure account to the space"
-	# ."$PSScriptRoot\add-azure-account.ps1" `
-	# 	-octopusUrl $octopusURL -octopusKey $octopusKey `
-	# 	-azSubscription $azSubscriptionId `
-	# 	-azTenantId $azTenantId `
-	# 	-azClientId $azUser `
-	# 	-azSecret $azSecret `
-	# 	-spaceId $studentSpaceId `
 
 	$popLoc = Get-Location
 	Write-Host $popLoc
@@ -152,7 +83,7 @@ if (-not $skipSpace) {
 
 	# Remove any existing TF state (should only apply to testing)
 	Remove-Item *.tfstate*
-	if (-not(Test-Path ".terraform.lock.hcl")) {
+	if (-not(Test-Path -PathType Container .terraform)) {
 		& terraform init
 	}
 	& terraform apply -auto-approve `
@@ -160,14 +91,18 @@ if (-not $skipSpace) {
 		-var="azure_tenant_id=$azTenantId" `
 		-var="azure_subscription=$azSubscriptionId" `
 		-var="azure_app_id=$azUser" `
+		-var="student_display_name=$studentDisplayName" -var="student_email=$studentEmail" `
+		-var="student_username=$studentEmail" -var="student_password=$studentId" `
 		-var="space_name=$studentSlug" -var="space_description=$description" `
-		-var="student_userid=$userId" `
 		-var="automation_userid=$automationUserId" `
 		-var="azure_sp_secret=$azSecret" `
 		-var="variableSetName=$varSetName" -var="description=$varSetDesc" `
 		-var="slack_url=someurl" -var="slack_key=ABC123" `
-		
-		# -var="space=$studentSpaceId" `
+	
+	$tfOutputs = terraform output -json | ConvertFrom-Json
+
+	$studentSpaceId = $tfOutputs.student_space.value.id
+	
 	Write-Host "Setting location to $popLoc"
 	Set-Location $popLoc
 }
@@ -232,12 +167,12 @@ else {
 	Write-Warning "Git branch creation skipped."
 }
 
-# Remove-Item * -Recurse -Force
-
 Write-Host "################################################################################"
 Write-Host "## Student provisioning completed"
 Write-Host "## =============================="
 Write-Host "## Student name: $studentName"
+Write-Host "## Student ID: $studentId"
+Write-Host "## Student email: $studentEmail"
 Write-Host "## GitHub branch: https://github.com/OctopusDeploy/training-workshop/tree/$studentBranch"
 Write-Host "## Octopus space: https://octopus-training.octopus.app/app#/$studentSpaceId"
 Write-Host "## Workshop instructions URL: https://github.com/OctopusDeploy/training-workshop/blob/$studentBranch/workshop-instructions.md"

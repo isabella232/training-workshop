@@ -8,12 +8,15 @@ param (
 
 # This script is for testing provisioning a student
 
-$randoStudent = ([System.Guid]:: NewGuid()).ToString().SubString(24)
+$randoId = [System.Guid]:: NewGuid()
+$randoStudent = $randoId.ToString().SubString(24)
+$studentEmail = "planoie.work+$($randoId.ToString().SubString(0, 8))@gmail.com"
+
 ."$PSScriptRoot\..\provision-student.ps1" `
 	-githubUrl $githubUrl -githubPAT $githubPAT `
 	-octopusUrl $octopusURL -octopusKey $octopusKey `
 	-azTenantId $azTenantId -azUser $azUser -azSecret $azSecret -azSubscriptionId $azSubscriptionId `
-	-studentName $randoStudent -studentEmail "$randoStudent@octopus.com" `
+	-studentName $randoStudent -studentEmail $studentEmail `
 	-skipAzure `
 	-skipGit `
 	

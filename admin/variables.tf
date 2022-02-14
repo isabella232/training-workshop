@@ -7,19 +7,25 @@ variable "apiKey" {
 	sensitive = true
 }
 
-# variable "space" {
-#     type = string
-# }
+variable "student_display_name"{
+    type = string
+}
+variable "student_email"{
+    type = string
+}
+variable "student_username"{
+    type = string
+}
+variable "student_password"{
+    type = string
+    sensitive = true
+}
 
 variable "space_name"{
     type = string
 }
 
 variable "space_description"{
-    type = string
-}
-
-variable "student_userid"{
     type = string
 }
 

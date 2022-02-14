@@ -16,7 +16,7 @@ param (
 	[string] $azSubscriptionId,
 
 	[switch] $skipGit,
-	[switch] $skipSpace,
+	[switch] $skipOctopus,
 	[switch] $skipAzure,
 	[switch] $skipUser
 )
@@ -55,8 +55,6 @@ $studentDisplayName = "Student - $studentName"
 $studentBranch = "student/$studentSlug"
 $studentSpaceId = "$studentSlug"
 
-#$odHeaders = @{ "X-Octopus-ApiKey" = $octopusKey }
-
 Write-Host "Provisioning student"
 Write-Host " - $studentName ($studentEmail)"
 Write-Host " - (slug: $studentSlug)"
@@ -64,7 +62,7 @@ Write-Host "Working against:"
 Write-Host " - GitHub Repository: $githubUrl"
 Write-Host " -  Octopus Instance: $octopusUrl"
 
-if (-not $skipSpace) {
+if (-not $skipOctopus) {
 	$description = "Space for workshop student $studentName."
 	$managersTeams = @("Teams-1") # an array of team Ids to add to Space Managers
 	Write-Host "User ID: $userId"

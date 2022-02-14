@@ -1,7 +1,8 @@
 [CmdletBinding()]
 param (
 	[Parameter(Mandatory=$true)] [string] $studentSlug,
-	[switch] $skipAzure
+	[switch] $skipAzure,
+	[switch] $skipOctopus
 )
 
 .$PSScriptRoot\load-config.ps1
@@ -11,8 +12,4 @@ param (
 	-azTenantId $azTenantId -azUser $azUser -azSecret $azSecret `
 	-studentSlug $studentSlug `
 	-skipAzure:$skipAzure `
-
-#	-skipAzure `
-#	-skipGit  `
-#	-skipSpace `
-
+	-skipOctopus:$skipOctopus `

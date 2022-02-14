@@ -20,5 +20,5 @@ $studentEmail = "planoie.work+$($randoId.ToString().SubString(0, 8))@gmail.com"
 	-skipAzure `
 	-skipGit `
 	
-#	-skipSpace `
+#	-skipOctopus `
 	# -studentName $studentName -studentEmail $studentEmail

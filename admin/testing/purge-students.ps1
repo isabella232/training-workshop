@@ -1,6 +1,7 @@
 [CmdletBinding()]
 param (
-	[switch] $skipAzure
+	[switch] $skipAzure,
+	[switch] $skipOctopus
 )
 
 . $PSScriptRoot\load-config.ps1 
@@ -17,5 +18,5 @@ foreach ($user in $users) {
 $spaces = .$PSScriptRoot\get-workshop-spaces.ps1 
 foreach ($space in $spaces) {
 	Write-Host "Purging resources. Slug: $($space.Name)"
-	.$PSScriptRoot\deprovision-student.ps1 -studentSlug $space.Name -skipAzure:$skipAzure
+	.$PSScriptRoot\deprovision-student.ps1 -studentSlug $space.Name -skipAzure:$skipAzure -skipOctopus:$skipOctopus
 }

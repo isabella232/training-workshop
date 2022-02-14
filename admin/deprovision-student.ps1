@@ -6,7 +6,7 @@ param (
 	[string] $octopusUrl,
 	[string] $octopusKey,
 	[switch] $skipGit,
-	[switch] $skipSpace,
+	[switch] $skipOctopus,
 	[switch] $skipAzure,
 	[string] $azTenantId,
 	[string] $azUser,
@@ -27,7 +27,7 @@ Write-Host " - (slug: $studentSlug)"
 Write-Host "Working against:"
 Write-Host " -  Octopus Instance: $octopusUrl"
 
-if (-not $skipSpace) {
+if (-not $skipOctopus) {
 	$header = @{ "X-Octopus-ApiKey" = $octopusKey }
 
 	$spaceName = $studentSlug

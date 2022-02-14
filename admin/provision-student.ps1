@@ -98,7 +98,6 @@ else {
 }
 
 if (-not $skipSpace) {
-	$spaceName = $studentSlug
 	$description = "Space for workshop student $studentName."
 	$managersTeams = @("Teams-1") # an array of team Ids to add to Space Managers
 	Write-Host "User ID: $userId"
@@ -107,32 +106,32 @@ if (-not $skipSpace) {
 		$managerTeamMembers = @($userId, $automationUserId) # an array of user Ids to add to Space Managers
 	}
 
-	$body = @{
-		Name = $spaceName
-		Description = $description
-		SpaceManagersTeams = $managersTeams
-		SpaceManagersTeamMembers = $managerTeamMembers
-		IsDefault = $false
-		TaskQueueStopped = $false
-	} | ConvertTo-Json
+	# $body = @{
+	# 	Name = $studentSlug
+	# 	Description = $description
+	# 	SpaceManagersTeams = $managersTeams
+	# 	SpaceManagersTeamMembers = $managerTeamMembers
+	# 	IsDefault = $false
+	# 	TaskQueueStopped = $false
+	# } | ConvertTo-Json
 
-	$response = try {
-		Write-Host "Creating space '$spaceName'"
-		(Invoke-WebRequest $octopusURL/api/spaces -Headers $odHeaders -Method Post -Body $body -ErrorVariable octoError)
-	}
-	catch [System.Net.WebException] {
-		$_.Exception.Response
-	}
+	# $response = try {
+	# 	Write-Host "Creating space '$studentSlug'"
+	# 	(Invoke-WebRequest $octopusURL/api/spaces -Headers $odHeaders -Method Post -Body $body -ErrorVariable octoError)
+	# }
+	# catch [System.Net.WebException] {
+	# 	$_.Exception.Response
+	# }
 
-	if ($octoError) {
-		Write-Host "An error was encountered trying to create the space: $($octoError.Message)"
-		exit
-	}
+	# if ($octoError) {
+	# 	Write-Host "An error was encountered trying to create the space: $($octoError.Message)"
+	# 	exit
+	# }
 
-	$space = $response.Content | ConvertFrom-Json
+	# $space = $response.Content | ConvertFrom-Json
 
-	#Write-Host $space
-	$studentSpaceId = $space.Id
+	# #Write-Host $space
+	# $studentSpaceId = $space.Id
 
 	# Write-Host "Add the workshop azure account to the space"
 	# ."$PSScriptRoot\add-azure-account.ps1" `
@@ -147,24 +146,28 @@ if (-not $skipSpace) {
 	Write-Host $popLoc
 	Write-Host "Setting location to $PSScriptRoot"
 	Set-Location $PSScriptRoot
-	
-	# Remove any existing TF state (should only apply to testing)
-	Remove-Item *.tfstate*
 
 	$varSetName = "Slack Variables"
 	$varSetDesc = "Variables used for posting to Slack"
 
-	& terraform init
+	# Remove any existing TF state (should only apply to testing)
+	Remove-Item *.tfstate*
+	if (-not(Test-Path ".terraform.lock.hcl")) {
+		& terraform init
+	}
 	& terraform apply -auto-approve `
-		-var="apiKey=$octopusKey" -var="serverURL=$octopusURL" `
-		-var="space=$studentSpaceId" `
+		-var="serverURL=$octopusURL" -var="apiKey=$octopusKey" `
 		-var="azure_tenant_id=$azTenantId" `
 		-var="azure_subscription=$azSubscriptionId" `
 		-var="azure_app_id=$azUser" `
+		-var="space_name=$studentSlug" -var="space_description=$description" `
+		-var="student_userid=$userId" `
+		-var="automation_userid=$automationUserId" `
 		-var="azure_sp_secret=$azSecret" `
 		-var="variableSetName=$varSetName" -var="description=$varSetDesc" `
 		-var="slack_url=someurl" -var="slack_key=ABC123" `
-
+		
+		# -var="space=$studentSpaceId" `
 	Write-Host "Setting location to $popLoc"
 	Set-Location $popLoc
 }

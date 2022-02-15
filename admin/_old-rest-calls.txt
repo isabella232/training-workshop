@@ -73,3 +73,19 @@
 	# 	-azClientId $azUser `
 	# 	-azSecret $azSecret `
 	# 	-spaceId $studentSpaceId `
+
+
+## Azure provisioning
+		$azSecureSecret = ConvertTo-SecureString -String $azSecret -AsPlainText -Force
+		$azCredential = New-Object -TypeName "System.Management.Automation.PSCredential" -ArgumentList $azUser, $azSecureSecret
+		Connect-AzAccount -ServicePrincipal -Credential $azCredential -Tenant $azTenantId
+		foreach ($studentApp in $studentAppInfos) {
+			Write-Host "Creating student application: $($studentApp.AppSlug) ..."
+			$azureApp = New-AzWebApp `
+				-ResourceGroupName $azResourceGroupName `
+				-AppServicePlan $azWebAppServicePlan `
+				-Name $studentApp.AppSlug `
+				-Location "West US 2" `
+				#		-WhatIf
+				$studentApp.AppURL = "https://$($azureApp.DefaultHostName)"
+		}

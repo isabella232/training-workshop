@@ -14,6 +14,9 @@ param (
 	[string] $azUser,
 	[string] $azSecret,
 	[string] $azSubscriptionId,
+	[string] $azLocation,
+	[string] $azResourceGroupName,
+	[string] $azWebAppServicePlan,
 
 	[switch] $skipGit,
 	[switch] $skipOctopus,
@@ -42,9 +45,6 @@ else {
 }
 
 $instructionsDocFile = ".\workshop-instructions.md"
-$azResourceGroupName = "training-workshop"
-$azWebAppServicePlan = "training-workshop-webapps"
-$automationUserId = "Users-23"
 
 $studentId = [System.Guid]::NewGuid()
 $studentSuffix = $studentId.ToString().Substring(0, 8)
@@ -64,17 +64,17 @@ Write-Host " -  Octopus Instance: $octopusUrl"
 
 if (-not $skipOctopus) {
 	$description = "Space for workshop student $studentName."
-	$managersTeams = @("Teams-1") # an array of team Ids to add to Space Managers
-	Write-Host "User ID: $userId"
-	if ($userId) {
-		Write-Host "Adding user as space manager"
-		$managerTeamMembers = @($userId, $automationUserId) # an array of user Ids to add to Space Managers
-	}
+	# $managersTeams = @("Teams-1") # an array of team Ids to add to Space Managers
+	# Write-Host "User ID: $userId"
+	# if ($userId) {
+	# 	Write-Host "Adding user as space manager"
+	# 	$managerTeamMembers = @($userId, $automationUserId) # an array of user Ids to add to Space Managers
+	# }
 
 	$popLoc = Get-Location
 	Write-Host $popLoc
 	Write-Host "Setting location to $PSScriptRoot"
-	Set-Location $PSScriptRoot
+	Set-Location "$PSScriptRoot\tf-octopus"
 
 	$varSetName = "Slack Variables"
 	$varSetDesc = "Variables used for posting to Slack"
@@ -120,23 +120,29 @@ foreach ($appEnv in $appEnvs) {
 }
 
 if (!$skipAzure) {
+	$popLoc = Get-Location
+	Set-Location "$PSScriptRoot\tf-azure"
 
-	$azSecureSecret = ConvertTo-SecureString -String $azSecret -AsPlainText -Force
-	$azCredential = New-Object -TypeName "System.Management.Automation.PSCredential" -ArgumentList $azUser, $azSecureSecret
-	Connect-AzAccount -ServicePrincipal -Credential $azCredential -Tenant $azTenantId
-	foreach ($studentApp in $studentAppInfos) {
-		Write-Host "Creating student application: $($studentApp.AppSlug) ..."
-		$azureApp = New-AzWebApp `
-			-ResourceGroupName $azResourceGroupName `
-			-AppServicePlan $azWebAppServicePlan `
-			-Name $studentApp.AppSlug `
-			-Location "West US 2" `
-			#		-WhatIf
-			$studentApp.AppURL = "https://$($azureApp.DefaultHostName)"
+	# Remove any existing TF state (should only apply to testing)
+	Remove-Item *.tfstate*
+	if (-not(Test-Path -PathType Container .terraform)) {
+		& terraform init
 	}
+	#	& terraform plan `
+	& terraform apply -auto-approve `
+		-var="az_tenant_id=$azTenantId" -var="az_subscription=$azSubscriptionId" `
+		-var="az_app_id=$azUser" -var="az_sp_secret=$azSecret" `
+		-var="az_location=$azLocation" -var="az_resource_group_name=$azResourceGroupName" `
+		-var="az_app_service_plan_name=$azWebAppServicePlan" `
+		-var="student_slug=$studentSlug" `
 
-}
-else {
+	$tfOutputs = terraform output -json | ConvertFrom-Json
+	Set-Location $popLoc
+
+	foreach ($studentAppInfo in $studentAppInfos) {
+		$studentAppInfo.AppURL = $tfOutputs."student_site_$($studentAppInfo.AppEnvironment)".value.default_site_hostname
+	}
+} else {
 	Write-Warning "Azure resource creation skipped."
 }
 
@@ -176,6 +182,15 @@ Write-Host "## Octopus space: https://octopus-training.octopus.app/app#/$student
 Write-Host "## Workshop instructions URL: https://github.com/OctopusDeploy/training-workshop/blob/$studentBranch/workshop-instructions.md"
 Write-Host "## Student website URLs:"
 foreach ($studentAppInfo in $studentAppInfos) {
-	Write-Host "##  - $($studentAppInfo.AppEnvironment): $($studentAppInfo.AppURL)"
+	Write-Host "##  - $($studentAppInfo.AppEnvironment): https://$($studentAppInfo.AppURL)"
 }
+Write-Host "## -----------------------------------------------------------------------------"
+Write-Host "## Cleanup"
+Write-Host "## -----------------------------------------------------------------------------"
+Write-Host "## Deprovision student: .\testing\deprovision-student.ps1 -studentSlug $studentSlug"
+Write-Host "## Delete azure resources: .\testing\delete-student-webapps.ps1 -studentSlug $studentSlug"
 Write-Host "################################################################################"
+$provisionLogFile = "$PSScriptRoot\data-provisioned-students.txt"
+Out-File -FilePath $provisionLogFile -Append -InputObject "$studentName $studentId $studentEmail $studentSlug"
+Out-File -FilePath $provisionLogFile -Append -InputObject "   .\testing\deprovision-student.ps1 -studentSlug $studentSlug"
+Out-File -FilePath $provisionLogFile -Append -InputObject "   .\testing\delete-student-webapps.ps1 -studentSlug $studentSlug"

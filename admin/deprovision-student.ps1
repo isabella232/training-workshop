@@ -13,14 +13,7 @@ param (
 	[string] $azSecret
 )
 
-# class StudentAppInfo {
-# 	[string]$AppEnvironment
-# 	[string]$AppURL
-# 	[string]$AppSlug
-# }
-
 $azResourceGroupName = "training-workshop"
-$azWebAppServicePlan = "training-workshop-webapps"
 
 Write-Host "Deprovisioning student"
 Write-Host " - (slug: $studentSlug)"
@@ -56,35 +49,10 @@ if (-not $skipOctopus) {
 }
 
 if (!$skipAzure) {
-
-	$azSecureSecret = ConvertTo-SecureString -String $azSecret -AsPlainText -Force
-	$azCredential = New-Object -TypeName "System.Management.Automation.PSCredential" -ArgumentList $azUser, $azSecureSecret
-
-	(Connect-AzAccount -ServicePrincipal -Credential $azCredential -Tenant $azTenantId) | Out-Null
-
-	Write-Host "Looking for existing web apps..."
-	$studentWebApps = (Get-AzWebApp -ResourceGroupName $azResourceGroupName) | Where-Object { $_.Name.Contains($studentSlug) }
-
-	Write-Host "Web apps matching student: $($studentWebApps.Length)"
-	foreach ($webApp in $studentWebApps) {
-		Write-Host "Removing student web app: $($webApp.Name)"
-		Remove-AzWebApp $webApp -Force
-	}
-
-# 	foreach ($studentApp in $studentAppInfos) {
-# 		Write-Host "Creating student application: $($studentApp.AppSlug) ..."
-# 		$azureApp = New-AzWebApp `
-# 		-ResourceGroupName $azResourceGroupName `
-# 		-AppServicePlan $azWebAppServicePlan `
-# 		-Name $studentApp.AppSlug `
-# 		-Location "West US 2" `
-# #		-WhatIf
-# 		$studentApp.AppURL = "https://$($azureApp.DefaultHostName)"
-# 	}
-
+	."$PSScriptRoot\delete-student-webapps.ps1" `
+		-azTenantId $azTenantId -azResourceGroupName $azResourceGroupName `
+		-azSecret $azSecret -azUser $azUser `
+		-studentSlug $studentSlug `
 } else {
 	Write-Warning "Azure resource teardown skipped."
 }
-
-## Deleting user
-# api/users/Users-42 HTTP: DELETE

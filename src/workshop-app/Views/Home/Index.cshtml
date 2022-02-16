@@ -1,0 +1,26 @@
+﻿@model WorkshopViewModel
+<div style="padding-top:20px">
+	<h1>Octopus 101 Training Workshop</h1>
+	<h2>Student @Model.StudentName in @Model.EnvironmentName Environment</h2>
+</div>
+<div class="text-center" style="padding-top:40px">
+	@if (Model.ShowProceedMessage)
+	{
+		<h2>@Html.Raw(Model.ProceedMessage)</h2>
+	}
+	@if (Model.ShowSlackButton)
+	{
+		<p>
+			Slack username @@<input id="slackUser" type="text" /> (e.g. "user.name")
+		</p>
+		<button id="btn-slackpost">
+			Post my success!
+		</button>
+	}
+</div>
+<div id="msg"></div>
+@section Scripts{
+	<script type="text/javascript">
+		var slackPostUrl = "@Model.PostUrl"
+	</script>
+}

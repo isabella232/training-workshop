@@ -1,5 +1,7 @@
 name: .NET
 
+env:
+  PROJECT_PATH: src/workshop-app
 on:
   workflow_dispatch
 #  push:
@@ -19,8 +21,8 @@ jobs:
       with:
         dotnet-version: 5.0.x
     - name: Restore dependencies
-      run: dotnet restore
+      run: dotnet restore env.PROJECT_PATH
     - name: Build
-      run: dotnet build --no-restore --configuration Release src/workshop-app
+      run: dotnet build --no-restore --configuration Release env.PROJECT_PATH
     - name: Package
-      run: dotnet pack --no-build --configuration Release src/workshop-app
+      run: dotnet pack --no-build --configuration Release env.PROJECT_PATH

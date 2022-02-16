@@ -21,6 +21,6 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
-      run: dotnet build --no-restore --configuration Release
+      run: dotnet build --no-restore --configuration Release src/workshop-app
     - name: Package
-      run: dotnet pack --no-build --configuration Release 
+      run: dotnet pack --no-build --configuration Release src/workshop-app

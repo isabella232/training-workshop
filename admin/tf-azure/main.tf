@@ -39,33 +39,19 @@ resource "azurerm_app_service" "student_site_dev" {
   location = var.az_location
   resource_group_name = var.az_resource_group_name
   app_service_plan_id = data.azurerm_app_service_plan.workshop_website_plan.id
-  client_affinity_enabled = true
-  # tags = {}
-
-  # site_config {
-  #   dotnet_framework_version = "v6.0"
-  # }
 }
 
-# resource "azurerm_app_service" "student_site_test" {
-#   name = "${var.student_slug}-test"
-#   location = var.az_location
-#   resource_group_name = var.az_resource_group_name
-#   app_service_plan_id = data.azurerm_app_service_plan.workshop_website_plan.id
+resource "azurerm_app_service" "student_site_test" {
+  name = "${var.student_slug}-test"
+  location = var.az_location
+  resource_group_name = var.az_resource_group_name
+  app_service_plan_id = data.azurerm_app_service_plan.workshop_website_plan.id
+}
 
-#   site_config {
-#     dotnet_framework_version = "v6.0"
-#   }
-# }
-
-# resource "azurerm_app_service" "student_site_prod" {
-#   name = "${var.student_slug}-prod"
-#   location = var.az_location
-#   resource_group_name = var.az_resource_group_name
-#   app_service_plan_id = data.azurerm_app_service_plan.workshop_website_plan.id
-
-#   site_config {
-#     dotnet_framework_version = "v6.0"
-#   }
-# }
+resource "azurerm_app_service" "student_site_prod" {
+  name = "${var.student_slug}-prod"
+  location = var.az_location
+  resource_group_name = var.az_resource_group_name
+  app_service_plan_id = data.azurerm_app_service_plan.workshop_website_plan.id
+}
 

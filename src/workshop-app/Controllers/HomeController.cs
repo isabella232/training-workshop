@@ -50,7 +50,7 @@ namespace workshop_app.Controllers
 						model.ProceedMessage = "Woohoo, you're getting close!<br />Please proceed to your production environment application.";
 						break;
 					case "production":
-						model.ProceedMessage = "Woohoo, you made it!<br /><br />Enter your Slack username below and click the button to post your success to Slack.";
+						model.ProceedMessage = "Woohoo, you made it!<br /><br />Enter your Slack username below and click the button to post your success.";
 						model.ShowSlackButton = true;
 						model.PostUrl = Url.Action("PostToSlack", "Home", new { slackUser = "(slackUser)" });
 						break;

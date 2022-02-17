@@ -31,7 +31,7 @@ jobs:
       run: |
         mkdir "$GITHUB_WORKSPACE/artifacts"
     - name: Create App Package
-      run: dotnet pack --no-build --configuration Release --output "$GITHUB_WORKSPACE/artifacts" $PROJECT_PATH
+      run: dotnet pack --no-build --configuration Release --output "$GITHUB_WORKSPACE/artifacts" /p:Version=$PACKAGE_VERSION $PROJECT_PATH
     - name: Install Octopus CLI
       uses: OctopusDeploy/install-octopus-cli-action@v1.1.8
       with:

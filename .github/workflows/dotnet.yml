@@ -18,9 +18,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Set version
-      run: echo "PACKAGE_VERSION=$(date +'%Y.%m.%d').$GITHUB_RUN_NUMBER" >> $GITHUB_ENV
-    - name: Set package file name
-      run: echo "PACKAGE_FILENAME=workshop-app.$PACKAGE_VERSION.nupkg" >> $GITHUB_ENV
+      run: echo "PACKAGE_VERSION=$(date +'%Y.%-m.%-d').$GITHUB_RUN_NUMBER" >> $GITHUB_ENV
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
@@ -43,5 +41,5 @@ jobs:
       with:
         api_key: ${{ secrets.OCTOPUS_API_KEY }}
         server: ${{ secrets.OCTOPUS_SERVER_URL }}
-        packages: "artifacts/${{ env.PACKAGE_FILENAME }}"
+        packages: "artifacts/workshop-app.${{ env.PACKAGE_VERSION }}.nupkg"
         space: $OCTOPUS_SPACEID

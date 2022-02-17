@@ -12,13 +12,15 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v2
     - name: Set version
       run: echo "PACKAGE_VERSION=$(date +'%Y.%-m.%-d').$GITHUB_RUN_NUMBER" >> $GITHUB_ENV
+    - name: Set target space name
+      if: GITHUB_REF_NAME != 'main'
+      env:
+        OCTOPUS_SPACE: ${{ env.GITHUB_REF_NAME }}
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:

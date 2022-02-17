@@ -21,6 +21,7 @@ jobs:
       if: GITHUB_REF_NAME != 'main'
       env:
         OCTOPUS_SPACE: ${{ env.GITHUB_REF_NAME }}
+      run: echo "Using student space '$OCTOPUS_SPACE' for package publishing"
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:

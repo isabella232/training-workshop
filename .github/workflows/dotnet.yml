@@ -1,4 +1,4 @@
-name: .NET
+name: Build App - Main
 
 env:
   PROJECT_PATH: src/workshop-app

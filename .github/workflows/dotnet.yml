@@ -43,7 +43,7 @@ jobs:
       with:
         version: latest
     - name: Create Workshop App Package
-      run: octo pack --id="workshop-app" --version="$PACKAGE_VERSION" --basePath="$GITHUB_WORKSPACE/artifacts/workshop-app" --outFolder="$GITHUB_WORKSPACE/artifacts"
+      run: octo pack --id="workshop-app" --format="Zip" --version="$PACKAGE_VERSION" --basePath="$GITHUB_WORKSPACE/artifacts/workshop-app" --outFolder="$GITHUB_WORKSPACE/artifacts"
     - name: Push Sample App Package
       uses: OctopusDeploy/push-package-action@v1.1.1
       with:

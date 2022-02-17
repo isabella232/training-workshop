@@ -2,7 +2,7 @@ name: Build App - Main
 
 env:
   PROJECT_PATH: src/workshop-app
-  OCTOPUS_SPACE: ${{ secrets.OCTOPUS_DEFAULT_SPACENAME }}
+  OCTOPUS_SPACE: "Spaces-1"
 on:
   workflow_dispatch
 #  push:
@@ -17,13 +17,13 @@ jobs:
     - uses: actions/checkout@v2
     - name: Set version number
       run: echo "PACKAGE_VERSION=$(date +'%Y.%-m.%-d').$GITHUB_RUN_NUMBER" >> $GITHUB_ENV
-    - name: Get current branch name
-      run: echo "CURRENT_GITBRANCH=$(git symbolic-ref HEAD --short)" >> $GITHUB_ENV
-    - name: Set student target space name
-      if: ${{ env.CURRENT_GITBRANCH != 'main' }}
-      env:
-        OCTOPUS_SPACE: ${{ env.GITHUB_REF_NAME }}
-      run: echo "Using student space '$OCTOPUS_SPACE' for package publishing"
+    # - name: Get current branch name
+    #   run: echo "CURRENT_GITBRANCH=$(git symbolic-ref HEAD --short)" >> $GITHUB_ENV
+    # - name: Set student target space name
+    #   if: ${{ env.CURRENT_GITBRANCH != 'main' }}
+    #   env:
+    #     OCTOPUS_SPACE: ${{ env.GITHUB_REF_NAME }}
+    #   run: echo "Using student space '${{ env.OCTOPUS_SPACE }}' for package publishing"
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:

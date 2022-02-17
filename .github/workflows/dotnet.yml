@@ -34,6 +34,7 @@ jobs:
       run: dotnet build --no-restore --configuration Release $PROJECT_PATH
     - name: Create artifacts folder
       run: |
+        mkdir "$GITHUB_WORKSPACE/artifacts"
         mkdir "$GITHUB_WORKSPACE/artifacts/workshop-app"
     - name: Publish application
       run: dotnet publish --configuration Release --no-restore --output "$GITHUB_WORKSPACE/artifacts/workshop-app" $PROJECT_PATH

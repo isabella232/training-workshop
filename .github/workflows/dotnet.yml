@@ -2,6 +2,7 @@ name: Build App - Main
 
 env:
   PROJECT_PATH: src/workshop-app
+  OCTOPUS_SPACEID: ${{ secrets.OCTOPUS_DEFAULT_SPACEID }}
 on:
   workflow_dispatch
 #  push:
@@ -16,7 +17,9 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Setup .NET
+    - name: Set version
+      run: echo "PACKAGE_VERSION=$(date +'%Y.%m.%d').$GITHUB_RUN_NUMBER" >> $GITHUB_ENV
+    - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 5.0.x
@@ -24,5 +27,19 @@ jobs:
       run: dotnet restore $PROJECT_PATH
     - name: Build
       run: dotnet build --no-restore --configuration Release $PROJECT_PATH
-    - name: Package
-      run: dotnet pack --no-build --configuration Release $PROJECT_PATH
+    - name: Create artifacts folder
+      run: |
+        mkdir "$GITHUB_WORKSPACE/artifacts"
+    - name: Create App Package
+      run: dotnet pack --no-build --configuration Release --output "$GITHUB_WORKSPACE/artifacts" $PROJECT_PATH
+    - name: Install Octopus CLI
+      uses: OctopusDeploy/install-octopus-cli-action@v1.1.8
+      with:
+        version: latest
+    - name: Push OctoPetShop packages
+      uses: OctopusDeploy/push-package-action@v1.1.1
+      with:
+        api_key: ${{ secrets.OCTOPUS_API_KEY }}
+        server: ${{ secrets.OCTOPUS_SERVER_URL }}
+        packages: "artifacts/workshop-app.${{ env.PACKAGE_VERSION }}.nupkg"
+        space: $OCTOPUS_SPACEID

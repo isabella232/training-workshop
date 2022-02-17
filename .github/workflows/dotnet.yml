@@ -1,4 +1,4 @@
-name: Build App - Main
+name: Build Application
 
 env:
   PROJECT_PATH: src/workshop-app

@@ -34,17 +34,19 @@ jobs:
       run: dotnet build --no-restore --configuration Release $PROJECT_PATH
     - name: Create artifacts folder
       run: |
-        mkdir "$GITHUB_WORKSPACE/artifacts"
-    - name: Create App Package
-      run: dotnet pack --no-build --configuration Release --output "$GITHUB_WORKSPACE/artifacts" /p:Version=${{ env.PACKAGE_VERSION }} $PROJECT_PATH
+        mkdir "$GITHUB_WORKSPACE/artifacts/workshop-app"
+    - name: Publish application
+      run: dotnet publish --configuration Release --no-restore --output "$GITHUB_WORKSPACE/artifacts/workshop-app" $PROJECT_PATH
     - name: Install Octopus CLI
       uses: OctopusDeploy/install-octopus-cli-action@v1.1.8
       with:
         version: latest
+    - name: Create Workshop App Package
+      run: octo pack --id="workshop-app" --version="$PACKAGE_VERSION" --basePath="$GITHUB_WORKSPACE/artifacts/workshop-app" --outFolder="$GITHUB_WORKSPACE/artifacts"
     - name: Push Sample App Package
       uses: OctopusDeploy/push-package-action@v1.1.1
       with:
         api_key: ${{ secrets.OCTOPUS_API_KEY }}
         server: ${{ secrets.OCTOPUS_SERVER_URL }}
-        packages: "artifacts/workshop-app.${{ env.PACKAGE_VERSION }}.nupkg"
+        packages: "artifacts/workshop-app.${{ env.PACKAGE_VERSION }}.zip"
         space: ${{ env.OCTOPUS_SPACE }}

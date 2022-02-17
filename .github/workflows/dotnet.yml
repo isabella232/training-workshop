@@ -18,7 +18,7 @@ jobs:
     - name: Set version
       run: echo "PACKAGE_VERSION=$(date +'%Y.%-m.%-d').$GITHUB_RUN_NUMBER" >> $GITHUB_ENV
     - name: Set target space name
-      if: ${{ GITHUB_REF_NAME != 'main' }}
+      if: ${{ env.GITHUB_REF_NAME != 'main' }}
       env:
         OCTOPUS_SPACE: ${{ env.GITHUB_REF_NAME }}
       run: echo "Using student space '$OCTOPUS_SPACE' for package publishing"

@@ -34,21 +34,21 @@ data "azurerm_app_service_plan" "workshop_website_plan" {
   resource_group_name = var.az_resource_group_name
 }
 
-resource "azurerm_app_service" "student_site_dev" {
+resource "azurerm_app_service" "web_site_dev" {
   name = "${var.student_slug}-dev"
   location = var.az_location
   resource_group_name = var.az_resource_group_name
   app_service_plan_id = data.azurerm_app_service_plan.workshop_website_plan.id
 }
 
-resource "azurerm_app_service" "student_site_test" {
+resource "azurerm_app_service" "web_site_test" {
   name = "${var.student_slug}-test"
   location = var.az_location
   resource_group_name = var.az_resource_group_name
   app_service_plan_id = data.azurerm_app_service_plan.workshop_website_plan.id
 }
 
-resource "azurerm_app_service" "student_site_prod" {
+resource "azurerm_app_service" "web_site_prod" {
   name = "${var.student_slug}-prod"
   location = var.az_location
   resource_group_name = var.az_resource_group_name

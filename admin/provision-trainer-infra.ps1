@@ -23,6 +23,6 @@ $tfOutputs = terraform output -json | ConvertFrom-Json
 Set-Location $popLoc
 
 foreach ($env in @("dev", "test", "prod")) {
-	$url = $tfOutputs."student_site_$env".value.default_site_hostname
+	$url = $tfOutputs."web_site_$env".value.default_site_hostname
 	Write-Host "Dev site: $url"
 }

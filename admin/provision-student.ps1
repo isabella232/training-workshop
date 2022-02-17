@@ -140,7 +140,7 @@ if (!$skipAzure) {
 	Set-Location $popLoc
 
 	foreach ($studentAppInfo in $studentAppInfos) {
-		$studentAppInfo.AppURL = $tfOutputs."student_site_$($studentAppInfo.AppEnvironment)".value.default_site_hostname
+		$studentAppInfo.AppURL = $tfOutputs."web_site_$($studentAppInfo.AppEnvironment)".value.default_site_hostname
 	}
 } else {
 	Write-Warning "Azure resource creation skipped."

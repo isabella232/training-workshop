@@ -30,7 +30,7 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore $PROJECT_PATH
     - name: Update build info file
-      run: echo $PACKAGE_VERSION ($CURRENT_GITBRANCH) > $PROJECT_PATH/wwwroot/built-version.txt
+      run: echo "$PACKAGE_VERSION ($CURRENT_GITBRANCH)" > $PROJECT_PATH/wwwroot/built-version.txt
     - name: Build
       run: dotnet build --no-restore --configuration Release $PROJECT_PATH
     - name: Create artifacts folder

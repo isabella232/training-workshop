@@ -53,4 +53,4 @@ jobs:
         server: ${{ secrets.OCTOPUS_SERVER_URL }}
         api_key: ${{ secrets.OCTOPUS_API_KEY }}
         space: ${{ env.OCTOPUS_SPACE }}
-        packages: "artifacts/$PACKAGE_ID.${{ env.PACKAGE_VERSION }}.zip"
+        packages: "artifacts/${{ env.PACKAGE_ID }}.${{ env.PACKAGE_VERSION }}.zip"

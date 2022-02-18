@@ -17,8 +17,8 @@ jobs:
     - uses: actions/checkout@v2
     - name: Set version number
       run: echo "PACKAGE_VERSION=$(date +'%Y.%-m.%-d').$GITHUB_RUN_NUMBER" >> $GITHUB_ENV
-    # - name: Get current branch name
-    #   run: echo "CURRENT_GITBRANCH=$(git symbolic-ref HEAD --short)" >> $GITHUB_ENV
+     - name: Get current branch name
+       run: echo "CURRENT_GITBRANCH=$(git symbolic-ref HEAD --short)" >> $GITHUB_ENV
     # - name: Set student target space name
     #   if: ${{ env.CURRENT_GITBRANCH != 'main' }}
     #   env:
@@ -30,8 +30,8 @@ jobs:
         dotnet-version: 5.0.x
     - name: Restore dependencies
       run: dotnet restore $PROJECT_PATH
-    - name: Update version file
-      run: echo $PACKAGE_VERSION > $PROJECT_PATH/wwwroot/built-version.txt
+    - name: Update build info file
+      run: echo $PACKAGE_VERSION ($CURRENT_GITBRANCH) > $PROJECT_PATH/wwwroot/built-version.txt
     - name: Build
       run: dotnet build --no-restore --configuration Release $PROJECT_PATH
     - name: Create artifacts folder

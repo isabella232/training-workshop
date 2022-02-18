@@ -5,10 +5,10 @@ env:
   OCTOPUS_SPACE: "Spaces-1"
 on:
   workflow_dispatch
-#  push:
-#    branches: [ main ]
-#  pull_request:
-#    branches: [ main ]
+  push:
+    branches:
+      - main
+#      - 'student/**'
 
 jobs:
   build:

@@ -30,6 +30,8 @@ jobs:
         dotnet-version: 5.0.x
     - name: Restore dependencies
       run: dotnet restore $PROJECT_PATH
+    - name: Update version file
+      run: echo $PACKAGE_VERSION > $PROJECT_PATH/wwwroot/built-version.txt
     - name: Build
       run: dotnet build --no-restore --configuration Release $PROJECT_PATH
     - name: Create artifacts folder

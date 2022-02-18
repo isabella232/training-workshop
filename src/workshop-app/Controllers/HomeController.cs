@@ -33,16 +33,20 @@ namespace workshop_app.Controllers
 
 		public IActionResult Index()
 		{
-			var versionFile = Path.Combine(_environment.WebRootPath, _config["VersionFile"]);
-			var versionText = System.IO.File.ReadAllText(versionFile);
+			var versionInfoFile = Path.Combine(_environment.WebRootPath, _config["Files:VersionInfo"]);
+			var versionInfoText = System.IO.File.ReadAllText(versionInfoFile);
+
+			var releaseInfoFile = Path.Combine(_environment.WebRootPath, _config["Files:ReleaseInfo"]);
+			var releaseInfoText = System.IO.File.ReadAllText(releaseInfoFile);
+			var releaseInfo = JsonSerializer.Deserialize<ReleaseInfo>(releaseInfoText)!;
 
 			var model = new WorkshopViewModel()
 			{
 				StudentName = _config["Workshop:StudentName"],
 				EnvironmentName = _config["Workshop:Environment"],
-				ReleaseNumber = _config["Octopus:Release:Number"],
-				ReleaseLink = $"{_config["Octopus:CloudUrl"]}/{_config["Octopus:Web:ReleaseLink"]}",
-				AppVersion = versionText,
+				CloudBaseUrl = $"{_config["Octopus:CloudUrl"]}",
+				AppVersion = versionInfoText,
+				ReleaseInfo = releaseInfo
 			};
 
 			if (!model.StudentName.Contains("Unknown") 

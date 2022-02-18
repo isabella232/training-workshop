@@ -14,7 +14,8 @@ namespace workshop_app.Models
 		public string ProceedMessage { get; set; }
 		public string PostUrl { get; set; }
 		public string ReleaseNumber { get; set; }
-		public string ReleaseLink { get; set; }
+		public string CloudBaseUrl { get; set; }
 		public string AppVersion { get; internal set; }
+		public ReleaseInfo ReleaseInfo { get; internal set; }
 	}
 }

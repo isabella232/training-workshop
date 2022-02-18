@@ -54,8 +54,8 @@ jobs:
         api_key: ${{ secrets.OCTOPUS_API_KEY }}
         space: ${{ env.OCTOPUS_SPACE }}
         packages: "artifacts/${{ env.PACKAGE_ID }}.${{ env.PACKAGE_VERSION }}.zip"
-    - name: Create Octopus Deploy release
-      uses: OctopusDeploy/create-release-action@<version>
+    - name: Create Release in Octopus Deploy
+      uses: OctopusDeploy/create-release-action@v1.1.1
       with:
         server: ${{ secrets.OCTOPUS_SERVER_URL }}
         api_key: ${{ secrets.OCTOPUS_API_KEY }}

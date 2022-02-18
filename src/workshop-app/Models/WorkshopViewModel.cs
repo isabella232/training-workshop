@@ -13,5 +13,7 @@ namespace workshop_app.Models
 		public bool ShowProceedMessage { get; set; }
 		public string ProceedMessage { get; set; }
 		public string PostUrl { get; set; }
+		public string ReleaseNumber { get; set; }
+		public string ReleaseLink { get; set; }
 	}
 }

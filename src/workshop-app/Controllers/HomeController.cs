@@ -33,6 +33,8 @@ namespace workshop_app.Controllers
 			{
 				StudentName = _config["Workshop:StudentName"],
 				EnvironmentName = _config["Workshop:Environment"],
+				ReleaseNumber = _config["Octopus:Release:Number"],
+				ReleaseLink = $"{_config["Octopus:CloudUrl"]}/{_config["Octopus:Web:ReleaseLink"]}",
 			};
 
 			if (!model.StudentName.Contains("Unknown") 

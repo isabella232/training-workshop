@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Text.Json;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
@@ -19,22 +21,28 @@ namespace workshop_app.Controllers
 		private readonly IConfiguration _config;
 		private readonly ILogger<HomeController> _logger;
 		private readonly HttpClient _httpClient;
+		private readonly IHostingEnvironment _environment;
 
-		public HomeController(ILogger<HomeController> logger, IConfiguration configuration, HttpClient httpClient)
+		public HomeController(ILogger<HomeController> logger, IConfiguration configuration, HttpClient httpClient, IHostingEnvironment environment)
 		{
 			_config = configuration;
 			_logger = logger;
 			_httpClient = httpClient;
+			_environment = environment;
 		}
 
 		public IActionResult Index()
 		{
+			var versionFile = Path.Combine(_environment.WebRootPath, _config["VersionFile"]);
+			var versionText = System.IO.File.ReadAllText(versionFile);
+
 			var model = new WorkshopViewModel()
 			{
 				StudentName = _config["Workshop:StudentName"],
 				EnvironmentName = _config["Workshop:Environment"],
 				ReleaseNumber = _config["Octopus:Release:Number"],
 				ReleaseLink = $"{_config["Octopus:CloudUrl"]}/{_config["Octopus:Web:ReleaseLink"]}",
+				AppVersion = versionText,
 			};
 
 			if (!model.StudentName.Contains("Unknown") 

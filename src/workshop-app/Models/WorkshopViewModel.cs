@@ -15,5 +15,6 @@ namespace workshop_app.Models
 		public string PostUrl { get; set; }
 		public string ReleaseNumber { get; set; }
 		public string ReleaseLink { get; set; }
+		public string AppVersion { get; internal set; }
 	}
 }

@@ -2,7 +2,9 @@ name: Build Application
 
 env:
   PROJECT_PATH: src/workshop-app
-  OCTOPUS_SPACE: "Spaces-1"
+  PROJECT_NAME: Workshop Application
+  PACKAGE_ID: workshop-app
+  OCTOPUS_SPACE: Spaces-1
 on:
   workflow_dispatch:
   push:
@@ -36,19 +38,19 @@ jobs:
     - name: Create artifacts folder
       run: |
         mkdir "$GITHUB_WORKSPACE/artifacts"
-        mkdir "$GITHUB_WORKSPACE/artifacts/workshop-app"
+        mkdir "$GITHUB_WORKSPACE/artifacts/$PACKAGE_ID"
     - name: Publish application
-      run: dotnet publish --configuration Release --no-restore --output "$GITHUB_WORKSPACE/artifacts/workshop-app" $PROJECT_PATH
+      run: dotnet publish --configuration Release --no-restore --output "$GITHUB_WORKSPACE/artifacts/$PACKAGE_ID" $PROJECT_PATH
     - name: Install Octopus CLI
       uses: OctopusDeploy/install-octopus-cli-action@v1.1.8
       with:
         version: latest
     - name: Create Workshop App Package
-      run: octo pack --id="workshop-app" --format="Zip" --version="$PACKAGE_VERSION" --basePath="$GITHUB_WORKSPACE/artifacts/workshop-app" --outFolder="$GITHUB_WORKSPACE/artifacts"
+      run: octo pack --id="$PACKAGE_ID" --format="Zip" --version="$PACKAGE_VERSION" --basePath="$GITHUB_WORKSPACE/artifacts/$PACKAGE_ID" --outFolder="$GITHUB_WORKSPACE/artifacts"
     - name: Push Sample App Package
       uses: OctopusDeploy/push-package-action@v1.1.1
       with:
-        api_key: ${{ secrets.OCTOPUS_API_KEY }}
         server: ${{ secrets.OCTOPUS_SERVER_URL }}
-        packages: "artifacts/workshop-app.${{ env.PACKAGE_VERSION }}.zip"
+        api_key: ${{ secrets.OCTOPUS_API_KEY }}
         space: ${{ env.OCTOPUS_SPACE }}
+        packages: "artifacts/$PACKAGE_ID.${{ env.PACKAGE_VERSION }}.zip"

@@ -10,16 +10,13 @@ on:
       - main
 
 jobs:
-
-
-
   build:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
     - name: Set version number
       run: echo "PACKAGE_VERSION=$(date +'%Y.%-m.%-d').$GITHUB_RUN_NUMBER" >> $GITHUB_ENV
-     - name: Get current branch name
+    - name: Get current branch name
        run: echo "CURRENT_GITBRANCH=$(git symbolic-ref HEAD --short)" >> $GITHUB_ENV
     # - name: Set student target space name
     #   if: ${{ env.CURRENT_GITBRANCH != 'main' }}

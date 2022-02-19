@@ -70,7 +70,7 @@ namespace workshop_app.Controllers
 
 		public async Task<IActionResult> PostToSlack(string slackUser)
 		{
-			var response = await _httpClient.PostAsJsonAsync(_config["Workshop:SlackUrl"], new { text = $":tada: :tada: <@{slackUser}> successfully completed the Octopus 101 training workshop. :tada: :tada:" });
+			var response = await _httpClient.PostAsJsonAsync(_config["Space:Workshop:SlackUrl"], new { text = $":tada: :tada: <@{slackUser}> successfully completed the Octopus 101 training workshop. :tada: :tada:" });
 			return Content(response.StatusCode.ToString());
 		}
 

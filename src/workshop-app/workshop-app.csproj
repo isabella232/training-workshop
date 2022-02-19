@@ -7,16 +7,14 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <None Remove="PreDeploy.ps1" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Content Include="PreDeploy.ps1" />
-	</ItemGroup>
-
-	<ItemGroup>
 		<Content Update="appsettings.Development.json">
 			<CopyToPublishDirectory>Never</CopyToPublishDirectory>
 		</Content>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Update="PreDeploy.ps1">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
 	</ItemGroup>
 </Project>

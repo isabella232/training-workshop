@@ -38,14 +38,14 @@ namespace workshop_app.Controllers
 
 			var model = new WorkshopViewModel()
 			{
-				StudentName = _config["Workshop:StudentName"],
-				EnvironmentName = _config["Workshop:Environment"],
+				StudentName = _config["Project:Workshop:StudentName"],
+				EnvironmentName = _config["Project:Workshop:Environment"],
 				AppVersion = versionInfoText,
 			};
 
 			if (!model.StudentName.Contains("Unknown") 
 				&& !model.EnvironmentName.Contains("Unknown")
-				&& !string.IsNullOrEmpty(_config["Workshop:SlackUrl"])
+				&& !string.IsNullOrEmpty(_config["Space:Workshop:SlackUrl"])
 				)
 			{
 				model.ShowProceedMessage = true;

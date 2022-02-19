@@ -21,9 +21,9 @@ namespace workshop_app.Controllers
 		private readonly IConfiguration _config;
 		private readonly ILogger<HomeController> _logger;
 		private readonly HttpClient _httpClient;
-		private readonly IHostingEnvironment _environment;
+		private readonly IWebHostEnvironment _environment;
 
-		public HomeController(ILogger<HomeController> logger, IConfiguration configuration, HttpClient httpClient, IHostingEnvironment environment)
+		public HomeController(ILogger<HomeController> logger, IConfiguration configuration, HttpClient httpClient, IWebHostEnvironment environment)
 		{
 			_config = configuration;
 			_logger = logger;
@@ -36,17 +36,11 @@ namespace workshop_app.Controllers
 			var versionInfoFile = Path.Combine(_environment.WebRootPath, _config["Files:VersionInfo"]);
 			var versionInfoText = System.IO.File.ReadAllText(versionInfoFile);
 
-			var releaseInfoFile = Path.Combine(_environment.WebRootPath, _config["Files:ReleaseInfo"]);
-			var releaseInfoText = System.IO.File.ReadAllText(releaseInfoFile);
-			var releaseInfo = JsonSerializer.Deserialize<ReleaseInfo>(releaseInfoText)!;
-
 			var model = new WorkshopViewModel()
 			{
 				StudentName = _config["Workshop:StudentName"],
 				EnvironmentName = _config["Workshop:Environment"],
-				CloudBaseUrl = $"{_config["Octopus:CloudUrl"]}",
 				AppVersion = versionInfoText,
-				ReleaseInfo = releaseInfo
 			};
 
 			if (!model.StudentName.Contains("Unknown") 

@@ -54,7 +54,8 @@ jobs:
         api_key: ${{ secrets.OCTOPUS_API_KEY }}
         space: ${{ env.OCTOPUS_SPACE }}
         packages: "artifacts/${{ env.PACKAGE_ID }}.${{ env.PACKAGE_VERSION }}.zip"
-################################################
+## <cd-start>
+#################################################
 ## Continuous DELIVERY
     - name: Create Release in Octopus Deploy
       uses: OctopusDeploy/create-release-action@v1.1.1
@@ -64,7 +65,8 @@ jobs:
         space: ${{ env.OCTOPUS_SPACE }}
         project: ${{ env.PROJECT_NAME }}
         packages: ${{ env.PACKAGE_ID }}:${{ env.PACKAGE_VERSION }}
-################################################
+#################################################
 ## Continuous DEPLOYMENT
         deploy_to: Development
-################################################
+#################################################
+## <cd-end>

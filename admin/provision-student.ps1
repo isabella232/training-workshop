@@ -45,6 +45,7 @@ else {
 }
 
 $instructionsDocFile = ".\workshop-instructions.md"
+$githubActionsFile = ".\.github\workflows\build-application.yml"
 
 $studentId = [System.Guid]::NewGuid()
 $studentSuffix = $studentId.ToString().Substring(0, 8)
@@ -147,24 +148,33 @@ if (!$skipAzure) {
 }
 
 if (!$skipGit) {
-	# clone repo, branch for the student, commit and push
+	# clone repo, branch for the student
 	& git clone $githubUrl .
 	& git checkout main
 	& git checkout -B $studentBranch
 
-	$instructionsDocText = Get-Content $instructionsDocFile
-	$instructionsDocText = $instructionsDocText.Replace("[student-slug]", $studentSlug).Replace("[space-id]", $studentSpaceId)
+	# update the instructions file with their specific info
+	$fileText = Get-Content $instructionsDocFile
+	$fileText = $fileText.Replace("[student-slug]", $studentSlug).Replace("[space-id]", $studentSpaceId)
 
 	foreach ($studentAppInfo in $studentAppInfos) {
 		$token = "[student-app-url-$($studentAppInfo.AppEnvironment)]"
-		$instructionsDocText = $instructionsDocText.Replace($token, $studentAppInfo.AppURL)
+		$fileText = $fileText.Replace($token, $studentAppInfo.AppURL)
 	}
 
-	Out-File -Force -FilePath $instructionsDocFile -InputObject $instructionsDocText
+	Out-File -Force -FilePath $instructionsDocFile -InputObject $fileText
 	#Get-Content $instructionsDocFile
-
 	& git add $instructionsDocFile
-	& git commit -m "Create branch for $studentName"
+
+	# update the GitHub actions file with their space
+	$fileText = Get-Content $githubActionsFile
+	$fileText = $fileText.Replace("Spaces-1", $studentSpaceId)
+	Out-File -Force -FilePath $githubActionsFile -InputObject $fileText
+	# make sure the CICD parts are commented
+	."$PSScriptRoot\ensure-yaml-comments.ps1" -yamlFile $githubActionsFile -startBeacon "<cd-start>" -endBeacon "<cd-end>"
+	& git add $githubActionsFile
+
+	& git commit -m "Save student specific content for $studentName"
 	& git push origin $studentBranch
 }
 else {

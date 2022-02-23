@@ -25,22 +25,23 @@
 
 ![](assets/1-4/infra-environments.png)
 
-- Repeat the steps in the `Create environments` task from [Lesson 2](part-1-lesson-2.md) to create environments with deployment targets for `Test` and `Production` instead of `Development`.
+- Repeat the steps in the [`Create environments` task from Lesson 2](part-1-lesson-2.md#create-environments) to create environments with deployment targets for `Test` and `Production` instead of `Development`.
 
 *Hint: start with the `Add Environment` button.*
 
 Use these variations in place of those in the Lesson 2 instructions:
 
-- In `Add environment` dialog box, click the `Test` or `Production`
-- In `Create Azure Web App` form:
+- In the `Add environment` dialog box, click the `Test` or `Production` helper links
+- In the `Create Azure Web App` screen:
 
 | Entry | Test | Production | (note) |
 |-|-|-|-|
 | Display Name | `Azure Test Service` | `Azure Prod Service` | |
 | Environments | `Test` | `Production` | |
-| Target Roles | - | - | select existing rule: `workshop-app-service` |
-| Azure Web App | your name & `-test` | your name & `-prod` | |
+| Target Roles | - | - | select existing role: `workshop-app-service` |
+| Azure Web App | `[student-slug]-test` | `[student-slug]-prod` | |
 
+Verify your configuration:
 - Navigate to `Infrastructure` > `Overview` ([go directly there](https://octopus-training.octopus.app/app#/[space-id]/infrastructure/overview))
 - Verify that you now have the following updates:
   - Environments (3)

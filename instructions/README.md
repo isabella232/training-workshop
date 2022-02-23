@@ -23,11 +23,11 @@ These instructions have been customized for you for your convenience. Here you'l
 
 ## Student ID "Slug"
 
-The setup for your experience in this workshop has created a number of resources for your use. Most of these are identified uniquely for you using an ID "slug". This is a text identifier made up of parts of your name and a unique generated ID (to ensure we don't have collisions between multiple students with similar names).
+The setup for your experience in this workshop has created a number of resources for your use. Most of these are identified uniquely for you using an ID "slug". This is a text identifier made up of parts of your name and a unique generated ID (to avoid any possible collisions between student names).
 
 Your slug is: `[student-slug]`
 
-You shouldn't really need to know your ID slug, but it's here if you do.
+This value will show up in some lessons when you need to select resources from a list.
 
 ## GitHub Branch
 

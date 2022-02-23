@@ -44,7 +44,7 @@ You can get there directly: https://octopus-training.octopus.app/app#/[space-id]
 - Enter the target role: `workshop-app-service`
 - Click `"workshop-app-service" (add new role)`
 - Under `Account` section, click the dropdown and select `Workshop Azure Account`
-- Under `Azure Web App`, click the dropdown and select the item containing your name and `-dev` (this is *your* development app service)
+- Under `Azure Web App`, click the dropdown and select the item that starts with: `[student-slug]-dev` (this is *your* development environment app service)
 - Click `Save` button
 
 ## Verify infrastructure

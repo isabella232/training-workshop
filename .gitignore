@@ -6,6 +6,7 @@
 # User-specific files
 localonly-*
 localonly/
+admin/data/
 *.local.*
 *.tfstate*
 .terraform/

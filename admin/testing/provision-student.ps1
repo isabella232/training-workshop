@@ -1,7 +1,7 @@
 [CmdletBinding()]
 param (
-	[string] $studentName = "Test Student",
-	[string] $studentEmail = "peter.lanoie@octopus.com",
+	[string] $studentName, # = "Test Student",
+	[string] $studentEmail = $null, # = "peter.lanoie@octopus.com",
 	[switch] $skipOctopus,
 	[switch] $skipAzure,
 	[switch] $skipGit
@@ -11,9 +11,9 @@ param (
 
 # This script is for testing provisioning a student
 
-if ($true) {
+if ($studentName.Length -eq 0) {
 	Write-Host "################################################"
-	Write-Host "## Generating random student identity"
+	Write-Host "## No student information supplied, generating random student identity"
 	$randoId = [System.Guid]:: NewGuid()
 	$studentName = "Student " + $randoId.ToString().SubString(24)
 	$studentEmail = "planoie.work+$($randoId.ToString().SubString(0, 8))@gmail.com"
@@ -28,9 +28,11 @@ if ($true) {
 	-azTenantId $azTenantId -azUser $azUser -azSecret $azSecret -azSubscriptionId $azSubscriptionId `
 	-azLocation $azLocation -azResourceGroupName $azResourceGroupName -azWebAppServicePlan $azWebAppServicePlan `
 	-studentName $studentName -studentEmail $studentEmail `
-	-skipOctopus `
-	-skipGit `
-
-	#-skipAzure:$skipAzure `
-	# -skipOctopus:$skipOctopus `
-	# -skipGit:$skipGit `
+	-skipOctopus:$skipOctopus `
+	-skipGit:$skipGit `
+	-skipAzure:$skipAzure `
+	
+	# -skipAzure `
+	# -skipOctopus `
+	# -skipGit `
+	

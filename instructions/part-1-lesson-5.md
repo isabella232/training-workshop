@@ -23,7 +23,7 @@
 - Note the `Application version:` number
 - Return to the GitHub actions page: https://github.com/OctopusDeploy/training-workshop/actions/workflows/build-application.yml
 - Click `Run workflow`
-- Select your student branch
+- Select your student branch: `student/[student-slug]`
 - Click `Run workflow`
 
 Once the workflow starts (you'll see your name in the entry)
@@ -50,9 +50,9 @@ Once the workflow starts (you'll see your name in the entry)
 
 - Using what you've learned so far, deploy the new release to `Development`
 - Browse to your `Development` environment web site: [student-app-url-dev]
-- Verify that it's not running the new application version (check the number displayed)
+- Verify that it's now running the new application version (check the number displayed)
 
-Verify the old versions are still running on the other environments
+Verify the old versions are still running on the other environments:
 - Browse to your `Test` environment web site: [student-app-url-test]
 - Browse to your `Production` environment web site: [student-app-url-prod]
 - Check the `Application version` numbers on each to see that they are different from what you just deployed to `Development`

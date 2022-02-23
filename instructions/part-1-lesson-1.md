@@ -70,13 +70,13 @@ Once everything is finished running, the build should indicate that it's complet
 
 ## Verify the artifact in package feed
 
-Visit your Octopus Space package repository: https://octopus-training.octopus.app/app#/[space-id]/library/builtinrepository
+- Visit your Octopus Space package repository: https://octopus-training.octopus.app/app#/[space-id]/library/builtinrepository
 
 From your Space, you'll find this under `Library` > `Packages`.
 
 ![](assets/1-1/od-library-packages.png)
 
-Verify that you have a package entry with a `Highest version` that has a number with this pattern:
+- Verify that you have a package entry with a `Highest version` that has a number with this pattern:
 ```
 {year}.{month}.{day}.{workflow run number}
 ```

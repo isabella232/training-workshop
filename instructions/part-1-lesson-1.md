@@ -1,13 +1,14 @@
 # Part 1 - Lesson 1: Application build and artifacts
 - Time: ~30 - 45 min
 
-## Objective
+## Objectives
 - Understand a basic example of where an application comes from
 - Understand what kind of artifact results from an application build
 - Understand where that artifact goes
 
-## Task
-- You will run a predefined application build in GitHub actions which will push the build artifact to your Octopus Deploy artifact feed.
+## Tasks
+- Run a predefined application build in GitHub actions
+- Verify the package is in your Octopus Deploy artifact feed
 
 ## Achievement
 - The application package is visible in your Octopus package library.
@@ -18,9 +19,9 @@
 
 ### Navigate to the GitHub Action workflow
 
-From the repository home location
+In the repository top menu
 
-- Click on the `Actions` tab
+- Click on the `Actions` tab (open in a new browser tab so you don't loose your instructions)
 
 ![](assets/1-1/GitHub-actions.png)
 
@@ -84,4 +85,4 @@ From your Space, you'll find this under `Library` > `Packages`.
 
 # Lesson Completed!
 
-On to [Lesson 2](part-1-lesson-2.md)
+On to the next lesson: [Infrastructure and Environments](part-1-lesson-2.md)

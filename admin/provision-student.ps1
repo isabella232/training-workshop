@@ -44,7 +44,7 @@ else {
 	Write-Warning "Skipping Git operation, skipping run location safety check and workspace dir cleanup."
 }
 
-$instructionsDocFile = ".\workshop-instructions.md"
+$instructionDocsDir = ".\instructions"
 $githubActionsFile = ".\.github\workflows\build-application.yml"
 
 $studentId = [System.Guid]::NewGuid()
@@ -54,7 +54,7 @@ $studentNamePrefix = $studentName.Replace(" ", "").Substring(0, [System.Math]::M
 $studentSlug = "$studentNamePrefix-$studentSuffix"
 $studentDisplayName = "Student - $studentName"
 $studentBranch = "student/$studentSlug"
-$studentSpaceId = "$studentSlug"
+$studentSpaceId = "[unknown]"
 
 Write-Host "Provisioning student"
 Write-Host " - $studentName ($studentEmail)"
@@ -141,7 +141,7 @@ if (!$skipAzure) {
 	Set-Location $popLoc
 
 	foreach ($studentAppInfo in $studentAppInfos) {
-		$studentAppInfo.AppURL = $tfOutputs."web_site_$($studentAppInfo.AppEnvironment)".value.default_site_hostname
+		$studentAppInfo.AppURL = "https://" + $tfOutputs."web_site_$($studentAppInfo.AppEnvironment)".value.default_site_hostname
 	}
 } else {
 	Write-Warning "Azure resource creation skipped."
@@ -154,17 +154,20 @@ if (!$skipGit) {
 	& git checkout -B $studentBranch
 
 	# update the instructions file with their specific info
-	$fileText = Get-Content $instructionsDocFile
-	$fileText = $fileText.Replace("[student-slug]", $studentSlug).Replace("[space-id]", $studentSpaceId)
+	$instructionDocFiles = Get-ChildItem -Path $instructionDocsDir -Recurse -File -Filter *.md
+	foreach ($instructionDocFile in $instructionDocFiles) {
+		$fileText = Get-Content $instructionDocFile
+		$fileText = $fileText.Replace("[student-slug]", $studentSlug).Replace("[space-id]", $studentSpaceId)
 
-	foreach ($studentAppInfo in $studentAppInfos) {
-		$token = "[student-app-url-$($studentAppInfo.AppEnvironment)]"
-		$fileText = $fileText.Replace($token, $studentAppInfo.AppURL)
+		foreach ($studentAppInfo in $studentAppInfos) {
+			$token = "[student-app-url-$($studentAppInfo.AppEnvironment)]"
+			$fileText = $fileText.Replace($token, $studentAppInfo.AppURL)
+		}
+
+		Out-File -Force -FilePath $instructionDocFile -InputObject $fileText
+		#Get-Content $instructionsDocFile
+		& git add $instructionDocFile
 	}
-
-	Out-File -Force -FilePath $instructionsDocFile -InputObject $fileText
-	#Get-Content $instructionsDocFile
-	& git add $instructionsDocFile
 
 	# update the GitHub actions file with their space
 	$fileText = Get-Content $githubActionsFile
@@ -180,27 +183,35 @@ if (!$skipGit) {
 else {
 	Write-Warning "Git branch creation skipped."
 }
-
-Write-Host "################################################################################"
-Write-Host "## Student provisioning completed"
-Write-Host "## =============================="
-Write-Host "## Student name: $studentName"
-Write-Host "## Student ID: $studentId"
-Write-Host "## Student email: $studentEmail"
-Write-Host "## GitHub branch: https://github.com/OctopusDeploy/training-workshop/tree/$studentBranch"
-Write-Host "## Octopus space: https://octopus-training.octopus.app/app#/$studentSpaceId"
-Write-Host "## Workshop instructions URL: https://github.com/OctopusDeploy/training-workshop/blob/$studentBranch/workshop-instructions.md"
-Write-Host "## Student website URLs:"
+$studentSummary = [System.Text.StringBuilder]::New()
+$studentSummary.AppendLine("################################################################################") | Out-Null
+$studentSummary.AppendLine("## Student provisioning completed") | Out-Null
+$studentSummary.AppendLine("## ==============================") | Out-Null
+$studentSummary.AppendLine("## Student name: $studentName") | Out-Null
+$studentSummary.AppendLine("## Student ID: $studentId") | Out-Null
+$studentSummary.AppendLine("## Student email: $studentEmail") | Out-Null
+$studentSummary.AppendLine("## GitHub branch: https://github.com/OctopusDeploy/training-workshop/tree/$studentBranch") | Out-Null
+$studentSummary.AppendLine("## Octopus space: https://octopus-training.octopus.app/app#/$studentSpaceId") | Out-Null
+$studentSummary.AppendLine("## Workshop instructions URL: https://github.com/OctopusDeploy/training-workshop/tree/$studentBranch/instructions") | Out-Null
+$studentSummary.AppendLine("## Student website URLs:") | Out-Null
 foreach ($studentAppInfo in $studentAppInfos) {
-	Write-Host "##  - $($studentAppInfo.AppEnvironment): https://$($studentAppInfo.AppURL)"
+	$studentSummary.AppendLine("##  - $($studentAppInfo.AppEnvironment): $($studentAppInfo.AppURL)") | Out-Null
 }
-Write-Host "## -----------------------------------------------------------------------------"
-Write-Host "## Cleanup"
-Write-Host "## -----------------------------------------------------------------------------"
-Write-Host "## Deprovision student: .\testing\deprovision-student.ps1 -studentSlug $studentSlug"
-Write-Host "## Delete azure resources: .\testing\delete-student-webapps.ps1 -studentSlug $studentSlug"
-Write-Host "################################################################################"
-$provisionLogFile = "$PSScriptRoot\data-provisioned-students.txt"
-Out-File -FilePath $provisionLogFile -Append -InputObject "$studentName $studentId $studentEmail $studentSlug"
-Out-File -FilePath $provisionLogFile -Append -InputObject "   .\testing\deprovision-student.ps1 -studentSlug $studentSlug"
-Out-File -FilePath $provisionLogFile -Append -InputObject "   .\testing\delete-student-webapps.ps1 -studentSlug $studentSlug"
+$studentSummary.AppendLine("## -----------------------------------------------------------------------------") | Out-Null
+$studentSummary.AppendLine("## Cleanup") | Out-Null
+$studentSummary.AppendLine("## -----------------------------------------------------------------------------") | Out-Null
+$studentSummary.AppendLine("## Deprovision student: .\testing\deprovision-student.ps1 -studentSlug $studentSlug") | Out-Null
+$studentSummary.AppendLine("## Delete azure resources: .\testing\delete-student-webapps.ps1 -studentSlug $studentSlug") | Out-Null
+$studentSummary.AppendLine("################################################################################") | Out-Null
+Write-Host $studentSummary.ToString()
+
+"$PSScriptRoot\data"
+if (!(Test-Path -Path "$PSScriptRoot\data")) {
+	New-Item -Path "$PSScriptRoot\data" -ItemType Directory
+}
+Out-File -FilePath "$PSScriptRoot\data\$studentSlug.txt" -InputObject $studentSummary.ToString()
+
+# $provisionLogFile = "$PSScriptRoot\data\provisioned-students.txt"
+# Out-File -FilePath $provisionLogFile -Append -InputObject "$studentName $studentId $studentEmail $studentSlug"
+# Out-File -FilePath $provisionLogFile -Append -InputObject "   .\testing\deprovision-student.ps1 -studentSlug $studentSlug"
+# Out-File -FilePath $provisionLogFile -Append -InputObject "   .\testing\delete-student-webapps.ps1 -studentSlug $studentSlug"

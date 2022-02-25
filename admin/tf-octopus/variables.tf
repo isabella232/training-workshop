@@ -60,9 +60,5 @@ variable "description" {
 
 variable "slack_url" {
 	type = string
-}
-
-variable "slack_key" {
-	type = string
 	sensitive = true
 }

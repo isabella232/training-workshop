@@ -52,10 +52,10 @@ namespace workshop_app.Controllers
 				switch (model.EnvironmentName.ToLower())
 				{
 					case "development":
-						model.ProceedMessage = "Woohoo, you're getting close!<br />Please proceed to your test environment application.";
+						model.ProceedMessage = "Woohoo, you're getting close!<br />Please proceed to your test environment web site.";
 						break;
 					case "test":
-						model.ProceedMessage = "Woohoo, you're getting close!<br />Please proceed to your production environment application.";
+						model.ProceedMessage = "Woohoo, you're getting close!<br />Please proceed to your production environment web site.";
 						break;
 					case "production":
 						model.ProceedMessage = "Woohoo, you made it!<br /><br />Enter your Slack username below and click the button to post your success.";

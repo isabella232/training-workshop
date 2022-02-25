@@ -18,6 +18,8 @@ param (
 	[string] $azResourceGroupName,
 	[string] $azWebAppServicePlan,
 
+	[string] $slackUrl,
+	
 	[switch] $skipGit,
 	[switch] $skipOctopus,
 	[switch] $skipAzure,
@@ -96,7 +98,7 @@ if (-not $skipOctopus) {
 		-var="automation_userid=$automationUserId" `
 		-var="azure_sp_secret=$azSecret" `
 		-var="variableSetName=$varSetName" -var="description=$varSetDesc" `
-		-var="slack_url=someurl" -var="slack_key=ABC123" `
+		-var="slack_url=$slackUrl" `
 	
 	$tfOutputs = terraform output -json | ConvertFrom-Json
 

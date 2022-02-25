@@ -53,17 +53,9 @@ resource "octopusdeploy_library_variable_set" "student_var_set" {
 
 resource "octopusdeploy_variable" "var_slack_url" {
   provider = octopusdeploy.space_student
-  name        = "slack-url"
-  type        = "String"
-  value       = var.slack_url
-  owner_id    = octopusdeploy_library_variable_set.student_var_set.id
-}
-
-resource "octopusdeploy_variable" "var_slack_key" {
-  provider = octopusdeploy.space_student
-  name        = "slack-key"
+  name        = "Space:Workshop:SlackUrl"
   type        = "Sensitive"
   is_sensitive = true
-  sensitive_value = var.slack_key
+  sensitive_value = var.slack_url
   owner_id    = octopusdeploy_library_variable_set.student_var_set.id
 }

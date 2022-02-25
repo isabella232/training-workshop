@@ -1,3 +1,5 @@
+[Previous Lesson](part-2-lesson-4.md)
+
 # Part 2 - Lesson 4: Library Variable Set
 - Time: ~30 mins
 
@@ -12,33 +14,33 @@
 - Complete tasks on your websites
 
 ## Achievement
-- You complete an activity presented by your production application once they’ve finished all lessons
+- You complete an activity presented by your `Production` web site once they’ve finished all lessons
 
 # Lesson
 
 ## Verify Library Variable Set exists
-- Navigate to your spaces Libary area: 
+- Navigate to your Space's Library area: 
   - Click `Library` tab or 
-  - Go there directly: https://octopus-training.octopus.app/app#/[space-id]/library/builtinrepository
+  - [Go there directly](https://octopus-training.octopus.app/app#/[space-id]/library/builtinrepository)
 - Click `Variable Sets`
 - Verify a set exists called `Slack Variables`
 
 ## Link a Library Variable Set to your project
-From your project overview: https://octopus-training.octopus.app/app#/[space-id]/projects/workshop-application/deployments
+From [your project overview](https://octopus-training.octopus.app/app#/[space-id]/projects/workshop-application/deployments)
 - Click `Variables`, then `Variable Sets`
 - Click `Include Library Variable Sets` button
 - Tick off `Slack Variables`, and click `Save`
 
 ## Observe the items it contains
 - Click the `Slack Variables` entry to expand it
-- Observe it include the item `Space:Workshop:SlackUrl`
+- Observe it includes the item `Space:Workshop:SlackUrl`
 
 ## Create and deploy a new release
 Using what you've already learned
 - Create a new release and deploy to all environments
 
 ## Complete tasks on your websites
-- Browse to your development web site: [student-app-url-dev]
+- Browse to your `Development` web site: [student-app-url-dev]
 
-# Lesson Completed
+# Lesson Completed!
 Time for some more [practice demos](part-2-student-demos.md)!

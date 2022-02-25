@@ -5,4 +5,4 @@
 
 ![](instructions/assets/branch-selector.png)
 
-- Please visit the [Workshop Instructions page](instructions) to see your customized instructions.
+- Please visit the [Workshop Instructions page](instructions/README.md) to see your customized instructions.

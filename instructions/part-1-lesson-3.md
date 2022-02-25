@@ -1,3 +1,5 @@
+[Previous Lesson](part-1-lesson-2.md)
+
 # Part 1 - Lesson 3: Project Setup and First Deployment
 - Time: ~45 - 60 min
 
@@ -9,11 +11,11 @@
 - Create a project
 - Create deployment process
 - Create a release
-- Deploy release to one environment
+- Deploy release
 - Observe Project Overview
 
 ## Achievement
-- Visit your development web site and see the deployed app running
+- Visit your `Development` web site and see the deployed application running
 
 # Lesson
 
@@ -52,8 +54,8 @@ You can get there directly: https://octopus-training.octopus.app/app#/[space-id]
 
 Once the deployment has completed running
 - Verify there's a big green box with a checkmark at the top
-- Navigate to or refresh your development web site: [student-app-url-dev]
-- Verify that the workshop sample application is running. It should look similar to this:
+- Navigate to or refresh your `Development` web site: [student-app-url-dev]
+- Verify that the workshop sample application is running on the web site. It should look similar to this:
 
 ![](assets/1-3/dev-app-first-run.png)
 
@@ -61,9 +63,9 @@ Once the deployment has completed running
 
 - Navigate to the project overview
   - Click `Projects` then `Workshop Application` or
-  - [Go directly there](https://octopus-training.octopus.app/app#/[space-id]/projects/workshop-application/deployments)
-- Observe the project dashboard showing the release deployed to development
+  - Go directly there: https://octopus-training.octopus.app/app#/[space-id]/projects/workshop-application/deployments
+- Observe the project dashboard showing the release deployed to `Development`
 
-# Lesson Complete
+# Lesson Completed!
 
 On to the next lesson: [Environment progression and enforcement](part-1-lesson-4.md)

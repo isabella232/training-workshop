@@ -11,7 +11,7 @@
 - Verify the package is in your Octopus Deploy artifact feed
 
 ## Achievement
-- The application package is visible in your Octopus package library.
+- The application package is visible in your Octopus package library
 
 # Lesson
 
@@ -19,7 +19,7 @@
 
 ### Navigate to the GitHub Action workflow
 
-In the repository top menu
+In the GitHub repository top menu
 
 - Click on the `Actions` tab (open in a new browser tab so you don't loose your instructions)
 
@@ -37,12 +37,11 @@ From the `Build Application` workflow view
 
 ![](assets/1-1/run-workflow-dialog.png)
 
-- (***IMPORTANT!***): Select your branch name from the `Use workflow from` dropdown.
-- Look for your student branch name: `student/[student-slug]`
+- ***IMPORTANT!***: Look for and select your branch name from the `Use workflow from` dropdown: `student/[student-slug]`
 
 ![](assets/1-1/build-from-student-branch.png)
 
-Once your student branch is selected, you can
+Once your student branch is selected
 
 - Click `Run workflow`
 
@@ -50,7 +49,7 @@ Once your student branch is selected, you can
 
 After a short time, you should see a new workflow run show up in the run list with your name listed.
 ```
-Manually run by {you name}
+Manually run by {your name}
 ```
 
 ![](assets/1-1/workflow-started.png)
@@ -69,9 +68,9 @@ Once everything is finished running, the build should indicate that it's complet
 
 ![](assets/1-1/good-build.png)
 
-## Verify the artifact in package feed
+## Verify the artifact in your package feed
 
-- Visit your Octopus Space package repository: https://octopus-training.octopus.app/app#/[space-id]/library/builtinrepository
+- Visit your Octopus Space package repository: https://octopus-training.octopus.app/app#/[space-id]/library
 
 From your Space, you'll find this under `Library` > `Packages`.
 

@@ -11,15 +11,17 @@ The workshop will teach you the basics by using Octopus Deploy to deploy a web a
 - ability to perform a basic demo of the product
 
 ## Guided Workshop
-This workshop is normally delivered as a guided experience. This provides the students with guidance and assistance along the way. The lessons begin with slides and a discussion about the concepts being discussed.
+This workshop is normally delivered as a guided experience. This provides the students with an introductory discussion about the concepts then guidance and assistance as they complete lessons.
 
-You can find the slides for the workshop at the following Google Drive URL:
+You can find the slides for the workshop at the following URL:
 
 ***[need to add slide link here]***
 
 # Quick Info
 
-These instructions have been customized for you for your convenience. Here you'll find a quick reference to the important information about your customized experience. You can refer to this page for the general links you'll need to visit during the workshop.
+If you are viewing this as a student on your branch, these instructions have been customized for you. Here you'll find a quick reference to the important information about your customized workshop experience. You can refer to this page for the general links you'll need to visit during the workshop.
+
+*If viewing these instructions on the `main` branch, you'll see some placeholders in various place. Many are in links that will not work.*
 
 ## Student ID "Slug"
 
@@ -31,7 +33,7 @@ This value will show up in some lessons when you need to select resources from a
 
 ## GitHub Branch
 
-A shiny new GitHub branch has been created for you in the workshop repository. You won't be doing a lot here, but it serves as a components of the workshop activities and you will be returning to it towards the end to make a couple modifications. It's yours, so don't worry about messing anything up for anyone else.
+A shiny new GitHub branch has been created for you in the workshop repository. You won't be doing a lot here, but it serves as a component of the workshop activities and you will be returning to it towards the end to make a modification or two. It's yours, so don't worry about messing anything up for anyone else.
 
 Chances are, you're already viewing these instructions on your branch but for your reference, here is its URL:
 
@@ -50,12 +52,19 @@ Finally, several web site services hosted in Azure have been set up to serve as 
 
 Hosting services have been created to represent the typical environments a software development team would deploy to. Here are the unique URLs for your instances of these services for each of the environments:
 
-- Development: [student-app-url-dev]
-- Test: [student-app-url-test]
-- Production: [student-app-url-prod]
+- `Development`: [student-app-url-dev]
+- `Test`: [student-app-url-test]
+- `Production`: [student-app-url-prod]
 
 You'll find links to these applications throughout the workshop when you need to visit them again to see the results of the actions you've performed.
 
+# Styles
+Throughout the lessons, you'll see several styles to assist you with the activities.
+
+Direct actions you need to take appear as a bullet list item
+* Go here, do this
+
+Names of things in the user interface (menu items, buttons, labels, field names) or specific values you should enter appear `like this`.
 # Lesson Plan
 
 This workshop is split into a few parts with a few lessons each.
@@ -72,8 +81,9 @@ This workshop is split into a few parts with a few lessons each.
 ## Part 2 - More nuts and bolts
 - Lesson 1: [Scoping Environment Behavior](part-2-lesson-1.md)
 - Lesson 2: [Variables](part-2-lesson-2.md)
-- Lesson 3: [Scoped Variables](part-2-lesson-3.md)
-- Lesson 4: [Library Variable Set](part-2-lesson-4.md)
+- Lesson 3: [Application Variables](part-2-lesson-3.md)
+- Lesson 4: [Scoped Variables](part-2-lesson-4.md)
+- Lesson 5: [Library Variable Set](part-2-lesson-5.md)
 - Student Demos: [Perform mock demos to demonstrate learned concepts](part-2-studentdemos.md)
 
 # Let's Go!

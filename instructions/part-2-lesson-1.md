@@ -1,8 +1,10 @@
+[Previous Lesson](part-1-student-demos.md)
+
 # Part 2 - Lesson 1: Scoping Environment Behavior
 - Time: ~45 - 60 mins
 
 ## Objective
-- Understand the concept of single deployment process and different behaviors based on environments.
+- Understand the concept of a single deployment process and different behaviors based on environments.
 
 ## Task
 - Modify your deployment process
@@ -10,14 +12,14 @@
 - Deploy new release to all environments
 
 ## Achievement
-- Deployment of the new release to production requires manual approval.
+- Deployment of the new release to `Production` requires manual approval.
 
 # Lesson
 
 ## Modify your deployment process
 
 ### Add manual intervention step
-- Navigate to your project overview
+- Navigate to [your project overview](https://octopus-training.octopus.app/app#/[space-id]/projects/workshop-application/deployments).
 - Click on `Process` under `Deployments`
 - Click on `Add Step`
 - Enter `manual` into the filter field
@@ -39,15 +41,15 @@
 - Drag the `Manual Intervention Required` step to the top of the list
 - Click `Done` and `Save`
 
-## Create new release, deploy through Test
+## Create new release, deploy through `Test`
 
 Using what you've learn already
 - Create a new release
-- Deploy release to Development and Test
+- Deploy release to `Development` and `Test`
 
 ## Deploy to production
 
-From your project overview: https://octopus-training.octopus.app/app#/[space-id]/projects/workshop-application/deployments
+From [your project overview](https://octopus-training.octopus.app/app#/[space-id]/projects/workshop-application/deployments)
 
 - Start the deployment to `Production` for the latest (top) release
 - Observe that you'll be stopped shortly after the deploy starts and presented with the `Manual Intervention Required` prompt.
@@ -55,5 +57,5 @@ From your project overview: https://octopus-training.octopus.app/app#/[space-id]
 - Click `Proceed` button
 - Verify the deployment completes
 
-# Lesson Completed
+# Lesson Completed!
 On to the next lesson: [Variables](part-2-lesson-2.md)

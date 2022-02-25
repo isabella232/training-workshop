@@ -1,3 +1,5 @@
+[Previous Lesson](part-1-lesson-5.md)
+
 # Part 1 - Student Demos
 - Time: ~20 min
 
@@ -6,13 +8,13 @@
 
 # Demo Framework and Talking points
 - Create a new release 
-- Demonstrate deployment to Development
+- Demonstrate deployment to `Development`
 - Discuss environment progression and how Octopus enforces it
-- Demonstrate how the release can now be progressed to Test
+- Demonstrate how the release can now be progressed to `Test`
 - Show the Infrastructure area to highlight Environments and Targets
-- Show the Library Packages feed to highlight the deployment artifact source
+- Show the Library Packages feed to highlight the source of deployment artifacts
   - Where does a package come from? (Discuss build servers and integration with Octopus)
 - Show the dashboard, highlighting which releases are deployed to which environments
 
 # Exercise Complete
-On to the next part: [Scoping Environment Behavior](part-2-lesson-1.md)
+On to the first part 2 lesson: [Scoping Environment Behavior](part-2-lesson-1.md)

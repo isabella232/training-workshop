@@ -21,7 +21,7 @@ You can find the slides for the workshop at the following URL:
 
 If you are viewing this as a student on your branch, these instructions have been customized for you. Here you'll find a quick reference to the important information about your customized workshop experience. You can refer to this page for the general links you'll need to visit during the workshop.
 
-*If viewing these instructions on the `main` branch, you'll see some placeholders in various place. Many are in links that will not work.*
+*If viewing these instructions on the `main` branch, you'll see some placeholders in various places. Many are in links that will not work.*
 
 ## Student ID "Slug"
 

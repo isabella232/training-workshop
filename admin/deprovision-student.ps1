@@ -13,7 +13,11 @@ param (
 	[string] $azSecret
 )
 
+. "$PSScriptRoot\shared-types.ps1"
+
 $azResourceGroupName = "training-workshop"
+
+
 
 Write-Host "Deprovisioning student"
 Write-Host " - (slug: $studentSlug)"
@@ -55,4 +59,13 @@ if (!$skipAzure) {
 		-studentSlug $studentSlug `
 } else {
 	Write-Warning "Azure resource teardown skipped."
+}
+
+if (!$skipGit -and !$skipOctopus -and !$skipAzure) {
+	$studentDataFile = "$PSScriptRoot\data\$studentSlug.json"
+	if (Test-Path $studentDataFile) {
+		Remove-Item -Path $studentDataFile
+	}
+} else {
+	Write-Warning "One or more cleanup stages skipped, preserving student data file."
 }

@@ -15,7 +15,7 @@
 
 # Lesson
 
-## Run workflow
+## Run application build workflow
 
 ### Navigate to the GitHub Action workflow
 

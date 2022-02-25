@@ -1,11 +1,13 @@
-# Part 1 - Lesson 4: Lifecycle enforcement and progression
+# Part 1 - Lesson 4: Environment progression and enforcement
 - Time: ~30 min
 
 ## Objective
-- Understand the importance of multiple environments
+- Understand the purpose and importance of different deployment environments
+- Understand the importance of a single deployment process
 - Understand the importance of environment progression and how Octopus enforces it
 
 ## Tasks
+- Verify test and production apps running
 - Configure test and production environments
 - Deploy to test and production environments
 
@@ -14,7 +16,7 @@
 
 # Lesson
 
-## Verify test and production apps running and empty
+## Verify test website is running and empty
 
 - Browse to your `Test` environment web site: [student-app-url-test]
 - Verify that it is running the Azure default web site
@@ -74,10 +76,12 @@ Once the deployment to `Test` is complete
 - Navigate to your test web site: [student-app-url-test]
 - Verify it is now the workshop sample application
 
-## Deploy to production
+## Verify production website is running and empty
 
 - Browse to your `Production` environment web site: [student-app-url-prod]
 - Verify that it is still running the Azure default web site
+
+## Deploy to production
 
 In the Octopus portal
 - Return to the [`Projects` > `Workshop Application` overview page](https://octopus-training.octopus.app/app#/[space-id]/projects/workshop-application/deployments)

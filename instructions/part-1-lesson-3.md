@@ -4,20 +4,20 @@
 ## Objective
 - Understand the basics of deployment process setup
 - Complete a deployment
-- Observe deploy state in overview
 
 ## Tasks
 - Create a project
-- Add a step to its deployment process
+- Create deployment process
 - Create a release
 - Deploy release to one environment
+- Observe Project Overview
 
 ## Achievement
 - Visit your development web site and see the deployed app running
 
 # Lesson
 
-## Set up project
+## Create a project
 - From the Octopus menu, click on `Projects`
 
 ![](assets/1-3/projects.png)
@@ -41,8 +41,8 @@ You can get there directly: https://octopus-training.octopus.app/app#/[space-id]
 
 ## Create release
 
-- Click the `Create Release` button
-- Click `Save button`
+- Click the `Create Release` button (you may need to scroll back up)
+- Click `Save` button
 
 ## Deploy the application
 
@@ -52,7 +52,7 @@ You can get there directly: https://octopus-training.octopus.app/app#/[space-id]
 
 Once the deployment has completed running
 - Verify there's a big green box with a checkmark at the top
-- Navigate to your development web site: [student-app-url-dev]
+- Navigate to or refresh your development web site: [student-app-url-dev]
 - Verify that the workshop sample application is running. It should look similar to this:
 
 ![](assets/1-3/dev-app-first-run.png)
@@ -66,5 +66,4 @@ Once the deployment has completed running
 
 # Lesson Complete
 
-On to the next lesson: [Lifecycle enforcement and progression](part-1-lesson-4.md)
-
+On to the next lesson: [Environment progression and enforcement](part-1-lesson-4.md)

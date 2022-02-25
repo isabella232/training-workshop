@@ -3,30 +3,26 @@
 
 ## Objective
 - Understand the concept of “infrastructure awareness”
-- Understand the purpose of different deployment environments
 - Understand the purpose of target roles
-- Configure your deployment environments and targets
 
 ## Tasks
-- Verify that your workshop apps are running
-- Create the three typical runtime environments
-- Register the deployment targets
+- Verify your workshop development app is running
+- Configure your development environment
+- Register the development web site target
+- Verify infrastructure configuration
 
 ## Achievement
-- Targets are configured and visible in the overview
+- Environment and Target is configured and visible in the overview
 
 # Lesson
 
-## Verify web apps are running
+## Verify your workshop development app is running
 
-- Browse to each of your 3 web sites
-  - Development: [student-app-url-dev]
-  - Test: [student-app-url-test]
-  - Production: [student-app-url-prod]
-- Verify that each is running with the default Azure web service application. They might look something like this:
+- Browse to your development web site: [student-app-url-dev]
+- Verify that it is running with the default Azure web service application. They might look something like this:
 ![](assets/1-2/empty-web-site.png)
 
-## Create environments
+## Configure your development environment
 
 - In Octopus Deploy, navigate to `Infrastructure` > `Environments`
 ![](assets/1-2/environments.png)
@@ -36,6 +32,8 @@ You can get there directly: https://octopus-training.octopus.app/app#/[space-id]
 - Click `Add Environment` button
 - In the `Add environment` dialog box, click the `Development` link
 - Click `Save`
+
+## Configure your development target
 - Click `Add Deployment Target` button
 - Click `Azure`
 - Click `Add` button over the `Azure Web App` box
@@ -47,7 +45,7 @@ You can get there directly: https://octopus-training.octopus.app/app#/[space-id]
 - Under `Azure Web App`, click the dropdown and select the item that starts with: `[student-slug]-dev` (this is *your* development environment app service)
 - Click `Save` button
 
-## Verify infrastructure
+## Verify infrastructure configuration
 
 - From the top Octopus menu, click `Infrastructure`
 - Verify your Overview contains the following:

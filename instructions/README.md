@@ -65,7 +65,7 @@ This workshop is split into a few parts with a few lessons each.
 - Lesson 1: [Application build and artifacts](part-1-lesson-1.md)
 - Lesson 2: [Infrastructure and Environments](part-1-lesson-2.md)
 - Lesson 3: [Project Setup and First Deployment](part-1-lesson-3.md)
-- Lesson 4: [Lifecycle enforcement and progression](part-1-lesson-4.md)
+- Lesson 4: [Environment progression and enforcement](part-1-lesson-4.md)
 - Lesson 5: [Package and Release Versions](part-1-lesson-5.md)
 - Student Demos: [Perform mock demos to demonstrate learned concepts](part-1-studentdemos.md)
 

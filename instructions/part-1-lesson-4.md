@@ -24,7 +24,7 @@
 
 ![](assets/1-4/infra-environments.png)
 
-- Repeat the steps in the [`Create environments` task from Lesson 2](part-1-lesson-2.md#configure-your-development-environment) to create environments with deployment targets for `Test` and `Production` instead of `Development`.
+- Repeat the `Configure your Development environment` and `Configure your Development target` steps from [Lesson 2](part-1-lesson-2.md#configure-your-development-environment) to create environments with deployment targets for `Test` and `Production` instead of `Development`.
 
 *Hint: start with the `Add Environment` button.*
 

@@ -1,6 +1,6 @@
 [Previous Lesson](part-2-lesson-4.md)
 
-# Part 2 - Lesson 4: Library Variable Set
+# Part 2 - Lesson 5: Library Variable Set
 - Time: ~30 mins
 
 ## Objective

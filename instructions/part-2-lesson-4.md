@@ -1,6 +1,6 @@
 [Previous Lesson](part-2-lesson-3.md)
 
-# Part 2 - Lesson 3: Scoped Variables
+# Part 2 - Lesson 4: Scoped Variables
 - Time: ~30 mins
 
 ## Objective

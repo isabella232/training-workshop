@@ -1,4 +1,4 @@
-# Welcome to the Octopus basics workshop!
+# Welcome [student-name] to the Octopus basics workshop!
 
 This training workshop is designed to build a fundamental understanding of Octopus Deploy, its place in the CI/CD ecosystem, and the value it provides to a typical deployment pipeline workflow.
 
@@ -45,6 +45,8 @@ https://github.com/OctopusDeploy/training-workshop/tree/student/[student-slug]
 A new Space inside the Octopus Deploy workshop training Cloud instance has been created for you. This is where you'll spend most of your time performing the tasks that make up the workshop lessons.
 
 https://octopus-training.octopus.app/app#/[space-id]
+
+You can get into this by logging in with your Octopus Google account.
 
 ## Azure Web Sites
 

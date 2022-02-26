@@ -28,7 +28,7 @@ if ($studentName.Length -eq 0) {
 	-octopusUrl $octopusURL -octopusKey $octopusKey `
 	-azTenantId $azTenantId -azUser $azUser -azSecret $azSecret -azSubscriptionId $azSubscriptionId `
 	-azLocation $azLocation -azResourceGroupName $azResourceGroupName -azWebAppServicePlan $azWebAppServicePlan `
-	-slackUrl $slackUrl,
+	-slackUrl $slackUrl `
 	-skipOctopus:$skipOctopus `
 	-skipGit:$skipGit `
 	-skipAzure:$skipAzure `

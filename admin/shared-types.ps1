@@ -5,7 +5,7 @@ class StudentInfo
 	[string] $StudentID
 	[string] $StudentEmail
 	[string] $GitBranchName
-	[string] $GitBranchUrl
+	[string] $InstructionsUrl
 	[string] $SpaceId
 	[System.Collections.ArrayList]$AzureApps = @()
 }

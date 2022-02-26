@@ -56,7 +56,7 @@ $studentNamePrefix = $studentName.Replace(" ", "").Substring(0, [System.Math]::M
 $studentInfo.StudentSlug = $studentSlug = "$studentNamePrefix-$studentSuffix"
 $studentDisplayName = "Student - $studentName"
 $studentInfo.GitBranchName = $studentBranch = "student/$($studentInfo.StudentSlug)"
-$studentInfo.GitBranchUrl = "https://github.com/OctopusDeploy/training-workshop/tree/$studentBranch"
+$studentInfo.InstructionsUrl = "https://github.com/OctopusDeploy/training-workshop/blob/$studentBranch/instructions/README.md"
 $studentSpaceId = "[unknown]"
 
 Write-Host "Provisioning student"
@@ -161,7 +161,9 @@ if (!$skipGit) {
 	$instructionDocFiles = Get-ChildItem -Path $instructionDocsDir -Recurse -File -Filter *.md
 	foreach ($instructionDocFile in $instructionDocFiles) {
 		$fileText = Get-Content $instructionDocFile
-		$fileText = $fileText.Replace("[student-slug]", $studentInfo.StudentSlug).Replace("[space-id]", $studentSpaceId)
+		$fileText = $fileText.Replace("[student-slug]", $studentInfo.StudentSlug)
+		$fileText = $fileText.Replace("[space-id]", $studentSpaceId)
+		$fileText = $fileText.Replace("[student-name]", $studentName)
 
 		foreach ($studentAppInfo in $studentInfo.AzureApps) {
 			$token = "[student-app-url-$($studentAppInfo.AppEnvironment)]"

@@ -17,3 +17,4 @@
 - Show how the Library Variable Set is linked to the project allowing the Slack URL to be provided to the application
 
 # Exercise Complete
+On to [Part 3 - Bonus Lesson](part-3-bonus-lesson.md).

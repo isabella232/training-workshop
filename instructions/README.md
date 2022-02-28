@@ -46,7 +46,10 @@ A new Space inside the Octopus Deploy workshop training Cloud instance has been 
 
 https://octopus-training.octopus.app/app#/[space-id]
 
-You can get into this by logging in with your Octopus Google account.
+You can get into this by logging in with your Octopus Google account. 
+- Use the `Sign in with your Octopus ID`. 
+If you are already logged in to `Octopus.com`, you should get right in, otherwise
+- On the `Sign in to Octopus Deploy` page, select `Google >` button, then select your Octopus email Google account.
 
 ## Azure Web Sites
 
@@ -88,5 +91,10 @@ This workshop is split into a few parts with a few lessons each.
 - Lesson 5: [Library Variable Set](part-2-lesson-5.md)
 - Student Demos: [Perform mock demos to demonstrate learned concepts](part-2-studentdemos.md)
 
+# Before you get started
+
+These instructions include links to pages you'll need to visit to complete tasks. Open these in new tabs so you don't lose your place.
+
 # Let's Go!
+
 It's time to dive into the first lesson: [Application build and artifacts](part-1-lesson-1.md)

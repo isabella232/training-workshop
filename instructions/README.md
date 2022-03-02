@@ -67,9 +67,13 @@ You'll find links to these applications throughout the workshop when you need to
 Throughout the lessons, you'll see several styles to assist you with the activities.
 
 Direct actions you need to take appear as a bullet list item
-* Go here, do this
+- Go here, do this
 
-Names of things in the user interface (menu items, buttons, labels, field names) or specific values you should enter appear `like this`.
+Names of things in the user interface (menu items, buttons, labels, field names) or specific values you should enter appear `like this`. Some examples:
+- Click the `Save` button
+- In the `Name` field enter: `some value`
+- Navigate to the `Projects` > `Overview` area
+
 # Lesson Plan
 
 This workshop is split into a few parts with a few lessons each.

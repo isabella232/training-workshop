@@ -95,6 +95,9 @@ This workshop is split into a few parts with a few lessons each.
 - Lesson 5: [Library Variable Set](part-2-lesson-5.md)
 - Student Demos: [Perform mock demos to demonstrate learned concepts](part-2-studentdemos.md)
 
+## Part 3 - Bonus Lesson
+- Bonus Lesson: [Continuous Delivery and Deployment](part-3-lesson-1.md)
+
 # Before you get started
 
 These instructions include links to pages you'll need to visit to complete tasks. Open these in new tabs so you don't lose your place.

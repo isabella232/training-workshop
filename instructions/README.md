@@ -15,7 +15,7 @@ This workshop is normally delivered as a guided experience. This provides the st
 
 You can find the slides for the workshop at the following URL:
 
-***[need to add slide link here]***
+https://docs.google.com/presentation/d/1RE1cpKfioSquK9h-HH6jxqrbRpw4WQff4TxOJTCD2ww/edit#slide=id.p
 
 # Quick Info
 

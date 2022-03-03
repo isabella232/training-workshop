@@ -14,7 +14,7 @@
 ## Achievement
 - New application build lands on the deployment web site without manual steps
 
-# Lesson
+# Exercise
 
 ## Enable continuous delivery
 

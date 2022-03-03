@@ -16,7 +16,7 @@
 ## Achievement
 - See the deployed applications running in `Test` and `Production` environments
 
-# Lesson
+# Exercise
 
 ## Configure `Test` and `Production` environments
 

@@ -14,7 +14,7 @@
 ## Achievement
 - Your website shows the environment in which it is running
 
-# Lesson
+# Exercise
 
 ## Add a scoped Project variable
 

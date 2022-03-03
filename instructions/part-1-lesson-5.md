@@ -17,7 +17,7 @@
 - Observe multiple packages, releases, and their deployments on the dashboard matrix
 - Observe newer versions running on the web sites
 
-# Lesson
+# Exercise
 
 ## Build the sample application again
 

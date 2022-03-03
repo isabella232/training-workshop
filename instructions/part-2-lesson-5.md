@@ -16,7 +16,7 @@
 ## Achievement
 - You complete an activity presented by your `Production` web site once they’ve finished all lessons
 
-# Lesson
+# Exercise
 
 ## Verify Library Variable Set exists
 - Navigate to your Space's Library area: 

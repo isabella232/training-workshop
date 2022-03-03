@@ -17,7 +17,7 @@
 ## Achievement
 - Visit your `Development` web site and see the deployed application running
 
-# Lesson
+# Exercise
 
 ## Create a project
 - From the Octopus menu, click on `Projects`

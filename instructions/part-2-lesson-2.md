@@ -14,7 +14,7 @@
 ## Achievement
 - Your name appears in the activity log
 
-# Lesson
+# Exercise
 
 ## Add a project variable
 

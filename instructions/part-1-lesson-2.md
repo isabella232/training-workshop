@@ -16,7 +16,7 @@
 ## Achievement
 - Environment and Target are configured and visible in the overview
 
-# Lesson
+# Exercise
 
 ## Verify your workshop `Development` app is running
 

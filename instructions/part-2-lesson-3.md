@@ -15,7 +15,7 @@
 ## Achievement
 - Your website shows your name
 
-# Lesson
+# Exercise
 
 ## Add a Project variable
 

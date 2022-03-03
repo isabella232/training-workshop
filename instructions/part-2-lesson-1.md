@@ -14,7 +14,7 @@
 ## Achievement
 - Deployment of the new release to `Production` requires manual approval.
 
-# Lesson
+# Exercise
 
 ## Modify your deployment process
 

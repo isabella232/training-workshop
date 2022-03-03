@@ -13,7 +13,7 @@
 ## Achievement
 - The application package is visible in your Octopus package library
 
-# Lesson
+# Exercise
 
 ## Run application build workflow
 

@@ -104,6 +104,7 @@ if (-not $skipOctopus) {
 	$tfOutputs = terraform output -json | ConvertFrom-Json
 
 	$studentInfo.SpaceId = $studentSpaceId = $tfOutputs.student_space.value.id
+	$studentInfo.SpaceUrl = "$octopusURL/app#/$($studentInfo.SpaceId)"
 	
 	Write-Host "Setting location to $popLoc"
 	Set-Location $popLoc

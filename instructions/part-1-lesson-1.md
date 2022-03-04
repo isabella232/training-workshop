@@ -1,6 +1,8 @@
 # Part 1 - Lesson 1: Application build and artifacts
 - Time: ~30 - 45 min
 
+[Presentation Slides](https://docs.google.com/presentation/d/1RE1cpKfioSquK9h-HH6jxqrbRpw4WQff4TxOJTCD2ww/edit#slide=id.g1140cf5d16e_0_1)
+
 ## Objectives
 - Understand a basic example of where an application comes from
 - Understand what kind of artifact results from an application build

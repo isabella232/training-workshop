@@ -3,6 +3,8 @@
 # Part 2 - Lesson 4: Scoped Variables
 - Time: ~30 mins
 
+[Presentation Slides](https://docs.google.com/presentation/d/1RE1cpKfioSquK9h-HH6jxqrbRpw4WQff4TxOJTCD2ww/edit#slide=id.g1181244db34_0_195)
+
 ## Objective
 - Understand how variables can have different results based on specific contexts
 

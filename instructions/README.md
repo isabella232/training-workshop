@@ -17,6 +17,8 @@ You can find the slides for the workshop at the following URL:
 
 https://docs.google.com/presentation/d/1RE1cpKfioSquK9h-HH6jxqrbRpw4WQff4TxOJTCD2ww/edit#slide=id.p
 
+The lesson instruction pages have links directly to the first relevant slide in the presentation for your reference.
+
 # Quick Info
 
 If you are viewing this as a student on your branch, these instructions have been customized for you. Here you'll find a quick reference to the important information about your customized workshop experience. You can refer to this page for the general links you'll need to visit during the workshop.

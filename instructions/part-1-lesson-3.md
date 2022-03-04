@@ -3,6 +3,8 @@
 # Part 1 - Lesson 3: Project Setup and First Deployment
 - Time: ~45 - 60 min
 
+[Presentation Slides](https://docs.google.com/presentation/d/1RE1cpKfioSquK9h-HH6jxqrbRpw4WQff4TxOJTCD2ww/edit#slide=id.g1140cf5d16e_0_155)
+
 ## Objective
 - Understand the basics of deployment process setup
 - Complete a deployment

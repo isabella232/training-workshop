@@ -3,6 +3,8 @@
 # Part 2 - Lesson 1: Scoping Environment Behavior
 - Time: ~45 - 60 mins
 
+[Presentation Slides](https://docs.google.com/presentation/d/1RE1cpKfioSquK9h-HH6jxqrbRpw4WQff4TxOJTCD2ww/edit#slide=id.g1181244db34_0_64)
+
 ## Objective
 - Understand the concept of a single deployment process and different behaviors based on environments.
 

@@ -9,6 +9,7 @@
 - Understand where that artifact goes
 
 ## Tasks
+- Show empty artifact feed
 - Run a predefined application build in GitHub actions
 - Verify the package is in your Octopus Deploy artifact feed
 
@@ -17,11 +18,21 @@
 
 # Exercise
 
+## Show empty artifact feed
+
+- Visit your Octopus Space package repository: https://octopus-training.octopus.app/app#/[space-id]/library
+
+From your Space, you'll find this under `Library` > `Packages`.
+
+![](assets/1-1/od-library-packages.png)
+
+- Note that your `Built-in Package Repository` currently contains no packages.
+
 ## Run application build workflow
 
 ### Navigate to the GitHub Action workflow
 
-In the GitHub repository top menu
+From this instructions page, go to the top to find the GitHub repository top menu
 
 - Click on the `Actions` tab (open in a new browser tab so you don't loose your instructions)
 
@@ -72,13 +83,9 @@ Once everything is finished running, the build should indicate that it's complet
 
 ## Verify the artifact in your package feed
 
-- Visit your Octopus Space package repository: https://octopus-training.octopus.app/app#/[space-id]/library
+- Return to your Octopus Space package repository: https://octopus-training.octopus.app/app#/[space-id]/library
 
-From your Space, you'll find this under `Library` > `Packages`.
-
-![](assets/1-1/od-library-packages.png)
-
-- Verify that you have a package entry with a `Highest version` that has a number with this pattern:
+- Verify that you have a package entry called `workshop-app` with a `Highest version` that has a number with this pattern:
 ```
 {year}.{month}.{day}.{workflow run number}
 ```

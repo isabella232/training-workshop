@@ -23,7 +23,7 @@
 
 ## Add package deployment
 
-From your [your project overview](https://octopus-training.octopus.app/app#/[space-id]/projects/workshop-application/deployments).
+From [your project overview](https://octopus-training.octopus.app/app#/[space-id]/projects/workshop-application/deployments).
 - Click on `Process` under the `Deployments` menu
 - Click `Add Step` button
 - Click on the `Azure` box

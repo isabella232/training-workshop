@@ -41,7 +41,7 @@ Once the workflow starts (you'll see your name in the entry)
 
 ## Create a new release
 
-- Navigate to your [your project overview](https://octopus-training.octopus.app/app#/[space-id]/projects/workshop-application/deployments).
+- Navigate to [your project overview](https://octopus-training.octopus.app/app#/[space-id]/projects/workshop-application/deployments).
 - Click `Create Release`
 - Click anywhere on the `Packages` row to expand the section 
 - Notice the package version listed under `Latest` for the `workshop-app` entry. This should include your recent application build number.

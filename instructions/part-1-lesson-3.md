@@ -22,6 +22,8 @@
 # Exercise
 
 ## Create a project
+***If you get a prompt asking what you're using the project for or what type it is, just disregard it.***
+
 - From the Octopus menu, click on `Projects`
 
 ![](assets/1-3/projects.png)

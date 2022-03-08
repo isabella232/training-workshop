@@ -11,7 +11,10 @@ The workshop will teach you the basics by using Octopus Deploy to deploy a web a
 - ability to perform a basic demo of the product
 
 ## Guided Workshop
-This workshop is normally delivered as a guided experience. This provides the students with an introductory discussion about the concepts then guidance and assistance as they complete lessons.
+This workshop is normally delivered as a guided experience. This provides the students with 
+- an introductory discussion about the concepts 
+- an implementation demonstration of the concepts
+- a hands on exercise mirroring the demonstration
 
 You can find the slides for the workshop at the following URL:
 

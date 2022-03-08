@@ -10,6 +10,7 @@
 
 ## Task
 - Add a Project variable
+- Modify a deployment step
 - Create a new release
 - Deploy the release
 
@@ -25,6 +26,16 @@ From [your project overview](https://octopus-training.octopus.app/app#/[space-id
 - Under the `Name` column, `Enter new variable`:  `Project:Workshop:StudentName`
 - Under the `Value` column, `Enter value`: your name
 - Click `Save` button
+
+## Modify a deployment step
+
+- Go to your [project's Process](https://octopus-training.octopus.app/app#/[space-id]/projects/workshop-application/deployments/process)
+- Click on the `Run a Script` step
+- Under `Inline Source Code` update the script to the following text:
+```
+Write-Highlight "Hi, my name is #{Project:Workshop:StudentName}"
+```
+- Click `Save`
 
 ## Create release and deploy
 Using what you've already learned

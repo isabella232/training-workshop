@@ -1,4 +1,4 @@
-[Previous Lesson](part-1-lesson-5.md)
+[Previous Lesson](part-1-lesson-6.md)
 
 # Part 1 - Student Demos
 - Time: ~20 min

@@ -63,4 +63,4 @@ You can get there directly: https://octopus-training.octopus.app/app#/[space-id]
     - `workshop-app-service`
 
 # Lesson Completed!
-On to the next lesson: [Project Setup and First Deployment](part-1-lesson-3.md)
+On to the next lesson: [Project and Process Setup](part-1-lesson-3.md)

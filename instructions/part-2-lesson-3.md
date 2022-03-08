@@ -9,8 +9,7 @@
 - Understand how variables can affect the application
 
 ## Task
-- Add a Project variable
-- Modify the process to use the variable
+- Modify the process to manipulate the application configuration
 - Create and deploy a new release
 - Verify change to web site
 
@@ -32,8 +31,7 @@ From your project overview: https://octopus-training.octopus.app/app#/[space-id]
 - Click on `Process` under `Deployments`
 - Click on the `Deploy an Azure App Service` step
 - Locate the `Configuration files` > `Structured Configuration Variables` section, click to expand it
-- Next to `Target files` click on `#{}`
-- Locate `Project:Workshop:ConfigFile` at the top of the list and select it
+- In `Target files` enter `appsettings.json`
 - Click `Save`
 
 ## Create and deploy release

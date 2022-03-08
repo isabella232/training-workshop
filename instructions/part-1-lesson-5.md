@@ -1,65 +1,104 @@
 [Previous Lesson](part-1-lesson-4.md)
 
-# Part 1 - Lesson 5: Package and Release Versions
+# Part 1 - Lesson 4: Environment progression and enforcement
 - Time: ~30 min
 
-[Presentation Slides](https://docs.google.com/presentation/d/1RE1cpKfioSquK9h-HH6jxqrbRpw4WQff4TxOJTCD2ww/edit#slide=id.g1181244db34_0_36)
+[Presentation Slides](https://docs.google.com/presentation/d/1RE1cpKfioSquK9h-HH6jxqrbRpw4WQff4TxOJTCD2ww/edit#slide=id.g1140cf5d16e_0_147)
 
 ## Objective
-- Understand the purpose of multiple application versions
-- Understand the relationship of application versions and releases
+- Understand the purpose and importance of different deployment environments
+- Understand the importance of a single deployment process
+- Understand the importance of environment progression and how Octopus enforces it
 
 ## Tasks
-- Build the sample application again
-- Verify the new application package is in the repository
-- Create a new release
-- Deploy the new release
+- Configure `Test` and `Production` environments
+- Verify `Test` and `Production` web sites are running
+- Deploy to `Test` and `Production` environments
 
 ## Achievement
-- Observe multiple packages, releases, and their deployments on the dashboard matrix
-- Observe newer versions running on the web sites
+- See the deployed applications running in `Test` and `Production` environments
 
 # Exercise
 
-## Build the sample application again
+## Configure `Test` and `Production` environments
 
-- Browse to your `Development` environment web site: [student-app-url-dev]
-- Note the `Application version:` number
-- Return to the GitHub actions `build application` workflow page: https://github.com/OctopusDeploy/training-workshop/actions/workflows/build-application.yml
-- Run the workflow, using your student branch: `student/[student-slug]`
+- Navigate to the `Infrastructure` > `Environments` area. (go [directly there](https://octopus-training.octopus.app/app#/[space-id]/infrastructure/environments))
 
-Once the workflow starts (you'll see your name in the entry)
-- Click the run item in the list
-- Note the number following `Build Application #`
-- Wait for the workflow to finish
+![](assets/1-4/infra-environments.png)
 
-## Verify the new application package in the repository 
+- Repeat the `Configure your Development environment` and `Configure your Development target` steps from [Lesson 2](part-1-lesson-2.md#configure-your-development-environment) to create environments with deployment targets for `Test` and `Production` instead of `Development`.
 
-- Navigate to your Octopus Space's package repository using the `Library` menu item or ([go directly there](https://octopus-training.octopus.app/app#/[space-id]/library))
-- Click on the `workshop-app` package name
-- Observe you now have 2 versions of the application package. The most recent should have the number from your GitHub action build you did.
+*Hint: start with the `Add Environment` button.*
 
-## Create a new release
+Use these variations in place of those in the Lesson 2 instructions:
 
-- Navigate to your [your project overview](https://octopus-training.octopus.app/app#/[space-id]/projects/workshop-application/deployments).
-- Click `Create Release`
-- Click anywhere on the `Packages` row to expand the section 
-- Notice the package version listed under `Latest` for the `workshop-app` entry. This should include your recent application build number.
-- Click the `Save` button
-- Click `Overview` in the project menu
-- Notice the dashboard grid showing the completed deployments of the first release you created and the undeployed second release
+- In the `Add environment` prompt, use the `Test` and `Production` helper links
+- In the `Create Azure Web App` screen:
 
-## Deploy the new release
+| Entry | `Test` | `Production` | (note) |
+|-|-|-|-|
+| Display Name | `Azure Test Service` | `Azure Prod Service` | |
+| Environments | `Test` | `Production` | |
+| Target Roles | - | - | select existing role: `workshop-app-service` |
+| Azure Web App | `[student-slug]-test` | `[student-slug]-prod` | |
 
-- Using what you've learned so far, deploy the new release to `Development`
-- Browse to your `Development` environment web site: [student-app-url-dev]
-- Verify that it's now running the new `Application version:` (check the number displayed)
+Verify your configuration:
+- Navigate to `Infrastructure` > `Overview` ([go directly there](https://octopus-training.octopus.app/app#/[space-id]/infrastructure/overview))
+- Verify that you now have the following updates:
+  - `Environments (3)`
+    - `Development 1`
+    - `Test 1`
+    - `Production 1`
+  - `Deployment Targets (3)`
+    - `Azure Web App 3`
+  - `Target Status (3)`
+    - `Healthy 3`
 
-Verify the old versions are still running on the other environments:
-- Browse to your other environment web sites:
-  - `Test`: [student-app-url-test]
-  - `Production`: [student-app-url-prod]
-- Check the `Application version` numbers on each to see that they are different from what you just deployed to `Development`
+## Observe additional environments
+
+- Navigate to the workshop application project overview
+  - Click `Projects` then `Workshop Application` or 
+  - [Go directly there](https://octopus-training.octopus.app/app#/[space-id]/projects/workshop-application/deployments)
+- Notice that you now have the `Test` and `Production` environments
+- Notice there's a `Deploy...` button under `Test`, but not under `Production` for the release
+
+## Verify `Test` website is running and empty
+
+- Browse to your `Test` environment web site: [student-app-url-test]
+- Verify that it is running the Azure default web site
+
+## Deploy to `Test`
+
+- Click the `Deploy...` button under `Test`
+
+On the next screen (`Deploy release`)
+- Under `Preview and customize` click the row with `Test` in it
+- Under `Deployment steps preview`, observe that it shows the name of the target this will deploy to: `Azure Test Service`
+- Click the `Deploy` button
+
+Once the deployment to `Test` is complete
+- Navigate to your `Test` web site: [student-app-url-test]
+- Verify it is now the workshop sample application
+
+## Verify `Production` website is running and empty
+
+- Browse to your `Production` environment web site: [student-app-url-prod]
+- Verify that it is still running the Azure default web site
+
+## Deploy to `Production`
+
+In the Octopus portal
+- Return to the [`Projects` > `Workshop Application` overview page](https://octopus-training.octopus.app/app#/[space-id]/projects/workshop-application/deployments)
+- Notice we now have a `Deploy...` button under `Production`
+- Click the `Deploy...` button
+- Observe the `Azure Prod Service` target under the `Preview and customize` section
+- Click `Deploy` to complete the `Production` environment deployment
+
+Verify the deployment:
+- Browse to or refresh your `Production` environment web site: [student-app-url-prod]
+- Verify that it is now running the workshop sample application
+
+**Congratulations! You've completed your first deployment through to Production!**
 
 # Lesson Completed!
-Time for some [practice demos](part-1-student-demos.md)!
+On to the next lesson: [Package and Release Versions](part-1-lesson-6.md)

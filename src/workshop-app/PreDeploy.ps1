@@ -7,5 +7,5 @@ if ($null -ne $OctopusParameters) {
 		Write-Highlight "WOOHOO!! Found a student name: $studentName"
 	}
 } else {
-	Write-Warning "You can't run this script outside of a Octopus."
+	Write-Warning "You can't run this script outside of Octopus."
 }

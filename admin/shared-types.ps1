@@ -17,3 +17,14 @@ class StudentAppInfo {
 	[string] $AppURL
 	[string] $ResourceId
 }
+
+function CleanGitWorkspace(){
+	if ((Get-Location).ToString().EndsWith("workspace")) {
+		Write-Host ">>> Pre cleaning workspace directory"
+		Remove-Item -Path "$PSScriptRoot\..\..\workspace\*" -Recurse -Force
+	}
+	else {
+		Write-Error "Git update requires running from the 'workspace' directory (outside of this repo's root; see admin/testing/readme.md)"
+		exit
+	}
+}

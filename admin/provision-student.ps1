@@ -27,6 +27,7 @@ param (
 )
 
 . "$PSScriptRoot\shared-types.ps1"
+. "$PSScriptRoot\shared-config.ps1"
 
 if (!$skipGit) {
 	if ((Get-Location).ToString().EndsWith("workspace")) {
@@ -41,9 +42,6 @@ if (!$skipGit) {
 else {
 	Write-Warning "Skipping Git operation, skipping run location safety check and workspace dir cleanup."
 }
-
-$instructionDocsDir = ".\instructions"
-$githubActionsFile = ".\.github\workflows\build-application.yml"
 
 $studentInfo = [StudentInfo]::new()
 

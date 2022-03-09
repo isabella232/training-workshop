@@ -17,12 +17,12 @@
 - Observe Project Overview
 
 ## Achievement
-- Run a deployment that display a message in the deploy log
+- Run a deployment that displays a message in the deploy log
 
 # Exercise
 
 ## Create a project
-***If you get a prompt asking what you're using the project for or what type it is, just disregard it.***
+***If you get a prompt asking what you're using the project for or what type it is, just dismiss it.***
 
 - From the Octopus menu, click on `Projects`
 
@@ -59,7 +59,7 @@ Write-Highlight "Hello world!"
 
 The deployment has completed running when
 - you see the `Hello world!` message appear
-- there's a big green box with a checkmark at the top
+- there's a green box at the top with a checkmark in it
 
 # Lesson Completed!
 

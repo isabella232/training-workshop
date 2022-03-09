@@ -29,7 +29,7 @@
 
 ## Link a Library Variable Set to your project
 From [your project overview](https://octopus-training.octopus.app/app#/[space-id]/projects/workshop-application/deployments)
-- Click `Variables`, then `Variable Sets`
+- Click `Variables`, then `Library Sets`
 - Click `Include Library Variable Sets` button
 - Tick off `Slack Variables`, and click `Save`
 

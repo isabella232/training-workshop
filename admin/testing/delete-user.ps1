@@ -3,12 +3,6 @@ param (
 	[Parameter(Mandatory = $true)][string]$userId
 )
 
-$baseScriptDir = $PSScriptRoot
+. "$PSScriptRoot\load-config.ps1"
 
-. $baseScriptDir\load-config.ps1
-
-$odHeaders = @{ "X-Octopus-ApiKey" = $octopusKey }
-
-$response = (Invoke-WebRequest "$octopusURL/api/users/$userId" -Headers $odHeaders -Method Delete -ErrorVariable octoError)
-
-Write-Output $response
+."$PSScriptRoot\..\delete-user.ps1" -userId $userId

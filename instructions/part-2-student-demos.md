@@ -11,7 +11,7 @@
 - Deploy the release to `Production`, showing the Manual Intervention
 - Show the deployment process and describe how the intervention step is scoped to just `Production`
 - Show the student name variable configuration and its output in a deployment log, describing how variables can be used to influence deployment
-- Show the `Environment` and `ConfigFile` variables, explaining how the values for `Environment` are scoped
+- Show the `Environment` variable, explaining how the values for `Environment` are scoped
 - Show the Azure App deployment step's `Structured Configuration Variables` area, explaining how the application configuration can be modified
 - Show the resulting environment label in two of your web sites to highlight the resulting configuration differences
 - Show how the Library Variable Set is linked to the project allowing the Slack URL to be provided to the application

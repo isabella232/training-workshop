@@ -18,16 +18,9 @@
 
 # Exercise
 
-## Add a Project variable
-
-From your project overview: https://octopus-training.octopus.app/app#/[space-id]/projects/workshop-application/deployments
-- Click on `Variables`
-- Under the `Name` column, `Enter new variable`: `Project:Workshop:ConfigFile`
-- Under the `Value` column, `Enter value`: `appsettings.json`
-- Click the `Save` button
-
 ## Modify the process to use the variable
 
+From your project overview: https://octopus-training.octopus.app/app#/[space-id]/projects/workshop-application/deployments
 - Click on `Process` under `Deployments`
 - Click on the `Deploy an Azure App Service` step
 - Locate the `Configuration files` > `Structured Configuration Variables` section, click to expand it
@@ -37,6 +30,9 @@ From your project overview: https://octopus-training.octopus.app/app#/[space-id]
 ## Create and deploy release
 Using what you've already learned
 - Create a new release and deploy to `Development`
+- After deployment is complete, click on the `Task Log` tab
+- Scroll to the bottom and look for `Structured variable replacement succeeded...`
+- This serves as confirmation that the configuration file was found and modified
 
 ## Verify change to web site
 - Browse to your `Development` web site: [student-app-url-dev]

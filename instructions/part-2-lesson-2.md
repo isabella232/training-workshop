@@ -31,7 +31,7 @@ From [your project overview](https://octopus-training.octopus.app/app#/[space-id
 
 - Go to your [project's Process](https://octopus-training.octopus.app/app#/[space-id]/projects/workshop-application/deployments/process)
 - Click on the `Run a Script` step
-- Under `Inline Source Code` update the script to the following text:
+- Under `Inline Source Code` update the script to the following text (exactly as it appears here):
 ```
 Write-Highlight "Hi, my name is #{Project:Workshop:StudentName}"
 ```

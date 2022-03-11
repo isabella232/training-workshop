@@ -45,7 +45,7 @@ Using what you've already learned
 - Observe that your web sites now display the appropriate environment names
 
 # Lesson Completed!
-On to the next lesson: [Library Variable Set](part-2-lesson-6.md)
+On to the next lesson: [Library Variable Set](part-2-lesson-5.md)
 
 # Double Bonus Challenge
 (Be sure you've done the [Lesson 2 Bonus Challenge](part-2-lesson-2.md#bonus-challenge) first.)

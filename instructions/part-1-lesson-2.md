@@ -3,7 +3,7 @@
 # Part 1 - Lesson 2: Infrastructure and Environments
 - Time: ~45 - 60 min
 
-[Presentation Slides](https://docs.google.com/presentation/d/1RE1cpKfioSquK9h-HH6jxqrbRpw4WQff4TxOJTCD2ww/edit#slide=id.g1140cf5d16e_0_42)
+[Presentation Slides](https://docs.google.com/presentation/d/1RE1cpKfioSquK9h-HH6jxqrbRpw4WQff4TxOJTCD2ww/edit#slide=id.g1185db482c1_0_16)
 
 ## Objective
 - Understand the concept of “infrastructure awareness”

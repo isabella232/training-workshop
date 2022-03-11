@@ -42,7 +42,10 @@ Using what you've already learned
 - Create a new release and deploy to all environments
 
 ## Complete tasks on your websites
-- Browse to your `Development` web site: [student-app-url-dev]
+- Browse to your web sites:
+  - `Development`: [student-app-url-dev]
+  - `Test`: [student-app-url-test]
+  - `Production`: [student-app-url-prod]
 
 # Lesson Completed!
 Time for some more [practice demos](part-2-student-demos.md)!

@@ -51,10 +51,9 @@ A new Space inside the Octopus Deploy workshop training Cloud instance has been 
 
 https://octopus-training.octopus.app/app#/[space-id]
 
-You can get into this by logging in with your Octopus Google account. 
-- Use the `Sign in with your Octopus ID`. 
-If you are already logged in to `Octopus.com`, you should get right in, otherwise
-- On the `Sign in to Octopus Deploy` page, select `Google >` button, then select your Octopus email Google account.
+You can get into this by logging in with your Microsoft account.
+- Use the `Sign in with Microsoft` button.
+- If prompted to permit access, click `Accept`.
 
 ## Azure Web Sites
 

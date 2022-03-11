@@ -3,7 +3,7 @@
 # Part 1 - Lesson 4: Deploying an Application Package
 - Time: ~30 min
 
-[Presentation Slides]()
+[Presentation Slides](https://docs.google.com/presentation/d/1RE1cpKfioSquK9h-HH6jxqrbRpw4WQff4TxOJTCD2ww/edit#slide=id.g118ea6b09cc_1_50)
 
 ## Objective
 - Understand package deployment

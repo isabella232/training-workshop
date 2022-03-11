@@ -1,7 +1,7 @@
 # Part 1 - Lesson 1: Application build and artifacts
 - Time: ~30 - 45 min
 
-[Presentation Slides](https://docs.google.com/presentation/d/1RE1cpKfioSquK9h-HH6jxqrbRpw4WQff4TxOJTCD2ww/edit#slide=id.g1140cf5d16e_0_1)
+[Presentation Slides](https://docs.google.com/presentation/d/1RE1cpKfioSquK9h-HH6jxqrbRpw4WQff4TxOJTCD2ww/edit#slide=id.g1185db482c1_0_8)
 
 ## Objectives
 - Understand a basic example of where an application comes from
@@ -47,10 +47,10 @@ From this instructions page, go to the top to find the GitHub repository top men
 From the `Build Application` workflow view
 
 - Click `Run workflow`. A small dialog will open.
+- ***IMPORTANT!***: Look for and select your branch name from the `Use workflow from` dropdown: `student/[student-slug]`
+
 
 ![](assets/1-1/run-workflow-dialog.png)
-
-- ***IMPORTANT!***: Look for and select your branch name from the `Use workflow from` dropdown: `student/[student-slug]`
 
 ![](assets/1-1/build-from-student-branch.png)
 
@@ -60,9 +60,9 @@ Once your student branch is selected
 
 ![](assets/1-1/run-workflow.png)
 
-After a short time, you should see a new workflow run show up in the run list with your name listed.
+After a short time, you should see a new workflow run show up in the run list with your GitHub username listed.
 ```
-Manually run by {your name}
+Manually run by {your username}
 ```
 
 ![](assets/1-1/workflow-started.png)
@@ -80,6 +80,9 @@ You should now see the activity log of the running application build.
 Once everything is finished running, the build should indicate that it's completed and good.
 
 ![](assets/1-1/good-build.png)
+
+- Look in the details and expand the `Push Sample App Package` section
+- Following a line with green checkmark, you should see `Pushing package: ...`. This is build artifact being sent to Octopus.
 
 ## Verify the artifact in your package feed
 

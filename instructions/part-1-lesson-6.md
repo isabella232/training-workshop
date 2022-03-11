@@ -3,7 +3,7 @@
 # Part 1 - Lesson 6: Package and Release Versions
 - Time: ~30 min
 
-[Presentation Slides](https://docs.google.com/presentation/d/1RE1cpKfioSquK9h-HH6jxqrbRpw4WQff4TxOJTCD2ww/edit#slide=id.g1181244db34_0_36)
+[Presentation Slides](https://docs.google.com/presentation/d/1RE1cpKfioSquK9h-HH6jxqrbRpw4WQff4TxOJTCD2ww/edit#slide=id.g1185db482c1_0_44)
 
 ## Objective
 - Understand the purpose of multiple application versions

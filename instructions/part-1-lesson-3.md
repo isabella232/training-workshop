@@ -3,7 +3,7 @@
 # Part 1 - Lesson 3: Project and Process Setup
 - Time: ~30 min
 
-[Presentation Slides](https://docs.google.com/presentation/d/1RE1cpKfioSquK9h-HH6jxqrbRpw4WQff4TxOJTCD2ww/edit#slide=id.g1140cf5d16e_0_155)
+[Presentation Slides](https://docs.google.com/presentation/d/1RE1cpKfioSquK9h-HH6jxqrbRpw4WQff4TxOJTCD2ww/edit#slide=id.g1185db482c1_0_26)
 
 ## Objective
 - Understand the basics of deployment process setup
@@ -55,7 +55,7 @@ Write-Highlight "Hello world!"
 
 - Click the `Deploy to Development...` button
 - Click the `Deploy` button
-- Click the `Task Log` tab to see the details
+- Click the `Task Log` tab to see the details of actions taken during the deployment
 
 The deployment has completed running when
 - you see the `Hello world!` message appear

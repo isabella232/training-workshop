@@ -73,10 +73,17 @@ Throughout the lessons, you'll see several styles to assist you with the activit
 Direct actions you need to take appear as a bullet list item
 - Go here, do this
 
-Names of things in the user interface (menu items, buttons, labels, field names) or specific values you should enter appear `like this`. Some examples:
+Names of things in the user interface (menu items, buttons, labels, field names) appear `like this`. Some examples:
 - Click the `Save` button
-- In the `Name` field enter: `some value`
 - Navigate to the `Projects` > `Overview` area
+
+Most values you should enter as-is appear as a code block like this:
+```
+some value
+```
+While viewing on GitHub, you can hover over the code block to reveal the copy button. Use this to easily copy the value.
+
+![](assets/GitHub-CodeBlock-Copy.gif)
 
 # Lesson Plan
 

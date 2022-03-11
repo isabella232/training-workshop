@@ -31,7 +31,10 @@
 You can get there directly: https://octopus-training.octopus.app/app#/[space-id]/projects
 
 - Click `Add Project` button
-- Enter project name: `Workshop Application`
+- Enter project name: 
+```
+Workshop Application
+```
 
 ## Create deployment process
 

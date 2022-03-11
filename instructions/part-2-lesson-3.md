@@ -24,7 +24,10 @@ From your project overview: https://octopus-training.octopus.app/app#/[space-id]
 - Click on `Process` under `Deployments`
 - Click on the `Deploy an Azure App Service` step
 - Locate the `Configuration files` > `Structured Configuration Variables` section, click to expand it
-- In `Target files` enter `appsettings.json`
+- In `Target files` enter:
+```
+appsettings.json
+```
 - Click `Save`
 
 ## Create and deploy release

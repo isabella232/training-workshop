@@ -22,15 +22,27 @@
 
 From [your project overview](https://octopus-training.octopus.app/app#/[space-id]/projects/workshop-application/deployments)
 - Click on `Variables`
-- Under the `Name` column, `Enter new variable`: `Project:Workshop:Environment`
-- Under the `Value` column, `Enter value`: `Development`
+- Under the `Name` column, `Enter new variable`:
+```
+Project:Workshop:Environment
+```
+- Under the `Value` column, `Enter value`: 
+```
+Development
+```
 - Under `Scope`, click `Define scope`
 - From the `Select environments` dropdown, select `Development`
 - Click on some empty space outside the dropdown
 - Click `Add Another Value`
-- On the new row, in the `Value` column, `Enter value`: `Test`
+- On the new row, in the `Value` column, `Enter value`:
+```
+Test
+```
 - Set the `Scope` to the `Test` Environment
-- Repeat `Add Another Value` for `Production`
+- Repeat `Add Another Value` for
+```
+Production
+```
 - Click `Save` button
 
 ## Create and deploy release

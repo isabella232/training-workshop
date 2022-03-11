@@ -41,9 +41,15 @@ You can get there directly: https://octopus-training.octopus.app/app#/[space-id]
 - Click `Add Deployment Target` button
 - Click `Azure`
 - Click the `Azure Web App` box
-- Enter a display name such as `Azure Dev Service`
+- Enter a display name such as
+```
+Azure Dev Service
+```
 - Verify the `Environments` section already has `Development` in it
-- Enter the target role: `workshop-app-service`
+- Enter the target role:
+```
+workshop-app-service
+```
 - Click `"workshop-app-service" (add new role)`
 - Under the `Account` section, click the dropdown and select `Workshop Azure Account`
 - Under `Azure Web App`, click the dropdown and select the item that starts with: `[student-slug]-dev` (this is *your* `Development` environment app service)

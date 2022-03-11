@@ -23,8 +23,11 @@
 
 From [your project overview](https://octopus-training.octopus.app/app#/[space-id]/projects/workshop-application/deployments)
 - Click on `Variables`
-- Under the `Name` column, `Enter new variable`:  `Project:Workshop:StudentName`
-- Under the `Value` column, `Enter value`: your name
+- Under the `Name` column, in the `Enter new variable` field, enter the following:
+```
+Project:Workshop:StudentName
+```
+- Under the `Value` column, in the `Enter value` field, enter your name
 - Click `Save` button
 
 ## Modify a deployment step

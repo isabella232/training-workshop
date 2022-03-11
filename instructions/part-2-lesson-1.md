@@ -1,7 +1,7 @@
 [Previous Lesson](part-1-student-demos.md)
 
 # Part 2 - Lesson 1: Scoping Environment Behavior
-- Time: ~45 - 60 mins
+- Time: ~15 mins
 
 [Presentation Slides](https://docs.google.com/presentation/d/1RE1cpKfioSquK9h-HH6jxqrbRpw4WQff4TxOJTCD2ww/edit#slide=id.g1181244db34_0_64)
 
@@ -27,7 +27,10 @@
 - Enter `manual` into the filter field
 - Click the `Manual Intervention Required` box
 - Locate the `Manual Intervention` > `Instructions` section
-- Enter an instruction message: `Please approve this deployment`
+- Enter an instruction message: 
+```
+Please approve this deployment
+```
 - Locate the `Responsible Teams` section
 - From the dropdown, select `Space Managers`
 - Locate the `Conditions` > `Environments` section

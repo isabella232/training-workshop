@@ -16,7 +16,7 @@ if ($studentName.Length -eq 0) {
 	Write-Host "## No student information supplied, generating random student identity"
 	$randoId = [System.Guid]:: NewGuid()
 	$studentName = "Student " + $randoId.ToString().SubString(24)
-	$studentEmail = "planoie.work+$($randoId.ToString().SubString(0, 8))@gmail.com"
+	$studentEmail = "student+$($randoId.ToString().SubString(0, 8))@octopus.com"
 	Write-Host "## Student Name: $studentName"
 	Write-Host "## Student Email: $studentEmail"
 	Write-Host "################################################"

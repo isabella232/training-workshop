@@ -76,7 +76,7 @@ if (-not $skipOctopus) {
 	$popLoc = Get-Location
 	Write-Host $popLoc
 	Write-Host "Setting location to $PSScriptRoot"
-	Set-Location "$PSScriptRoot\tf-octopus"
+	Set-Location $tfOctopusFolder
 
 	$varSetName = "Slack Variables"
 	$varSetDesc = "Variables used for posting to Slack"
@@ -103,7 +103,10 @@ if (-not $skipOctopus) {
 
 	$studentInfo.SpaceId = $studentSpaceId = $tfOutputs.student_space.value.id
 	$studentInfo.SpaceUrl = "$octopusURL/app#/$($studentInfo.SpaceId)"
-	
+	$studentInfo.OctopusUserId = $tfOutputs.new_student_id.value
+
+	Copy-Item "terraform.tfstate" "$dataFolder\$($studentInfo.StudentSlug)-od.tfstate"
+
 	Write-Host "Setting location to $popLoc"
 	Set-Location $popLoc
 }
@@ -210,12 +213,13 @@ $studentSummary.AppendLine("## Delete azure resources: .\testing\delete-student-
 $studentSummary.AppendLine("################################################################################") | Out-Null
 #Write-Host $studentSummary.ToString()
 
-"$PSScriptRoot\data"
-if (!(Test-Path -Path "$PSScriptRoot\data")) {
-	New-Item -Path "$PSScriptRoot\data" -ItemType Directory
+if (!(Test-Path -Path $dataFolder)) {
+	New-Item -Path $dataFolder -ItemType Directory
 }
-#Out-File -FilePath "$PSScriptRoot\data\$studentSlug.txt" -InputObject $studentSummary.ToString()
+#Out-File -FilePath "$dataFolder\$studentSlug.txt" -InputObject $studentSummary.ToString()
 
 $studentInfoJson = $studentInfo | ConvertTo-Json
 Write-Host $studentInfoJson
-$studentInfoJson | Out-File "$PSScriptRoot\data\$studentSlug.json"
+$studentInfoJson | Out-File "$dataFolder\$studentSlug.json"
+
+Write-Host "..\repo\admin\testing\deprovision-student.ps1 -studentSlug $studentSlug"

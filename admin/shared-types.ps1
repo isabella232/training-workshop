@@ -8,6 +8,7 @@ class StudentInfo
 	[string] $InstructionsUrl
 	[string] $SpaceId
 	[string] $SpaceUrl
+	[string] $OctopusUserId
 	[System.Collections.ArrayList]$AzureApps = @()
 }
 

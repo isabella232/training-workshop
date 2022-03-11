@@ -12,8 +12,9 @@
 
 ## Tasks
 - Configure `Test` and `Production` environments
-- Verify `Test` and `Production` web sites are running
+- Verify `Test` and `Production` web sites are empty
 - Deploy to `Test` and `Production` environments
+- Verify `Test` and `Production` web sites the workshop application
 
 ## Achievement
 - See the deployed applications running in `Test` and `Production` environments

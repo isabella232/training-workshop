@@ -7,6 +7,12 @@ param (
 	[string] $githubActionsFile
 )
 
+. "$PSScriptRoot\shared-types.ps1"
+
+if(!(EnsureInGitWorkspace)){
+	exit
+}
+
 # update the instructions file with their specific info
 $instructionDocFiles = Get-ChildItem -Path $instructionDocsDir -Recurse -File -Filter *.md
 foreach ($instructionDocFile in $instructionDocFiles) {

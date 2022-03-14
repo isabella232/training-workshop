@@ -1,7 +1,7 @@
 [Previous Lesson](part-2-lesson-4.md)
 
 # Part 2 - Lesson 5: Library Variable Set
-- Time: ~30 mins
+- Time: ~15 mins
 
 [Presentation Slides](https://docs.google.com/presentation/d/1RE1cpKfioSquK9h-HH6jxqrbRpw4WQff4TxOJTCD2ww/edit#slide=id.g1181244db34_0_86)
 
@@ -13,10 +13,10 @@
 - Link a Library Variable Set to your project
 - Observe the items it contains
 - Create and deploy a new release
-- Complete tasks on your websites
+- Complete a task on your website
 
 ## Achievement
-- You complete an activity presented by your `Production` web site once they’ve finished all lessons
+- You complete an activity presented by your `Production` web site once you’ve finished all lessons
 
 # Exercise
 
@@ -42,7 +42,7 @@ Using what you've already learned
 - Create a new release and deploy to all environments
 
 ## Complete tasks on your websites
-- Browse to your web sites:
+- Browse to your web sites and follow any instructions on them:
   - `Development`: [student-app-url-dev]
   - `Test`: [student-app-url-test]
   - `Production`: [student-app-url-prod]

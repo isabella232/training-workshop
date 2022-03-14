@@ -48,7 +48,7 @@ Please approve this deployment
 
 ## Create new release, deploy through `Test`
 
-Using what you've learn already
+Using what you've learned already
 - Create a new release
 - Deploy release to `Development` and `Test`
 

@@ -1,7 +1,7 @@
 [Previous Lesson](part-2-lesson-1.md)
 
 # Part 2 - Lesson 2: Variables
-- Time: ~45 - 60 mins
+- Time: ~15 mins
 
 [Presentation Slides](https://docs.google.com/presentation/d/1RE1cpKfioSquK9h-HH6jxqrbRpw4WQff4TxOJTCD2ww/edit#slide=id.g1181244db34_0_137)
 
@@ -23,7 +23,7 @@
 
 From [your project overview](https://octopus-training.octopus.app/app#/[space-id]/projects/workshop-application/deployments)
 - Click on `Variables`
-- Under the `Name` column, in the `Enter new variable` field, enter the following:
+- Under the `Name` column, in the `Enter new variable` field, enter the following as it appears here:
 ```
 Project:Workshop:StudentName
 ```
@@ -52,5 +52,5 @@ In the `Task Summary`
 On to the next lesson: [Application Variables](part-2-lesson-3.md)
 
 # Bonus Challenge
-- Change the manual intervention step to use a Project Variable for its message.
+- Change the manual intervention step to use a new Project Variable for its message.
 (*Hint: use a different instruction message so you know the change worked.*)

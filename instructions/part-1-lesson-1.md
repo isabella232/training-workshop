@@ -1,5 +1,5 @@
 # Part 1 - Lesson 1: Application build and artifacts
-- Time: ~30 - 45 min
+- Time: ~15 min
 
 [Presentation Slides](https://docs.google.com/presentation/d/1RE1cpKfioSquK9h-HH6jxqrbRpw4WQff4TxOJTCD2ww/edit#slide=id.g1185db482c1_0_8)
 
@@ -34,15 +34,15 @@ From your Space, you'll find this under `Library` > `Packages`.
 
 From this instructions page, go to the top to find the GitHub repository top menu
 
-- Click on the `Actions` tab (open in a new browser tab so you don't loose your instructions)
+- Click on the `Actions` tab (open in a new browser tab so you don't lose your instructions)
 
 ![](assets/1-1/GitHub-actions.png)
 
-- Click on `Build Application`
+- Under `All workflows` click on `Build Application`
 
 ![](assets/1-1/build-app-workflow-item.png)
 
-(Or visit the workflow directly: https://github.com/OctopusDeploy/training-workshop/actions/workflows/build-application.yml)
+(Or visit the `Build Application` workflow directly: https://github.com/OctopusDeploy/training-workshop/actions/workflows/build-application.yml)
 
 From the `Build Application` workflow view
 
@@ -82,16 +82,14 @@ Once everything is finished running, the build should indicate that it's complet
 ![](assets/1-1/good-build.png)
 
 - Look in the details and expand the `Push Sample App Package` section
-- Following a line with green checkmark, you should see `Pushing package: ...`. This is build artifact being sent to Octopus.
+- Following a line with a green checkmark, you should see `Pushing package: ...`. This is the build artifact being sent to Octopus.
 
 ## Verify the artifact in your package feed
 
 - Return to your Octopus Space package repository: https://octopus-training.octopus.app/app#/[space-id]/library
 
-- Verify that you have a package entry called `workshop-app` with a `Highest version` that has a number with this pattern:
-```
-{year}.{month}.{day}.{workflow run number}
-```
+- Verify that you have a package entry called `workshop-app`.
+
 ![](assets/1-1/package-in-feed.png)
 
 # Lesson Completed!

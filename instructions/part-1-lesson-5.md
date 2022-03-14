@@ -1,7 +1,7 @@
 [Previous Lesson](part-1-lesson-4.md)
 
 # Part 1 - Lesson 4: Environment progression and enforcement
-- Time: ~30 min
+- Time: ~15 min
 
 [Presentation Slides](https://docs.google.com/presentation/d/1RE1cpKfioSquK9h-HH6jxqrbRpw4WQff4TxOJTCD2ww/edit#slide=id.g1185db482c1_0_36)
 
@@ -14,7 +14,7 @@
 - Configure `Test` and `Production` environments
 - Verify `Test` and `Production` web sites are empty
 - Deploy to `Test` and `Production` environments
-- Verify `Test` and `Production` web sites the workshop application
+- Verify `Test` and `Production` web sites are running the workshop application
 
 ## Achievement
 - See the deployed applications running in `Test` and `Production` environments
@@ -23,7 +23,7 @@
 
 ## Configure `Test` and `Production` environments
 
-- Navigate to the `Infrastructure` > `Environments` area. (go [directly there](https://octopus-training.octopus.app/app#/[space-id]/infrastructure/environments))
+- Navigate to the `Infrastructure` > `Environments` area. (or go [directly there](https://octopus-training.octopus.app/app#/[space-id]/infrastructure/environments))
 
 ![](assets/1-4/infra-environments.png)
 
@@ -40,7 +40,6 @@ Use these variations in place of those in the Lesson 2 instructions:
 |-|-|-|-|
 | Display Name | `Azure Test Service` | `Azure Prod Service` | |
 | Environments | `Test` | `Production` | |
-| Target Roles | - | - | select existing role: `workshop-app-service` |
 | Azure Web App | `[student-slug]-test` | `[student-slug]-prod` | |
 
 Verify your configuration:

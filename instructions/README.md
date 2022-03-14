@@ -38,7 +38,7 @@ This value will show up in some lessons when you need to select resources from a
 
 ## GitHub Branch
 
-A shiny new GitHub branch has been created for you in the workshop repository. You won't be doing a lot here, but it serves as a component of the workshop activities and you will be returning to it towards the end to make a modification or two. It's yours, so don't worry about messing anything up for anyone else.
+A new branch has been created for you in the GitHub workshop repository. You won't be doing a lot here, but it serves as a component of the workshop activities and you will be returning to it towards the end to make a modification or two. It's yours, so don't worry about messing anything up for anyone else.
 
 Chances are, you're already viewing these instructions on your branch but for your reference, here is its URL:
 
@@ -53,7 +53,9 @@ https://octopus-training.octopus.app/app#/[space-id]
 
 You can get into this by logging in with your Microsoft account.
 - Use the `Sign in with Microsoft` button.
-- If prompted to permit access, click `Accept`.
+- If prompted to permit access, please accept it.
+
+Please ensure you can access the Octopus instance before you join the workshop.
 
 ## Azure Web Sites
 
@@ -76,14 +78,24 @@ Direct actions you need to take appear as a bullet list item
 Names of things in the user interface (menu items, buttons, labels, field names) appear `like this`. Some examples:
 - Click the `Save` button
 - Navigate to the `Projects` > `Overview` area
+- In the `Name` field ...
 
 Most values you should enter as-is appear as a code block like this:
 ```
 some value
 ```
-While viewing on GitHub, you can hover over the code block to reveal the copy button. Use this to easily copy the value.
+
+# Tips
+
+## Copy Values
+When instructed to enter values, you should enter them as-is. Some values need to match up with things already provided in the workshop resources.
+
+While viewing on GitHub, you can hover over the code block to reveal the copy button. Use this to easily copy the value to prevent typos.
 
 ![](assets/GitHub-CodeBlock-Copy.gif)
+
+## Use Additional Tabs
+These instructions include links to pages you'll need to visit to complete tasks. Open these in new tabs so you don't lose your place.
 
 # Lesson Plan
 
@@ -109,10 +121,6 @@ This workshop is split into a few parts with a few lessons each.
 
 ## Part 3 - Bonus Lesson
 - Bonus Lesson: [Continuous Delivery and Deployment](part-3-lesson-1.md)
-
-# Before you get started
-
-These instructions include links to pages you'll need to visit to complete tasks. Open these in new tabs so you don't lose your place.
 
 # Let's Go!
 

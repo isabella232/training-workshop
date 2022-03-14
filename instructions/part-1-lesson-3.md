@@ -1,7 +1,7 @@
 [Previous Lesson](part-1-lesson-2.md)
 
 # Part 1 - Lesson 3: Project and Process Setup
-- Time: ~30 min
+- Time: ~15 min
 
 [Presentation Slides](https://docs.google.com/presentation/d/1RE1cpKfioSquK9h-HH6jxqrbRpw4WQff4TxOJTCD2ww/edit#slide=id.g1185db482c1_0_26)
 

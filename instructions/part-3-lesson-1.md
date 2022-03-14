@@ -34,7 +34,6 @@
 ### Run a new application build
 - Go to the GitHub actions `Build Application` workflow: https://github.com/OctopusDeploy/training-workshop/actions/workflows/build-application.yml
 - Run the workflow using your student branch: `student/[student-slug]`
-- Click into the workflow run to see the log, note the number after `Build Application #`
 - Wait for the run to finish
 - Expand the completed `Create Release in Octopus Deploy` step near the bottom
 - Look for the last line: `Release x.x.x created successfully!` and note the number
@@ -43,11 +42,12 @@
 
 ## Enable continuous deployment
 
-- Repeat the workflow edit steps above, but this time remove the `#` from just this line after
+- Repeat the workflow edit steps above, but this time remove the `#` from just this line:
 ```
 #        deploy_to: Development
 ```
-- Repeat the application build steps above, noting the new release number created
+- Repeat the application build steps above
+- Click into the workflow run to see the log, note the number after `Build Application #`
 - Note the additional line at the bottom: `Deploying Workshop Application...`
 - Return to [your project overview](https://octopus-training.octopus.app/app#/[space-id]/projects/workshop-application/deployments)
 - Verify that there is a new release created and that it's showing deploying or already deployed to `Development`

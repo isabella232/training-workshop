@@ -1,7 +1,7 @@
 [Previous Lesson](part-1-lesson-6.md)
 
 # Part 1 - Student Demos
-- Time: ~20 min
+- Time: ~30 min
 
 ## Objective
 - Split into pairs, present to each other a short (5 to 10 minutes) demo of the key features you've learned in Part 1

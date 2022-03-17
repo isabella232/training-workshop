@@ -115,3 +115,9 @@ Here we see a shared library variable set that is linked to this project.
 If we go back to the project overview and look at the summary for the Test deployment, we again see the message with the name. 
 We also see a message with the correct environment value for Test as well as a message indicating the variable that comes from the shared library set.
 
+While variables can be used to affect the deployment process itself, we can also use them to manipulate the application configuration when it's deployed.
+Let's look at the deployment process again.
+Process steps that deploy packages can be configured to apply configuration changes to specified files such as this application settings file.
+Octopus will match up variable names with configuration properties in the files so that each environment will have the appropriate configuration.
+This supports the approach of applications being deployable without any knowledge of their run time environment beforehand.
+Configuration of the application can be left up to the deployment tool for more flexibility without changes to source code or the package artifacts.

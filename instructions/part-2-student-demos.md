@@ -14,6 +14,7 @@ Watch [this part 2 demo sample](https://drive.google.com/file/d/1_FQlRRujJzdJ1Mm
 Imagine you are continuing the demo you started at the end of Part 1.
 
 Use the framework and talking points below to deliver a short demo of what you've learned in the Part 2.
+
 Feel free to elaborate on any areas you are comfortable speaking about in more detail.
 
 Starting with a release that's ready to be deployed to production:

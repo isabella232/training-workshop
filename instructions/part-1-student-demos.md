@@ -12,6 +12,7 @@ Watch [this part 1 demo sample](https://drive.google.com/file/d/1-OoiBHoG5pRgiiy
 
 # Demo Framework and Talking points
 Use the framework and talking points below to deliver a short demo of what you've learned in the Part 1.
+
 Feel free to elaborate on any areas you are comfortable speaking about in more detail.
 
 - Review where Octopus fits into the software delivery process using the [big picture diagram](https://drive.google.com/file/d/1dUnmEF3gzceel4xm4J4eCtASeZa4Cd4f/view)

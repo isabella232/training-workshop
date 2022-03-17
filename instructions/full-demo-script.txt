@@ -1,0 +1,117 @@
+[Part 2]
+
+[start on the big picture overview diagram]
+https://drive.google.com/file/d/1dUnmEF3gzceel4xm4J4eCtASeZa4Cd4f/view
+
+Let's take a look at where Octopus fits into the big picture of the software delivery process.
+
+First, your development teams make changes to your application. They commit those changes to source control.
+
+Your build process, whether that's manual or automated, generates some kind of distributable artifact that is published into an artifact repository. 
+This can be an external 3rd party feed or the built-in one provided by Octopus.
+
+Here's where Octopus comes in.
+Octopus takes the package from the repository and deploys it out to your hosting infrastructure with a repeatable yet flexible process using the deployment steps that you define. 
+It can also apply the correct configuration changes unique to each environment.
+
+To show how Octopus works, we'll go over the Dashboard and some core concepts.
+We'll take a look at what deployments could look like for you.
+
+[switch tabs to Octopus main dashboard]
+When you first open Octopus, you’ll start on the Dashboard.
+This is your single pane of glass where you can see the status of all of your projects and the latest version that has been deployed to each environment.
+Projects represent an application that you deploy. 
+This can be as broad or as granular as you need - a project can represent a single application or it can represent multiple applications and components that need to be deployed as a group.
+
+When we deploy the projects, we do so to specific environments.
+Environments are named groups of infrastructure where your applications live. 
+These are commonly named something like Development, Test, and Production. 
+You can name them however you like and you can have as few or as many as you need.
+
+When you deploy a project release to an environment, Octopus knows which infrastructure within the environment it should be deployed to. 
+This allows you to have environments like Dev, Test, and Prod shared across teams and projects without having to create specific environments for them.
+
+Let's take a look at one project and deploy it.
+
+When you open a project, you’ll see a more detailed dashboard of the previous releases of the project and where they have been deployed to.
+You can see here that release number 48 has not been deployed to any environments yet. 
+Release number 47 has been deployed to Dev but not Test. 
+And release number 46 has been deployed to Dev and Test but not Production while number 45 and the previous ones have been deployed to all environments.
+
+Let’s deploy release 48 to our development environment.
+
+When you start a deployment, you’ll have the option to customize it, but for now we’ll skip right to the deployment.
+On the deployment screen, we can see the live progress of the deployment. The summary tab shows the high level status of the running tasks. 
+The Task log shows more detail of the steps and the log updates as it runs.
+
+While this is deploying, let's take a look at where the package that's being deployed actually comes from.
+
+In the Octopus Library area you'll find the built-in package repository.
+This is the package feed that your build process can publish to.
+Here we can see the named packages. If we click on one we can drill down to see the latest and previous versions of the package. 
+When you create a release, you can choose from any of these versions. A new release will default to the latest version.
+
+Let's check on our dev deployment.
+
+In the general dashboard we can see that version 48 is finished deploying.
+And again in the project dashboard we can see release 48 is now in development.
+Also, the deploy button now appears under the test environment for release 48. 
+This demonstrates how octopus is enforcing the environment progression or deployment lifecycle.
+
+Let's deploy release 48 to test.
+
+Before we kick this off, we can examine this pre-deployment page. 
+In the preview section at the bottom, you'll see the environment we are about to deploy to.
+Expanding this, we can see that Octopus has identified the infrastructure that the package will be sent to. 
+In this case, it's the app service named Azure Test Target.
+
+Let's kick off this deployment and then look at how Octopus determined where it's deploying to.
+
+In the deployment process, we have a step for deploying to an azure app service.
+On this step, we can see that it's going to deploy to targets in this role named workshop-app-service.
+How does that connect to our infrastructure?
+
+The Infrastructure area of Octopus is where we configure the servers and services that we need to deploy to. 
+Here we can see the 3 environments and 3 web app targets. 
+Octopus Targets are items that define that actual infrastructure such as a server or cloud service.
+Drilling down into the Test environment we can see the single Azure Test Target item.
+Looking at the detail for that, we see the name Azure Test Target that matches that from the pre-deploy screen.
+We also see that this target has been tagged or labeled with the Test environment as well as the role "workshop-app-service".
+The combination of the environment and role tags are what octopus uses to decide what targets to use for a given deployment.
+
+Let's see how our Test deployment is doing.
+It looks like release 48 to the test environment is completed.
+
+[Part 2]
+
+Following the progression rules, now that the deployment to test is complete, we can deploy it to production.
+
+Notice however that we've been immediately stopped. Octopus is asking for a manual approval of this deployment before it will continue. 
+This is an example of how Octopus deployments can be set up to enforce compliance rules for approvals in certain environments. 
+Normally the approval would be done by someone other than the one launching the deployment, but for now, we'll just assign this to me so we can continue.
+We can provide a message, for example to indicate that the deployment has been approved by a change request ticket and then proceed.
+
+While this deployment is running let's see how we did that.
+Once again looking at our process, we see a step for the Manual Intervention.
+Looking a bit further we can see that this step has been set up with a condition to only run for deployments going to the production environment.
+This is an example of how Octopus provides a single process definition for consistency while being flexible to customize behavior based on the destination environment.
+
+Let's see how our prod deployment is doing.
+
+Back in the project overview, we see that release 48 has been deployed to production.
+
+There are other ways that the deployments can be customized.
+Clicking on the completed dev deployment, we can see the summary includes a few messages.
+One has a person's name while another shows the name of the environment.
+The first message comes from the first step.
+Once again, we'll go to the deployment process, so we can examine the script step.
+In the step, we can see it's writing out the message and using the Octopus variable syntax to provide the variable value.
+In the project variables area, we can see where we've defined this variable and its value.
+Here in the variables list there is another in which we defined the name of the environment. Note here there are multiple values for the single variable. 
+Each value is scoped to an environment so that the corresponding value will be used based on the environment we're deploying to.
+Aside from variables defined in the project, we can also include shared variables from the Library Sets.
+Here we see a shared library variable set that is linked to this project.
+
+If we go back to the project overview and look at the summary for the Test deployment, we again see the message with the name. 
+We also see a message with the correct environment value for Test as well as a message indicating the variable that comes from the shared library set.
+

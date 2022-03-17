@@ -6,7 +6,14 @@ param (
 . "$PSScriptRoot\shared-types.ps1"
 . "$PSScriptRoot\shared-config.ps1"
 
-$studentInfo = Get-Content "$PSScriptRoot\data\$studentSlug.json" | ConvertFrom-Json
+$jsonFile = "$PSScriptRoot\data\$studentSlug.json"
+
+if (!(Test-Path $jsonFile)) {
+	Write-Error "Student info file $jsonFile not found. Aborting update."
+	exit
+}
+
+$studentInfo = Get-Content $jsonFile | ConvertFrom-Json
 
 CleanGitWorkspace
 

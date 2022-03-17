@@ -22,7 +22,7 @@ https://docs.google.com/presentation/d/1RE1cpKfioSquK9h-HH6jxqrbRpw4WQff4TxOJTCD
 
 The lesson instruction pages have links directly to the first relevant slide in the presentation for your reference.
 
-# Quick Info
+# Workshop Info
 
 If you are viewing this as a student on your branch, these instructions have been customized for you. Here you'll find a quick reference to the important information about your customized workshop experience. You can refer to this page for the general links you'll need to visit during the workshop.
 
@@ -38,12 +38,11 @@ This value will show up in some lessons when you need to select resources from a
 
 ## GitHub Branch
 
-A new branch has been created for you in the GitHub workshop repository. You won't be doing a lot here, but it serves as a component of the workshop activities and you will be returning to it towards the end to make a modification or two. It's yours, so don't worry about messing anything up for anyone else.
+A new branch has been created for you in the GitHub workshop repository. You won't be doing a lot here, but it serves as a component of the workshop activities and you may be returning to it towards the end to make a modification or two. It's yours, so don't worry about messing anything up for anyone else.
 
 Chances are, you're already viewing these instructions on your branch but for your reference, here is its URL:
 
 https://github.com/OctopusDeploy/training-workshop/tree/student/[student-slug]
-
 
 ## Octopus Space
 
@@ -109,7 +108,7 @@ This workshop is split into a few parts with a few lessons each.
 - Lesson 4: [Deploying an Application Package](part-1-lesson-3.md)
 - Lesson 5: [Environment progression and enforcement](part-1-lesson-5.md)
 - Lesson 6: [Package and Release Versions](part-1-lesson-6.md)
-- Student Demos: [Perform mock demos to demonstrate learned concepts](part-1-studentdemos.md)
+- Student Demos: [Perform mock demos to demonstrate learned concepts](part-1-student-demos.md)
 
 ## Part 2 - More nuts and bolts
 - Lesson 1: [Scoping Environment Behavior](part-2-lesson-1.md)
@@ -117,10 +116,17 @@ This workshop is split into a few parts with a few lessons each.
 - Lesson 3: [Application Variables](part-2-lesson-3.md)
 - Lesson 4: [Scoped Variables](part-2-lesson-4.md)
 - Lesson 5: [Library Variable Set](part-2-lesson-5.md)
-- Student Demos: [Perform mock demos to demonstrate learned concepts](part-2-studentdemos.md)
+- Student Demos: [Perform mock demos to demonstrate learned concepts](part-2-student-demos.md)
 
 ## Part 3 - Bonus Lesson
 - Bonus Lesson: [Continuous Delivery and Deployment](part-3-lesson-1.md)
+
+# Before your session
+## Watch Sample Demo
+Please watch [this quick sample demo video](https://drive.google.com/file/d/1ejl6Ma0GGYmYYCXXSth7TxkGmB5La_2P/view?usp=sharing). You aren't expected to learn directly from this, it's just to help set the stage as an example of the kind of quick demo we would give to a prospective customer.
+
+## Test your Octopus access
+Ensure that you can access your Octopus sandbox area. See the [Octopus Space](#octopus-space) section above.
 
 # Let's Go!
 

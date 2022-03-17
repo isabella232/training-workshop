@@ -21,7 +21,7 @@
 
 ## Add a project variable
 
-From [your project overview](https://octopus-training.octopus.app/app#/[space-id]/projects/workshop-application/deployments)
+From [your project overview](https://octopus-training.octopus.app/app#//projects/workshop-application/deployments)
 - Click on `Variables`
 - Under the `Name` column, in the `Enter new variable` field, enter the following as it appears here:
 ```
@@ -32,7 +32,7 @@ Project:Workshop:StudentName
 
 ## Modify a deployment step
 
-- Go to your [project's Process](https://octopus-training.octopus.app/app#/[space-id]/projects/workshop-application/deployments/process)
+- Go to your [project's Process](https://octopus-training.octopus.app/app#//projects/workshop-application/deployments/process)
 - Click on the `Run a Script` step
 - Under `Inline Source Code` update the script to the following text (exactly as it appears here):
 ```

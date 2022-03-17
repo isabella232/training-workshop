@@ -11,7 +11,10 @@
 Watch [this part 2 demo sample](https://drive.google.com/file/d/1_FQlRRujJzdJ1MmxZB6jFu-GxCokPtBK/view?usp=sharing) for an example of the demo content and flow.
 
 # Demo Framework and Talking points
-Imagine you are continuing the demo you started in at the end of Part 1.
+Imagine you are continuing the demo you started at the end of Part 1.
+
+Use the framework and talking points below to deliver a short demo of what you've learned in the Part 2.
+Feel free to elaborate on any areas you are comfortable speaking about in more detail.
 
 Starting with a release that's ready to be deployed to production:
 - Deploy the release to `Production`, showing the Manual Intervention step

@@ -23,7 +23,7 @@
 
 ## Configure `Test` and `Production` environments
 
-- Navigate to the `Infrastructure` > `Environments` area. (or go [directly there](https://octopus-training.octopus.app/app#/[space-id]/infrastructure/environments))
+- Navigate to the `Infrastructure` > `Environments` area. (or go [directly there](https://octopus-training.octopus.app/app#//infrastructure/environments))
 
 ![](assets/1-4/infra-environments.png)
 
@@ -40,10 +40,10 @@ Use these variations in place of those in the Lesson 2 instructions:
 |-|-|-|-|
 | Display Name | `Azure Test Service` | `Azure Prod Service` | |
 | Environments | `Test` | `Production` | |
-| Azure Web App | `[student-slug]-test` | `[student-slug]-prod` | |
+| Azure Web App | `-test` | `-prod` | |
 
 Verify your configuration:
-- Navigate to `Infrastructure` > `Overview` ([go directly there](https://octopus-training.octopus.app/app#/[space-id]/infrastructure/overview))
+- Navigate to `Infrastructure` > `Overview` ([go directly there](https://octopus-training.octopus.app/app#//infrastructure/overview))
 - Verify that you now have the following updates:
   - `Environments (3)`
     - `Development 1`
@@ -58,7 +58,7 @@ Verify your configuration:
 
 - Navigate to the workshop application project overview
   - Click `Projects` then `Workshop Application` or 
-  - [Go directly there](https://octopus-training.octopus.app/app#/[space-id]/projects/workshop-application/deployments)
+  - [Go directly there](https://octopus-training.octopus.app/app#//projects/workshop-application/deployments)
 - Notice that you now have the `Test` and `Production` environments
 - Notice there's a `Deploy...` button under `Test`, but not under `Production` for the release
 
@@ -88,7 +88,7 @@ Once the deployment to `Test` is complete
 ## Deploy to `Production`
 
 In the Octopus portal
-- Return to the [`Projects` > `Workshop Application` overview page](https://octopus-training.octopus.app/app#/[space-id]/projects/workshop-application/deployments)
+- Return to the [`Projects` > `Workshop Application` overview page](https://octopus-training.octopus.app/app#//projects/workshop-application/deployments)
 - Notice we now have a `Deploy...` button under `Production`
 - Click the `Deploy...` button
 - Observe the `Azure Prod Service` target under the `Preview and customize` section

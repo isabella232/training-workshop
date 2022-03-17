@@ -23,12 +23,12 @@
 ## Verify Library Variable Set exists
 - Navigate to your Space's Library area: 
   - Click `Library` tab or 
-  - [Go there directly](https://octopus-training.octopus.app/app#/[space-id]/library/builtinrepository)
+  - [Go there directly](https://octopus-training.octopus.app/app#//library/builtinrepository)
 - Click `Variable Sets`
 - Verify a set exists called `Slack Variables`
 
 ## Link a Library Variable Set to your project
-From [your project overview](https://octopus-training.octopus.app/app#/[space-id]/projects/workshop-application/deployments)
+From [your project overview](https://octopus-training.octopus.app/app#//projects/workshop-application/deployments)
 - Click `Variables`, then `Library Sets`
 - Click `Include Library Variable Sets` button
 - Tick off `Slack Variables`, and click `Save`

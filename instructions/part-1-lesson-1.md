@@ -20,7 +20,7 @@
 
 ## Show empty artifact feed
 
-- Visit your Octopus Space package repository: https://octopus-training.octopus.app/app#//library
+- Visit your Octopus Space package repository: https://octopus-training.octopus.app/app#/[space-id]/library
 
 From your Space, you'll find this under `Library` > `Packages`.
 
@@ -47,7 +47,7 @@ From this instructions page, go to the top to find the GitHub repository top men
 From the `Build Application` workflow view
 
 - Click `Run workflow`. A small dialog will open.
-- ***IMPORTANT!***: Look for and select your branch name from the `Use workflow from` dropdown: `student/`
+- ***IMPORTANT!***: Look for and select your branch name from the `Use workflow from` dropdown: `student/[student-slug]`
 
 
 ![](assets/1-1/run-workflow-dialog.png)
@@ -86,7 +86,7 @@ Once everything is finished running, the build should indicate that it's complet
 
 ## Verify the artifact in your package feed
 
-- Return to your Octopus Space package repository: https://octopus-training.octopus.app/app#//library
+- Return to your Octopus Space package repository: https://octopus-training.octopus.app/app#/[space-id]/library
 
 - Verify that you have a package entry called `workshop-app`.
 

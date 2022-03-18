@@ -28,7 +28,7 @@
 
 ![](assets/1-3/projects.png)
 
-You can get there directly: https://octopus-training.octopus.app/app#//projects
+You can get there directly: https://octopus-training.octopus.app/app#/[space-id]/projects
 
 - Click `Add Project` button
 - Enter project name: 

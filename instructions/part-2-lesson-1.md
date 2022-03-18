@@ -21,7 +21,7 @@
 ## Modify your deployment process
 
 ### Add manual intervention step
-- Navigate to [your project overview](https://octopus-training.octopus.app/app#//projects/workshop-application/deployments).
+- Navigate to [your project overview](https://octopus-training.octopus.app/app#/[space-id]/projects/workshop-application/deployments).
 - Click on `Process` under `Deployments`
 - Click on `Add Step`
 - Enter `manual` into the filter field
@@ -54,7 +54,7 @@ Using what you've learned already
 
 ## Deploy to production
 
-From [your project overview](https://octopus-training.octopus.app/app#//projects/workshop-application/deployments)
+From [your project overview](https://octopus-training.octopus.app/app#/[space-id]/projects/workshop-application/deployments)
 
 - Start the deployment to `Production` for the latest (top) release
 - Observe that you'll be stopped shortly after the deploy starts and presented with the `Manual Intervention Required` prompt.

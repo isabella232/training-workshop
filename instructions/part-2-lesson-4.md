@@ -20,7 +20,7 @@
 
 ## Add a scoped Project variable
 
-From [your project overview](https://octopus-training.octopus.app/app#//projects/workshop-application/deployments)
+From [your project overview](https://octopus-training.octopus.app/app#/[space-id]/projects/workshop-application/deployments)
 - Click on `Variables`
 - Under the `Name` column, in the `Enter new variable` field, enter the following:
 ```

@@ -20,7 +20,7 @@
 
 ## Modify the process to use the variable
 
-From [your project overview](https://octopus-training.octopus.app/app#//projects/workshop-application/deployments)
+From [your project overview](https://octopus-training.octopus.app/app#/[space-id]/projects/workshop-application/deployments)
 - Click on `Process` under `Deployments`
 - Click on the `Deploy an Azure App Service` step
 - Locate the `Configuration files` > `Structured Configuration Variables` section, click to expand it

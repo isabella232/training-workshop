@@ -1,4 +1,4 @@
-# Welcome  to the Octopus basics workshop!
+# Welcome [student-name] to the Octopus basics workshop!
 
 This training workshop is designed to build a fundamental understanding of Octopus Deploy, its place in the CI/CD ecosystem, and the value it provides to a typical deployment pipeline workflow.
 
@@ -32,7 +32,7 @@ If you are viewing this as a student on your branch, these instructions have bee
 
 The setup for your experience in this workshop has created a number of resources for your use. Most of these are identified uniquely for you using an ID "slug". This is a text identifier made up of parts of your name and a unique generated ID (to avoid any possible collisions between student names).
 
-Your slug is: ``
+Your slug is: `[student-slug]`
 
 This value will show up in some lessons when you need to select resources from a list.
 
@@ -42,13 +42,13 @@ A new branch has been created for you in the GitHub workshop repository. You won
 
 Chances are, you're already viewing these instructions on your branch but for your reference, here is its URL:
 
-https://github.com/OctopusDeploy/training-workshop/tree/student/
+https://github.com/OctopusDeploy/training-workshop/tree/student/[student-slug]
 
 ## Octopus Space
 
 A new Space inside the Octopus Deploy workshop training Cloud instance has been created for you. This is where you'll spend most of your time performing the tasks that make up the workshop lessons.
 
-https://octopus-training.octopus.app/app#/
+https://octopus-training.octopus.app/app#/[space-id]
 
 You can get into this by logging in with your Microsoft account.
 - Use the `Sign in with Microsoft` button.

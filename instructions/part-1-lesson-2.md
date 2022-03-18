@@ -33,7 +33,7 @@
 
 ![](assets/1-2/environments.png)
 
-You can get there directly: https://octopus-training.octopus.app/app#//infrastructure/environments
+You can get there directly: https://octopus-training.octopus.app/app#/[space-id]/infrastructure/environments
 
 - Click `Add Environment` button
 - In the `Add environment` dialog box, click the small `Development` link to use that as the value
@@ -54,7 +54,7 @@ workshop-app-service
 ```
 - Click `"workshop-app-service" (add new role)`
 - Under the `Account` section, click the dropdown and select `Workshop Azure Account`
-- Under `Azure Web App`, click the dropdown and select the item that starts with: `-dev` (this is *your* `Development` environment app service)
+- Under `Azure Web App`, click the dropdown and select the item that starts with: `[student-slug]-dev` (this is *your* `Development` environment app service)
 - Click `Save` button
 
 ## Verify infrastructure configuration

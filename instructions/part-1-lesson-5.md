@@ -1,6 +1,6 @@
 [Previous Lesson](part-1-lesson-4.md)
 
-# Part 1 - Lesson 4: Environment progression and enforcement
+# Part 1 - Lesson 5: Environment progression and enforcement
 - Time: ~15 min
 
 [Presentation Slides](https://docs.google.com/presentation/d/1RE1cpKfioSquK9h-HH6jxqrbRpw4WQff4TxOJTCD2ww/edit#slide=id.g1185db482c1_0_36)

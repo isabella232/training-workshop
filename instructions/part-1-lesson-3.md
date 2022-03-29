@@ -43,6 +43,7 @@ Workshop Application
 - Click the `Script` step type box
 - Click the `Run a Script` box under `Installed Step Templates`
 - Under `Execution Location` select `Run once on a worker`
+- Under `Worker Pool` > `Runs on a worker from a specific worker pool` select `Hosted Ubuntu` from the drop down list
 - Under `Inline Source Code` enter the following text:
 ```
 Write-Highlight "Hello world!"

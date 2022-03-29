@@ -28,8 +28,9 @@ From [your project overview](https://octopus-training.octopus.app/app#/[space-id
 - Click `Add Step` button
 - Click on the `Azure` box
 - Under `Installed Step Templates` click `Deploy an Azure App Service`
-- Scroll down to `On Behalf Of`
-- From the dropdown, select `workshop-app-service`
+- Scroll down to `Worker Pool`
+- The `Runs on a worker from a specific worker pool` radio button should be selected, select `Hosted Ubuntu` from the drop down list
+- In `On Behalf Of`, from the dropdown, select `workshop-app-service`
 - Scroll down to the `Deployment` section
 - Under `Package` click on the `Package ID` entry and select `workshop-app` from the list
 - Click `Save` button

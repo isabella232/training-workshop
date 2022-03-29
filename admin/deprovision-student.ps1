@@ -86,9 +86,11 @@ if (-not $skipOctopus) {
 		Write-Host "Deleting space"
 		(Invoke-WebRequest $octopusURL/$($space.Links.Self) -Headers $header -Method DELETE -ErrorVariable octoError) | Out-Null
 	}
-	if ($haveInfo) {
+	if ($haveInfo -and $studentInfo.OctopusUserId) {
 		Write-Host "Deleting Octopus user '$($studentInfo.OctopusUserId)'."
 		."$PSScriptRoot\delete-user.ps1" -userId $studentInfo.OctopusUserId
+	} else {
+		Write-Warning "No student user ID found in info... skipping user delete."
 	}
 } else {
 	Write-Warning "Octopus operations skipped."

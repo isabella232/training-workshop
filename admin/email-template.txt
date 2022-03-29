@@ -12,12 +12,11 @@ Please read over just this instructions page prior to the workshop.
 At the end of the instructions page is the "Before your session" section.
 There's a link to a short (~8 min) video to watch.
 
-Also, make sure you are set up to access the session classroom. See below for details.
+Also, make sure you can access the session classroom. See below for details.
 
 JOINING THE SESSION
 The workshop sessions will be hosted in Gather.
 You can log in with your regular GSuite account.
 If you'd like to customize your avatar, you certainly can, or just take the random one they create for you.
 
-Classroom link: [classroom-link]
-Passcode: [classroom-passcode]
+Classroom access info is in the session invite.

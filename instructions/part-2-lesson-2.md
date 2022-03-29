@@ -52,5 +52,5 @@ In the `Task Summary`
 On to the next lesson: [Application Variables](part-2-lesson-3.md)
 
 # Bonus Challenge
-- Change the manual intervention step to use a new Project Variable for its message.
+- Using a new Project Variable (for example: `Project:Workshop:ApprovalMessage`), change the manual intervention step to use the variable for its approval instructions.
 (*Hint: use a different instruction message so you know the change worked.*)

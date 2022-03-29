@@ -49,7 +49,7 @@ namespace workshop_app.Controllers
 				)
 			{
 				model.ShowProceedMessage = true;
-				switch (model.EnvironmentName.ToLower())
+				switch (model.EnvironmentName.Trim().ToLower())
 				{
 					case "development":
 						model.ProceedMessage = "Woohoo, you're getting close!<br />Please proceed to your test environment web site.";

@@ -1,0 +1,37 @@
+name: Package Admin Scripts
+
+env:
+  ASSET_PATH: admin
+  PACKAGE_ID: workshop-admin-scripts
+  OCTOPUS_SPACE: Spaces-1
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - admin/**
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+    - uses: actions/checkout@v3
+    - name: Set version number
+      run: echo "PACKAGE_VERSION=$(date +'%Y.%-m.%-d').$GITHUB_RUN_NUMBER" >> $GITHUB_ENV
+
+    - name: Install Octopus CLI
+      uses: OctopusDeploy/install-octopus-cli-action@v1.1.8
+      with:
+        version: latest
+
+    - name: Create Admin Script Package
+      run: octo pack --id="$PACKAGE_ID" --format="Zip" --version="$PACKAGE_VERSION" --basePath="$GITHUB_WORKSPACE/$ASSET_PATH" --outFolder="$GITHUB_WORKSPACE/artifacts"
+    - name: Push Sample App Package
+      uses: OctopusDeploy/push-package-action@v1.1.1
+      with:
+        server: ${{ secrets.OCTOPUS_SERVER_URL }}
+        api_key: ${{ secrets.OCTOPUS_API_KEY }}
+        space: ${{ env.OCTOPUS_SPACE }}
+        packages: "artifacts/${{ env.PACKAGE_ID }}.${{ env.PACKAGE_VERSION }}.zip"

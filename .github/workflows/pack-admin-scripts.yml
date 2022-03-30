@@ -1,7 +1,7 @@
 name: Package Admin Scripts
 
 env:
-  ASSET_PATH: $GITHUB_WORKSPACE/admin
+  ASSET_PATH: admin
   PACKAGE_ID: workshop-admin-scripts
   OCTOPUS_SPACE: Spaces-1
 on:
@@ -27,7 +27,7 @@ jobs:
         version: latest
 
     - name: Create Admin Script Package
-      run: octo pack --id="$PACKAGE_ID" --format="Zip" --version="$PACKAGE_VERSION" --basePath="$ASSET_PATH" --outFolder="$GITHUB_WORKSPACE/artifacts"
+      run: octo pack --id="$PACKAGE_ID" --format="Zip" --version="$PACKAGE_VERSION" --basePath="$GITHUB_WORKSPACE/$ASSET_PATH" --outFolder="$GITHUB_WORKSPACE/artifacts"
     - name: Push Sample App Package
       uses: OctopusDeploy/push-package-action@v1.1.1
       with:

@@ -4,23 +4,13 @@ param (
 	[string] $studentEmail = $null, # = "peter.lanoie@octopus.com",
 	[switch] $skipOctopus,
 	[switch] $skipAzure,
-	[switch] $skipGit
+	[switch] $skipGit,
+	[string] $relativeDepth = "..\.."
 )
 
 . $PSScriptRoot\load-config.ps1
 
 # This script is for testing provisioning a student
-
-if ($studentName.Length -eq 0) {
-	Write-Host "################################################"
-	Write-Host "## No student information supplied, generating random student identity"
-	$randoId = [System.Guid]:: NewGuid()
-	$studentName = "Student " + $randoId.ToString().SubString(24)
-	$studentEmail = "student+$($randoId.ToString().SubString(0, 8))@octopus.com"
-	Write-Host "## Student Name: $studentName"
-	Write-Host "## Student Email: $studentEmail"
-	Write-Host "################################################"
-}
 
 ."$PSScriptRoot\..\provision-student.ps1" `
 	-studentName $studentName -studentEmail $studentEmail `
@@ -29,6 +19,7 @@ if ($studentName.Length -eq 0) {
 	-azTenantId $azTenantId -azUser $azUser -azSecret $azSecret -azSubscriptionId $azSubscriptionId `
 	-azLocation $azLocation -azResourceGroupName $azResourceGroupName -azWebAppServicePlan $azWebAppServicePlan `
 	-slackUrl $slackUrl `
+	-relativeDepth:$relativeDepth `
 	-skipOctopus:$skipOctopus `
 	-skipGit:$skipGit `
 	-skipAzure:$skipAzure `

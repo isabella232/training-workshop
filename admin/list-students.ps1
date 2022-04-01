@@ -1,6 +1,7 @@
 [CmdletBinding()]
 param (
-	[switch]$Local
+	[switch]$Local,
+	[switch]$ShortForm
 )
 
 . "$PSScriptRoot\shared-config.ps1"
@@ -10,19 +11,21 @@ function Write-StudentEntry {
 		[string]$slug
 	)
 	$slug = $slug.Replace(".json","")
-	Write-Host "$slug | ..\repo\admin\testing\deprovision-student.ps1 -studentSlug $slug | ..\repo\admin\testing\update-existing-git-branch.ps1 -studentSlug $slug"
+	if ($ShortForm) {
+		Write-Host $slug
+	} else {
+		Write-Host "$slug | ..\repo\admin\testing\deprovision-student.ps1 -studentSlug $slug | ..\repo\admin\testing\update-existing-git-branch.ps1 -studentSlug $slug"
+	}
 }
 
+Write-Host "##octopus[stdout-highlight]"
 if ($Local) {
 	Write-Host "Discovering student list from local files."
-	Get-ChildItem "$dataFolder\*.json" | ForEach-Object { Write-StudentEntry -slug $_.Name }
+	$studentItems = Get-ChildItem "$dataFolder\*.json" # | ForEach-Object { Write-StudentEntry -slug $_.Name }
 } else {
 	Write-Host "Discovering student list from Azure storage."
 	$storageContext = (Get-AzStorageAccount -ResourceGroupName $azResourceGroupName -Name $azStorageAccount).Context
-	Get-AzStorageBlob -Container $azStorageStudentContainer -Context $storageContext | ForEach-Object { Write-StudentEntry -slug $_.Name }
+	$studentItems = Get-AzStorageBlob -Container $azStorageStudentContainer -Context $storageContext # | ForEach-Object { Write-StudentEntry -slug $_.Name }
 }
-
-
-
-
-
+$studentItems | ForEach-Object { Write-StudentEntry -slug $_.Name }
+Write-Host "##octopus[stdout-default]"

@@ -8,9 +8,9 @@ param (
 	[switch] $skipGit,
 	[switch] $skipOctopus,
 	[switch] $skipAzure,
-	[string] $azTenantId,
-	[string] $azUser,
-	[string] $azSecret,
+	# [string] $azTenantId,
+	# [string] $azUser,
+	# [string] $azSecret,
 	[switch] $forceCleanup
 )
 
@@ -102,9 +102,10 @@ if (-not $skipOctopus) {
 
 if (!$skipAzure) {
 	."$PSScriptRoot\delete-student-webapps.ps1" `
-		-azTenantId $azTenantId -azResourceGroupName $azResourceGroupName `
-		-azSecret $azSecret -azUser $azUser `
 		-studentSlug $studentSlug `
+		-azResourceGroupName $azResourceGroupName `
+	# -azTenantId $azTenantId `
+	# -azSecret $azSecret -azUser $azUser `
 } else {
 	Write-Warning "Azure resource teardown skipped."
 }

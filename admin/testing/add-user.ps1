@@ -1,24 +1,23 @@
 [CmdletBinding()]
 param (
-	[Parameter(Mandatory)] [string] $studentName,
-	[Parameter(Mandatory=$true)] [string] $studentEmail
-#	[Parameter(Mandatory=$true)] [string] $spaceId,
+	[Parameter(Mandatory)] [string] $userName,
+	[Parameter(Mandatory=$true)] [string] $userEmail
 )
 
 . "$PSScriptRoot\load-config.ps1"
 
 $odHeaders = @{ "X-Octopus-ApiKey" = $octopusKey }
 
-$studentDisplayName = "Student - $studentName"
-$studentId = [System.Guid]::NewGuid()
+#$studentDisplayName = "Student - $studentName"
+$randomId = [System.Guid]::NewGuid()
 
 $newUser = @{
-	DisplayName = $studentDisplayName
-	EmailAddress = $studentEmail
-	Username = $studentEmail
+	DisplayName = $userName
+	EmailAddress = $userEmail
+	Username = $userEmail
 	IsService = $false
 	IsActive = $true
-	Password = $studentId
+	Password = $randomId
 } | ConvertTo-Json
 Write-Host $newUser
 

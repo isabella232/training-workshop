@@ -19,7 +19,7 @@ function Write-StudentEntry {
 	}
 }
 
-Write-RunbookHeader
+EnableHighlight
 if ($Local) {
 	Write-Host "Discovering student list from local files."
 	$studentItems = Get-ChildItem "$dataFolder\*.json" # | ForEach-Object { Write-StudentEntry -slug $_.Name }
@@ -29,4 +29,4 @@ if ($Local) {
 	$studentItems = Get-AzStorageBlob -Container $azStorageStudentContainer -Context $storageContext # | ForEach-Object { Write-StudentEntry -slug $_.Name }
 }
 $studentItems | ForEach-Object { Write-StudentEntry -slug $_.Name }
-Write-RunbookFooter
+DisableHighlight

@@ -23,7 +23,7 @@ param (
 $studentInfoFile = "$dataFolder\$studentSlug.json"
 $studentInfo = [StudentInfo]::New()
 
-Write-RunbookHeader
+EnableHighlight
 
 $haveInfo = $false
 if (Test-Path -Path $studentInfoFile) {
@@ -129,4 +129,4 @@ if ((!$skipGit -and !$skipOctopus -and !$skipAzure) -or $forceCleanup) {
 
 Write-Host "Deprovisioning complete."
 
-Write-RunbookFooter
+DisableHighlight

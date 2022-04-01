@@ -121,9 +121,11 @@ if ((!$skipGit -and !$skipOctopus -and !$skipAzure) -or $forceCleanup) {
 	$storageContext = (Get-AzStorageAccount -ResourceGroupName $azResourceGroupName -Name $azStorageAccount).Context
 
 #	Get-AzStorageBlob -Blob "$studentSlug.json" -Container $azStorageStudentContainer -Context $storageContext -ErrorAction SilentlyContinue
-	Remove-AzStorageBlob -Blob "$studentSlug.json" -Container $azStorageStudentContainer -Context $storageContext -ErrorAction Ignore
+	Remove-AzStorageBlob -Blob "$studentSlug.json" -Container $azStorageStudentContainer -Context $storageContext -ErrorAction Continue
 } else {
 	Write-Warning "One or more cleanup stages skipped, preserving student data file. Run without any 'skip's to complete cleanup."
 }
+
+Write-Host "Deprovisioning complete."
 
 Write-RunbookFooter

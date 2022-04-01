@@ -4,6 +4,7 @@ param (
 	[switch]$ShortForm
 )
 
+. "$PSScriptRoot\shared-octo-utils.ps1"
 . "$PSScriptRoot\shared-config.ps1"
 
 function Write-StudentEntry {
@@ -18,7 +19,7 @@ function Write-StudentEntry {
 	}
 }
 
-Write-Host "##octopus[stdout-highlight]"
+Write-RunbookHeader
 if ($Local) {
 	Write-Host "Discovering student list from local files."
 	$studentItems = Get-ChildItem "$dataFolder\*.json" # | ForEach-Object { Write-StudentEntry -slug $_.Name }
@@ -28,4 +29,4 @@ if ($Local) {
 	$studentItems = Get-AzStorageBlob -Container $azStorageStudentContainer -Context $storageContext # | ForEach-Object { Write-StudentEntry -slug $_.Name }
 }
 $studentItems | ForEach-Object { Write-StudentEntry -slug $_.Name }
-Write-Host "##octopus[stdout-default]"
+Write-RunbookFooter

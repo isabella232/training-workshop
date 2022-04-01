@@ -112,10 +112,9 @@ if (!$skipAzure) {
 if ((!$skipGit -and !$skipOctopus -and !$skipAzure) -or $forceCleanup) {
 	Write-Host "Cleaning up student metadata"
 #	$studentDataFile = "$dataFolder\$studentSlug.json"
-#	if (Test-Path $studentDataFile) {
-#		Remove-Item -Path $studentDataFile
+	if (Test-Path $dataFolder) {
 		Remove-Item -Path "$dataFolder\$studentSlug*"
-#	}
+	}
 	if ($forceCleanup) {
 		Write-Warning "'Force cleanup flag set', some artifacts/resources might remain."
 	}

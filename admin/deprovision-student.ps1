@@ -10,9 +10,11 @@ param (
 	[switch] $skipAzure,
 	[string] $azTenantId,
 	[string] $azUser,
-	[string] $azSecret
+	[string] $azSecret,
+	[switch] $forceCleanup
 )
 
+. "$PSScriptRoot\shared-octo-utils.ps1"
 . "$PSScriptRoot\shared-types.ps1"
 . "$PSScriptRoot\shared-config.ps1"
 
@@ -20,6 +22,8 @@ param (
 
 $studentInfoFile = "$dataFolder\$studentSlug.json"
 $studentInfo = [StudentInfo]::New()
+
+Write-RunbookHeader
 
 $haveInfo = $false
 if (Test-Path -Path $studentInfoFile) {
@@ -105,12 +109,22 @@ if (!$skipAzure) {
 	Write-Warning "Azure resource teardown skipped."
 }
 
-if (!$skipGit -and !$skipOctopus -and !$skipAzure) {
+if ((!$skipGit -and !$skipOctopus -and !$skipAzure) -or $forceCleanup) {
+	Write-Host "Cleaning up student metadata"
 #	$studentDataFile = "$dataFolder\$studentSlug.json"
 #	if (Test-Path $studentDataFile) {
 #		Remove-Item -Path $studentDataFile
 		Remove-Item -Path "$dataFolder\$studentSlug*"
 #	}
+	if ($forceCleanup) {
+		Write-Warning "'Force cleanup flag set', some artifacts/resources might remain."
+	}
+	$storageContext = (Get-AzStorageAccount -ResourceGroupName $azResourceGroupName -Name $azStorageAccount).Context
+
+#	Get-AzStorageBlob -Blob "$studentSlug.json" -Container $azStorageStudentContainer -Context $storageContext -ErrorAction SilentlyContinue
+	Remove-AzStorageBlob -Blob "$studentSlug.json" -Container $azStorageStudentContainer -Context $storageContext -ErrorAction Ignore
 } else {
 	Write-Warning "One or more cleanup stages skipped, preserving student data file. Run without any 'skip's to complete cleanup."
 }
+
+Write-RunbookFooter

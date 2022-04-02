@@ -4,8 +4,8 @@ $dataFolder = "$PSScriptRoot/data"
 
 $automationUserId = "Users-23"
 
-$tfOctopusFolder = "$PSScriptRoot/tf-octopus"
-$tfAzureFolder = "$PSScriptRoot/tf-azure"
+$tfOctopusFolder = Resolve-Path "$PSScriptRoot/tf-octopus"
+$tfAzureFolder = Resolve-Path "$PSScriptRoot/tf-azure"
 
 $azResourceGroupName = "training-workshop"
 $azWebAppServicePlan = "training-workshop-webapps"

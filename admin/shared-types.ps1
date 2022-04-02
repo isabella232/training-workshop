@@ -4,6 +4,7 @@ class StudentInfo
 	[string] $StudentName
 	[string] $StudentID
 	[string] $StudentEmail
+	[string] $DisplayName
 	[string] $GitBranchName
 	[string] $InstructionsUrl
 	[string] $SpaceId

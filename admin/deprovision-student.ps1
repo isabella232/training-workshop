@@ -26,40 +26,27 @@ $studentInfo = [StudentInfo]::New()
 EnableHighlight
 
 $haveInfo = $false
+Write-Host "Checking local data cache..."
 if (Test-Path -Path $studentInfoFile) {
 	Write-Host "Found student info file."
 	$studentInfo = Get-Content -Path $studentInfoFile | ConvertFrom-Json
 	$haveInfo = $true
-} else {
+}
+
+if (!$haveInfo) {
+	Write-Host "Checking Azure storage..."
+	$storageContext = (Get-AzStorageAccount -ResourceGroupName $azResourceGroupName -Name $azStorageAccount).Context
+	Get-AzStorageBlobContent `
+		-Container $azStorageStudentContainer -Context $storageContext `
+		-Blob "$studentSlug.json" -Destination $studentInfoFile
+	if(Test-Path -Path $studentInfoFile){
+		Write-Host "Found student info file."
+		$haveInfo = $true
+	}
+}
+if (!$haveInfo) {
 	Write-Warning "No student info file found."
 }
-# $odStateFile = "$dataFolder\$studentSlug-od.tfstate"
-# if (Test-Path -Path $odStateFile) {
-# 	Write-Host "Found student Octopus Deploy TF state file."
-# 	Copy-Item -Path $odStateFile -Destination "$tfOctopusFolder\terraform.tfstate"
-
-# 	try {
-# 		$popLoc = Get-Location
-# 		Set-Location $tfOctopusFolder
-# 		& terraform plan -destroy `
-# 			-var="serverURL=$octopusURL" -var="apiKey=$octopusKey" `
-# 			-var="automation_userid=$automationUserId" `
-# 			-var="azure_app_id=$azUser" `
-# 			-var="azure_sp_secret=$azSecret" `
-# 			-var="azure_subscription=$azSubscriptionId" `
-# 			-var="azure_tenant_id=$azTenantId" `
-# 			-var="variableSetName=$varSetName" -var="description=$varSetDesc" `
-# 			-var="student_display_name=$studentDisplayName" -var="student_email=$studentEmail" `
-# 			-var="student_username=$studentEmail" -var="student_password=$($studentInfo.StudentId)" `
-# 			-var="space_name=$($studentInfo.StudentSlug)" -var="space_description=$description" `
-# 			-var="slack_url=$slackUrl" `
-# 	}
-# 	finally {
-# 		Set-Location $popLoc
-# 	}
-# } else {
-# 	Write-Warning "No Octopus Deploy TF state file found."
-# }
 
 Write-Host "Deprovisioning student"
 Write-Host " - (slug: $studentSlug)"
@@ -112,17 +99,15 @@ if (!$skipAzure) {
 
 if ((!$skipGit -and !$skipOctopus -and !$skipAzure) -or $forceCleanup) {
 	Write-Host "Cleaning up student metadata"
-#	$studentDataFile = "$dataFolder\$studentSlug.json"
+	$storageContext = (Get-AzStorageAccount -ResourceGroupName $azResourceGroupName -Name $azStorageAccount).Context
+	Remove-AzStorageBlob -Blob "$studentSlug.json" -Container $azStorageStudentContainer -Context $storageContext -ErrorAction Continue
 	if (Test-Path $dataFolder) {
 		Remove-Item -Path "$dataFolder\$studentSlug*"
 	}
+	Remove-Item -Path "$studentSlug*"
 	if ($forceCleanup) {
 		Write-Warning "'Force cleanup flag set', some artifacts/resources might remain."
 	}
-	$storageContext = (Get-AzStorageAccount -ResourceGroupName $azResourceGroupName -Name $azStorageAccount).Context
-
-#	Get-AzStorageBlob -Blob "$studentSlug.json" -Container $azStorageStudentContainer -Context $storageContext -ErrorAction SilentlyContinue
-	Remove-AzStorageBlob -Blob "$studentSlug.json" -Container $azStorageStudentContainer -Context $storageContext -ErrorAction Continue
 } else {
 	Write-Warning "One or more cleanup stages skipped, preserving student data file. Run without any 'skip's to complete cleanup."
 }

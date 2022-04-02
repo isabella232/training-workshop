@@ -20,7 +20,7 @@ if (!$studentSlug) {
 }
 
 $studentInfoJson = $studentInfo | ConvertTo-Json
-Write-Host $studentInfoJson
+
 $studentInfoJson | Out-File "$dataFolder\$studentSlug.json"
 
 if ($useAzureStorage) {
@@ -33,5 +33,9 @@ if ($useAzureStorage) {
 		-Blob "$studentSlug.json" `
 }
 Write-Host "========================================"
+Write-Host $studentInfoJson
+Write-Host "========================================"
 Write-Host "Provisioning complete. Deprovision with the following:"
 Write-Host "     ..\repo\admin\testing\deprovision-student.ps1 -studentSlug $studentSlug"
+
+Write-Output $studentInfo

@@ -33,7 +33,7 @@ param (
 . "$PSScriptRoot\shared-config.ps1"
 
 if (!$skipGit) {
-	if (!EnsureInGitWorkspace) {
+	if (!(EnsureInGitWorkspace)) {
 		exit
 	}
 } else {

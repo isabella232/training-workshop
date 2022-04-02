@@ -1,7 +1,8 @@
 [CmdletBinding()]
 param (
-	[switch]$Local,
-	[switch]$ShortForm
+	[switch] $Local,
+	[switch] $ShortForm,
+	[switch] $ForBlobInfo
 )
 
 . "$PSScriptRoot\shared-octo-utils.ps1"
@@ -14,9 +15,9 @@ function Write-StudentEntry {
 	$slug = $slug.Replace(".json","")
 	if ($ShortForm) {
 		Write-Host $slug
-	} else {
-		Write-Host "$slug | ..\repo\admin\testing\deprovision-student.ps1 -studentSlug $slug | ..\repo\admin\testing\update-existing-git-branch.ps1 -studentSlug $slug"
+		return
 	}
+	Write-Host "$slug | ..\repo\admin\testing\deprovision-student.ps1 -studentSlug $slug | ..\repo\admin\testing\update-existing-git-branch.ps1 -studentSlug $slug"
 }
 
 EnableHighlight
@@ -26,7 +27,15 @@ if ($Local) {
 } else {
 	Write-Host "Discovering student list from Azure storage."
 	$storageContext = (Get-AzStorageAccount -ResourceGroupName $azResourceGroupName -Name $azStorageAccount).Context
-	$studentItems = Get-AzStorageBlob -Container $azStorageStudentContainer -Context $storageContext # | ForEach-Object { Write-StudentEntry -slug $_.Name }
+	$blobItems = Get-AzStorageBlob -Container $azStorageStudentContainer -Context $storageContext # | ForEach-Object { Write-StudentEntry -slug $_.Name }
+
+	if ($ForBlobInfo) {
+		foreach ($item in $blobItems) {
+			Write-Host "($($item.Length)) Get-AzStorageBlob -Container $azStorageStudentContainer -Context `$storageContext -Blob ""$($item.Name)"""
+		}
+		Write-Host "Don't forget: `$storageContext = (Get-AzStorageAccount -ResourceGroupName $azResourceGroupName -Name $azStorageAccount).Context"
+		$studentItems = $null
+	} 
 }
 $studentItems | ForEach-Object { Write-StudentEntry -slug $_.Name }
 DisableHighlight

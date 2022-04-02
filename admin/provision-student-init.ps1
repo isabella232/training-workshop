@@ -5,6 +5,8 @@ param (
 	[string] $studentEmail
 )
 
+. "$PSScriptRoot\shared-types.ps1"
+
 if ($studentName.Length -eq 0) {
 	Write-Host "################################################"
 	Write-Host "## No student information supplied, generating random student identity"

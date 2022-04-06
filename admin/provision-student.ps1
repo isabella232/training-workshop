@@ -5,7 +5,7 @@ param (
 	[string] $studentEmail,
 
 	[string] $githubUrl,
-	[securestring] $githubPAT,
+	[string] $githubSecurity,
 
 	[string] $octopusUrl,
 	[string] $octopusKey,
@@ -67,10 +67,12 @@ if (!$skipGit) {
 	. "$PSScriptRoot\provision-student-git.ps1" `
 		-studentInfo $studentInfo `
 		-githubUrl $githubUrl `
+		-githubSecurity $githubSecurity `
 		-relativeDepth $relativeDepth `
 }
 else {
 	Write-Warning "Git branch creation skipped."
 }
 
+Write-Host "Finalizing student provisioning..."
 . "$PSScriptRoot\provision-student-finalize.ps1" -studentInfo $studentInfo `

@@ -38,3 +38,5 @@ Out-File -Force -FilePath $githubActionsFile -InputObject $fileText
 
 & git commit -m "Save student specific content for $($studentInfo.StudentName)" | Write-Host
 & git push origin $studentInfo.GitBranchName | Write-Host
+
+Write-Host "Completed updating the Git branch."

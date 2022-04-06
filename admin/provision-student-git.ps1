@@ -3,7 +3,7 @@ param (
 	[object] $studentInfo,
 
 	[string] $githubUrl,
-	[securestring] $githubPAT,
+	[string] $githubSecurity,
 	[string] $relativeDepth = "..\.."
 )
 
@@ -17,10 +17,12 @@ if (EnsureInGitWorkspace) {
 }
 
 # clone repo, branch for the student
-& git clone $githubUrl . | Write-Host
+& git clone "https://$githubSecurity$githubUrl" . | Write-Host
 & git checkout main | Write-Host
 & git checkout -B $studentInfo.GitBranchName | Write-Host
 
 ."$PSScriptRoot\update-git-branch.ps1" -studentInfo $studentInfo
 
-Write-Output $studentInfo
+Write-Host "Completed provisioning student's Git branch."
+
+#Write-Output $studentInfo

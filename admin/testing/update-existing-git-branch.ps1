@@ -6,4 +6,6 @@ param (
 . $PSScriptRoot\load-config.ps1 
 
 ."$PSScriptRoot\..\update-existing-git-branch.ps1" `
-	-studentSlug $studentSlug
+	-studentSlug $studentSlug `
+	-githubUrl $githubUrl `
+	-githubSecurity $githubSecurity `

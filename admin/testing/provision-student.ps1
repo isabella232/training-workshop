@@ -14,7 +14,7 @@ param (
 
 ."$PSScriptRoot\..\provision-student.ps1" `
 	-studentName $studentName -studentEmail $studentEmail `
-	-githubUrl $githubUrl -githubPAT $githubPAT `
+	-githubUrl $githubUrl -githubSecurity $githubSecurity `
 	-octopusUrl $octopusURL -octopusKey $octopusKey `
 	-azTenantId $azTenantId -azUser $azUser -azSecret $azSecret -azSubscriptionId $azSubscriptionId `
 	-azLocation $azLocation -azResourceGroupName $azResourceGroupName -azWebAppServicePlan $azWebAppServicePlan `

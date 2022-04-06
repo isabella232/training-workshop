@@ -37,8 +37,7 @@ function CleanGitWorkspace(){
 
 function CheckCommandResult(){ 
 	if ($LASTEXITCODE -ne 0) {
-		Write-Error "Previous command returned an error: $LASTEXITCODE" Exit-PSSession
+		Write-Error "Previous command returned an error: $LASTEXITCODE"
+		Exit-PSSession
 	}
 }
-	
-	

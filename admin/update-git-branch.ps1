@@ -25,7 +25,8 @@ foreach ($instructionDocFile in $instructionDocFiles) {
 
 	Out-File -Force -FilePath $instructionDocFile -InputObject $fileText
 	#Get-Content $instructionsDocFile
-	& git add $instructionDocFile | Write-Host
+	& git add $instructionDocFile 2>&1 | Write-Host
+	CheckCommandResult
 }
 
 # update the GitHub actions file with their space
@@ -34,9 +35,12 @@ $fileText = $fileText.Replace("Spaces-1", $studentSpaceId)
 Out-File -Force -FilePath $githubActionsFile -InputObject $fileText
 # make sure the CICD parts are commented
 ."$PSScriptRoot\ensure-yaml-comments.ps1" -yamlFile $githubActionsFile -startBeacon "<cd-start>" -endBeacon "<cd-end>"
-& git add $githubActionsFile | Write-Host
+& git add $githubActionsFile 2>&1 | Write-Host
+CheckCommandResult
 
-& git commit -m "Save student specific content for $($studentInfo.StudentName)" | Write-Host
-& git push origin $studentInfo.GitBranchName | Write-Host
+& git commit -m "Save student specific content for $($studentInfo.StudentName)" 2>&1 | Write-Host
+CheckCommandResult
+& git push origin $studentInfo.GitBranchName 2>&1 | Write-Host
+CheckCommandResult
 
 Write-Host "Completed updating the Git branch."

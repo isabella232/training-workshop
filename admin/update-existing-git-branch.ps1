@@ -21,12 +21,16 @@ $studentInfo = Get-Content $jsonFile | ConvertFrom-Json
 CleanGitWorkspace
 
 #get the student branch
-& git clone "https://$githubSecurity$githubUrl" .
-& git checkout $studentInfo.GitBranchName
+& git clone "https://$githubSecurity$githubUrl" . 2>&1
+CheckCommandResult
+& git checkout $studentInfo.GitBranchName 2>&1
+CheckCommandResult
 
 # overwrite everything from `main`
-& git checkout main -- *
-& git status
+& git checkout main -- * 2>&1
+CheckCommandResult
+& git status 2>&1
+CheckCommandResult
 
 # update files based on student data
 ."$PSScriptRoot\update-git-branch.ps1" `

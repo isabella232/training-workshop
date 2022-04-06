@@ -34,3 +34,11 @@ function CleanGitWorkspace(){
 		Remove-Item -Path "$PSScriptRoot\..\..\workspace\*" -Recurse -Force
 	}
 }
+
+function CheckCommandResult(){ 
+	if ($LASTEXITCODE -ne 0) {
+		Write-Error "Previous command returned an error: $LASTEXITCODE" Exit-PSSession
+	}
+}
+	
+	

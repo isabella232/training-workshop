@@ -17,9 +17,12 @@ if (EnsureInGitWorkspace) {
 }
 
 # clone repo, branch for the student
-& git clone "https://$githubSecurity$githubUrl" . | Write-Host
-& git checkout main | Write-Host
-& git checkout -B $studentInfo.GitBranchName | Write-Host
+& git clone "https://$githubSecurity$githubUrl" . 2>&1 | Write-Host
+CheckCommandResult
+& git checkout main 2>&1 | Write-Host
+CheckCommandResult
+& git checkout -B $studentInfo.GitBranchName 2>&1 | Write-Host
+CheckCommandResult
 
 ."$PSScriptRoot\update-git-branch.ps1" -studentInfo $studentInfo
 

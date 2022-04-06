@@ -40,7 +40,9 @@ if (!$skipGit) {
 	Write-Warning "Skipping Git operation, skipping run location safety check and workspace dir cleanup."
 }
 
-$studentInfo = . "$PSScriptRoot\provision-student-init.ps1"
+$studentInfo = . "$PSScriptRoot\provision-student-init.ps1" `
+	-studentName $studentName `
+	-studentEmail $studentEmail `
 
 if (-not $skipOctopus) {
 

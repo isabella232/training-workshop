@@ -8,17 +8,12 @@ param (
 	[switch] $skipGit,
 	[switch] $skipOctopus,
 	[switch] $skipAzure,
-	# [string] $azTenantId,
-	# [string] $azUser,
-	# [string] $azSecret,
 	[switch] $forceCleanup
 )
 
 . "$PSScriptRoot\shared-octo-utils.ps1"
 . "$PSScriptRoot\shared-types.ps1"
 . "$PSScriptRoot\shared-config.ps1"
-
-#$azResourceGroupName = "training-workshop"
 
 $studentInfoFile = "$dataFolder\$studentSlug.json"
 $studentInfo = [StudentInfo]::New()
@@ -53,6 +48,26 @@ Write-Host " - (slug: $studentSlug)"
 Write-Host "Working against:"
 Write-Host " -  Octopus Instance: $octopusUrl"
 
+if (!$skipAzure) {
+	if ($haveInfo) {
+		Write-Host "Found Azure Apps in student info:"
+		foreach ($item in $studentInfo.AzureApps) {
+			Write-Host "   App name: $($item.AppSlug)"
+		}
+		Write-Host "Deleting apps:"
+		foreach ($item in $studentInfo.AzureApps) {
+			Write-Host "   Deleting '$($item.AppSlug)' ($($item.ResourceId))..."
+			Remove-AzWebApp -ResourceGroupName $azResourceGroupName -Name $item.AppSlug -Force
+		}
+	} else {
+		."$PSScriptRoot\delete-student-webapps.ps1" `
+			-studentSlug $studentSlug `
+			-azResourceGroupName $azResourceGroupName `
+	}
+} else {
+	Write-Warning "Azure resource teardown skipped."
+}
+
 if (-not $skipOctopus) {
 	$header = @{ "X-Octopus-ApiKey" = $octopusKey }
 
@@ -76,26 +91,16 @@ if (-not $skipOctopus) {
 
 		Write-Host "Deleting space"
 		(Invoke-WebRequest $octopusURL/$($space.Links.Self) -Headers $header -Method DELETE -ErrorVariable octoError) | Out-Null
-	}
+	}	
 	if ($haveInfo -and $studentInfo.OctopusUserId) {
 		Write-Host "Deleting Octopus user '$($studentInfo.OctopusUserId)'."
 		."$PSScriptRoot\delete-user.ps1" -userId $studentInfo.OctopusUserId
 	} else {
 		Write-Warning "No student user ID found in info... skipping user delete."
-	}
+	}	
 } else {
 	Write-Warning "Octopus operations skipped."
-}
-
-if (!$skipAzure) {
-	."$PSScriptRoot\delete-student-webapps.ps1" `
-		-studentSlug $studentSlug `
-		-azResourceGroupName $azResourceGroupName `
-	# -azTenantId $azTenantId `
-	# -azSecret $azSecret -azUser $azUser `
-} else {
-	Write-Warning "Azure resource teardown skipped."
-}
+}	
 
 if ((!$skipGit -and !$skipOctopus -and !$skipAzure) -or $forceCleanup) {
 	Write-Host "Cleaning up student metadata"
@@ -106,7 +111,7 @@ if ((!$skipGit -and !$skipOctopus -and !$skipAzure) -or $forceCleanup) {
 	}
 	Remove-Item -Path "$studentSlug*"
 	if ($forceCleanup) {
-		Write-Warning "'Force cleanup flag set', some artifacts/resources might remain."
+		Write-Warning "'Force cleanup flag set', some artifacts/resources might become orphaned."
 	}
 } else {
 	Write-Warning "One or more cleanup stages skipped, preserving student data file. Run without any 'skip's to complete cleanup."

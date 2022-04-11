@@ -12,7 +12,7 @@ param (
 
 # (Connect-AzAccount -ServicePrincipal -Credential $azCredential -Tenant $azTenantId) | Out-Null
 
-Write-Host "Looking for existing web apps..."
+Write-Host "Searching Azure for existing web apps..."
 $studentWebApps = (Get-AzWebApp -ResourceGroupName $azResourceGroupName) | Where-Object { $_.Name.Contains($studentSlug) }
 
 Write-Host "Web apps matching student: $($studentWebApps.Length)"

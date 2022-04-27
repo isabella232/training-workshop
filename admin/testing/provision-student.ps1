@@ -1,10 +1,11 @@
 [CmdletBinding()]
 param (
-	[string] $studentName, # = "Test Student",
-	[string] $studentEmail = $null, # = "peter.lanoie@octopus.com",
+	[string] $studentName,
+	[string] $studentEmail = $null,
 	[switch] $skipOctopus,
 	[switch] $skipAzure,
 	[switch] $skipGit,
+	[switch] $skipBlob,
 	[string] $relativeDepth = "..\.."
 )
 
@@ -18,11 +19,14 @@ param (
 	-octopusUrl $octopusURL -octopusKey $octopusKey `
 	-azTenantId $azTenantId -azUser $azUser -azSecret $azSecret -azSubscriptionId $azSubscriptionId `
 	-azLocation $azLocation -azResourceGroupName $azResourceGroupName -azWebAppServicePlan $azWebAppServicePlan `
+	-mailAccount $gmailAccount -mailSecret $gmailSecret -smtpServer $smtpServer`
 	-slackUrl $slackUrl `
 	-relativeDepth:$relativeDepth `
 	-skipOctopus:$skipOctopus `
 	-skipGit:$skipGit `
 	-skipAzure:$skipAzure `
+	-skipBlob:$skipBlob `
+
 	
 	# -skipAzure `
 	# -skipOctopus `

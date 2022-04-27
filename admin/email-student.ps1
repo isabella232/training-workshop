@@ -1,25 +1,23 @@
-# [CmdletBinding()]
-# param (
-# 	[Parameter(Mandatory=$true)]
-# 	[string] $From,
+[CmdletBinding()]
+param (
+	[Parameter(Mandatory=$true)]
+	[String] $to,
 
-# 	[Parameter(Mandatory=$true)]
-# 	[String] $To,
+	[Parameter(Mandatory=$true)]
+	[string] $mailAccount,
 
-# 	[Parameter(Mandatory=$true)]
-# 	[string] $ApiKey,
+	[Parameter(Mandatory=$true)]
+	[string] $mailSecret,
 
-# 	[Parameter(Mandatory=$true)]
-# 	[string] $instructionsLink
-# )
+	[Parameter(Mandatory=$true)]
+	[string] $smtpServer,
 
-. "$PSScriptRoot/testing/load-config.ps1"
+	[Parameter(Mandatory=$true)]
+	[string] $instructionsLink,
 
-$From = "peter.lanoie@octopus.com"
-$To = "planoie@gmail.com"
-$ApiKey = $sendGridApiKey
-
-$instructionsLink = "some link"
+	[Parameter(Mandatory=$false)]
+	[string] $from
+)
 
 $Subject = "Octopus hands-on workshop session info"
 
@@ -31,17 +29,17 @@ $Body = $Body.Replace("[instruction-link]", $instructionsLink)
 $Body = $Body.Replace("[classroom-link]", $classroomLink)
 $Body = $Body.Replace("[classroom-passcode]", $classroomPassword)
 
-$headers = @{}
-$headers.Add("Authorization","Bearer $apiKey")
-$headers.Add("Content-Type", "application/json")
+$mailSecretSecure = ConvertTo-SecureString -String $mailSecret -AsPlainText -Force
 
-$jsonRequest = [ordered]@{
-	personalizations= @(@{
-		to = @(@{email =  "$To"})
-		bcc = @(@{email =  "$From"})
-		subject = "$SubJect" })
-		from = @{email = "$From"}
-		content = @( @{ type = "text/plain"
-					value = "$Body" }
-)} | ConvertTo-Json -Depth 10
-Invoke-RestMethod   -Uri "https://api.sendgrid.com/v3/mail/send" -Method Post -Headers $headers -Body $jsonRequest 
+$mailCredential = New-Object -TypeName "System.Management.Automation.PSCredential" -ArgumentList $mailAccount, $mailSecretSecure
+
+Send-MailMessage `
+	-Body "$Body" `
+	-BodyAsHtml `
+	-From $From `
+	-Bcc $From `
+	-To $To `
+	-Subject $Subject `
+	-SmtpServer $smtpServer `
+	-UseSsl `
+	-Credential $mailCredential `

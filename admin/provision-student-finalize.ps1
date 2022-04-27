@@ -2,6 +2,8 @@
 param (
 	[object] $studentInfo,
 	[switch] $skipEmail,
+	[string] $mailAccount,
+	[string] $mailSecret,
 	[switch] $skipBlob
 )
 
@@ -42,17 +44,22 @@ Write-Host "========================================"
 Write-Host $studentInfoJson
 
 if (!$skipEmail) {
-	$emailTemplateFile = "$PSScriptRoot/email-template.txt"
+	# $emailTemplateFile = "$PSScriptRoot/email-template.txt"
 
-	$emailBody = Get-Content $emailTemplateFile
+	# $emailBody = Get-Content $emailTemplateFile
 
-	$emailBody = $emailBody.Replace("[instruction-link]", $instructionsLink)
-	$emailBody = $emailBody.Replace("[classroom-link]", $classroomLink)
-	$emailBody = $emailBody.Replace("[classroom-passcode]", $classroomPassword)
-	Write-Host "========================================"
-	Write-Host "To: $($studentInfo.StudentEmail)"
-	Write-Host "Subject: Octopus hands-on workshop session info"
-	$emailBody | Write-Host
+	# $emailBody = $emailBody.Replace("[instruction-link]", $instructionsLink)
+	# $emailBody = $emailBody.Replace("[classroom-link]", $classroomLink)
+	# $emailBody = $emailBody.Replace("[classroom-passcode]", $classroomPassword)
+	# Write-Host "========================================"
+	# Write-Host "To: $($studentInfo.StudentEmail)"
+	# Write-Host "Subject: Octopus hands-on workshop session info"
+	# $emailBody | Write-Host
+	Write-Host "Sending student session info email"
+	. "$PSScriptRoot\email-student.ps1" `
+		-to $studentInfo.StudentEmail `
+		-mailAccount $mailAccount -mailSecret $mailSecret -smtpServer $smtpServer `
+		-instructionsLink $studentInfo.InstructionsUrl
 }
 
 Write-Host "========================================"

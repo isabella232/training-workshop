@@ -18,6 +18,10 @@ param (
 	[string] $azResourceGroupName,
 	[string] $azWebAppServicePlan,
 
+	[string] $mailAccount,
+	[string] $mailSecret,
+	[string] $smtpServer,
+
 	[string] $slackUrl,
 	
 	[switch] $skipGit,
@@ -79,4 +83,7 @@ else {
 }
 
 Write-Host "Finalizing student provisioning..."
-. "$PSScriptRoot\provision-student-finalize.ps1" -studentInfo $studentInfo -skipEmail:$skipEmail -skipBlob:$skipBlob `
+. "$PSScriptRoot\provision-student-finalize.ps1" `
+	-studentInfo $studentInfo `
+	-mailAccount $mailAccount -mailSecret $mailSecret -smtpServer $smtpServer `
+	-skipEmail:$skipEmail -skipBlob:$skipBlob `

@@ -4,6 +4,7 @@ param (
 	[switch] $skipEmail,
 	[string] $mailAccount,
 	[string] $mailSecret,
+	[string] $smtpServer,
 	[switch] $skipBlob
 )
 

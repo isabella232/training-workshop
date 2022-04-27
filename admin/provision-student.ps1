@@ -24,6 +24,8 @@ param (
 	[switch] $skipOctopus,
 	[switch] $skipAzure,
 	[switch] $skipUser,
+	[switch] $skipEmail,
+	[switch] $skipBlob,
 
 	[string] $relativeDepth = "..\.."
 )
@@ -77,4 +79,4 @@ else {
 }
 
 Write-Host "Finalizing student provisioning..."
-. "$PSScriptRoot\provision-student-finalize.ps1" -studentInfo $studentInfo `
+. "$PSScriptRoot\provision-student-finalize.ps1" -studentInfo $studentInfo -skipEmail:$skipEmail -skipBlob:$skipBlob `

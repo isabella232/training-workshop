@@ -1,14 +1,14 @@
-Octopus hands-on workshop session info
 Here's the information you'll need to know to get started with the Octopus Basics hands-on workshop sessions.
 
-Before you can access the instructions linked below, you'll need to ensure that you have an active GitHub account (https://github.com) that has been added to our GitHub organization (OctopusDeploy).
-If you need access, ask in the #secops-requests Slack channel.
+Before you can access the instructions linked below, you'll need to ensure that you have an active GitHub account (https://github.com).
+You can create one using your regular Octopus Google account.
+
 
 BEFORE THE WORKSHOP
 Customized instructions have been created for you in GitHub.
 You can find them here: [instruction-link]
 
-Please read over just this instructions page prior to the workshop.
+Please read over just the instructions page prior to the workshop. You don't need to start any of the lessons.
 At the end of the instructions page is the "Before your session" section.
 There's a link to a short (~8 min) video to watch.
 

@@ -1,22 +1,32 @@
+<h1>Workshop Info</h1>
+<p>
 Here's the information you'll need to know to get started with the Octopus Basics hands-on workshop sessions.
-
-Before you can access the instructions linked below, you'll need to ensure that you have an active GitHub account (https://github.com).
+</p>
+<p>
+Before you can access the instructions linked below, you'll need to ensure that you have an active GitHub account (https://github.com).<br />
 You can create one using your regular Octopus Google account.
-
-
-BEFORE THE WORKSHOP
-Customized instructions have been created for you in GitHub.
+</p>
+<p>
+<h2>Before the Workshop</h2>
+Customized instructions have been created for you in GitHub.<br />
 You can find them here: [instruction-link]
-
-Please read over just the instructions page prior to the workshop. You don't need to start any of the lessons.
-At the end of the instructions page is the "Before your session" section.
-There's a link to a short (~8 min) video to watch.
-
+</p>
+<p>
+Please read over just the instructions page prior to the workshop. You don't need to start any of the lessons.<br />
+At the end of the instructions page is the "Before your session" section.<br />
+There's a link to a short (~8 min) sample demo video to watch.<br />
+</p>
+<p>
 Also, make sure you can access the session classroom. See below for details.
-
-JOINING THE SESSION
-The workshop sessions will be hosted in Gather.
-You can log in with your regular GSuite account.
-If you'd like to customize your avatar, you certainly can, or just take the random one they create for you.
-
+</p>
+<p>
+<h2>Joining the Session</h2>
+The workshop sessions will be hosted in Gather.Town. You can log in with your regular GSuite account.<br />
+If you'd like to customize your avatar, you certainly can, or just take the random one they create for you.<br />
+</p>
+<p>
 Classroom access info is in the session invite.
+</p>
+<p>
+See you in the training session!
+</p>

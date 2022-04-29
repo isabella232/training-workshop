@@ -4,6 +4,7 @@ param (
 	[string] $studentName,
 	[string] $studentEmail
 )
+$ErrorActionPreference = 'Stop'
 
 . "$PSScriptRoot\shared-types.ps1"
 

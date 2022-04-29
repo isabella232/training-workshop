@@ -34,6 +34,8 @@ param (
 	[string] $relativeDepth = "..\.."
 )
 
+$ErrorActionPreference = 'Stop'
+
 . "$PSScriptRoot\shared-octo-utils.ps1"
 . "$PSScriptRoot\shared-types.ps1"
 . "$PSScriptRoot\shared-config.ps1"

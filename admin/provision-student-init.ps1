@@ -28,7 +28,8 @@ $studentInfo.StudentEmail = $studentEmail
 $studentInfo.StudentId = [System.Guid]::NewGuid()
 $studentSuffix = $studentInfo.StudentId.ToString().Substring(0, 8)
 
-$studentNamePrefix = $studentName.Replace(" ", "").Substring(0, [System.Math]::Min(9, $studentName.Length))
+$studentName = $studentName.Replace(" ", "")
+$studentNamePrefix = $studentName.Substring(0, [System.Math]::Min(9, $studentName.Length))
 $studentSlug = "$studentNamePrefix-$studentSuffix"
 $studentInfo.StudentSlug = $studentSlug
 $studentInfo.DisplayName = "Student - $studentName"

@@ -2,6 +2,7 @@
 param (
 	[object] $studentInfo,
 	[switch] $skipEmail,
+	[string] $fromAddress,
 	[string] $mailAccount,
 	[string] $mailSecret,
 	[string] $smtpServer,
@@ -58,6 +59,7 @@ if (!$skipEmail) {
 	# $emailBody | Write-Host
 	Write-Host "Sending student session info email"
 	. "$PSScriptRoot\email-student.ps1" `
+		-from $fromAddress `
 		-to $studentInfo.StudentEmail `
 		-mailAccount $mailAccount -mailSecret $mailSecret -smtpServer $smtpServer `
 		-instructionsLink $studentInfo.InstructionsUrl

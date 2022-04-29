@@ -6,6 +6,7 @@ param (
 	[switch] $skipAzure,
 	[switch] $skipGit,
 	[switch] $skipBlob,
+	[switch] $skipEmail,
 	[string] $relativeDepth = "..\.."
 )
 
@@ -19,13 +20,14 @@ param (
 	-octopusUrl $octopusURL -octopusKey $octopusKey `
 	-azTenantId $azTenantId -azUser $azUser -azSecret $azSecret -azSubscriptionId $azSubscriptionId `
 	-azLocation $azLocation -azResourceGroupName $azResourceGroupName -azWebAppServicePlan $azWebAppServicePlan `
-	-mailAccount $gmailAccount -mailSecret $gmailSecret -smtpServer $smtpServer`
+	-fromAddress $gmailAccount -mailAccount $gmailAccount -mailSecret $gmailSecret -smtpServer $smtpServer `
 	-slackUrl $slackUrl `
 	-relativeDepth:$relativeDepth `
 	-skipOctopus:$skipOctopus `
 	-skipGit:$skipGit `
 	-skipAzure:$skipAzure `
 	-skipBlob:$skipBlob `
+	-skipEmail:$skipEmail `
 
 	
 	# -skipAzure `

@@ -18,6 +18,7 @@ param (
 	[string] $azResourceGroupName,
 	[string] $azWebAppServicePlan,
 
+	[string] $fromAddress,
 	[string] $mailAccount,
 	[string] $mailSecret,
 	[string] $smtpServer,
@@ -86,6 +87,7 @@ else {
 
 Write-Host "Finalizing student provisioning..."
 . "$PSScriptRoot\provision-student-finalize.ps1" `
+	-fromAddress $fromAddress `
 	-studentInfo $studentInfo `
 	-mailAccount $mailAccount -mailSecret $mailSecret -smtpServer $smtpServer `
 	-skipEmail:$skipEmail -skipBlob:$skipBlob `

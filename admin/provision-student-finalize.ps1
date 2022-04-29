@@ -11,10 +11,6 @@ param (
 
 . "$PSScriptRoot\shared-config.ps1"
 
-if (!(Test-Path -Path $dataFolder)) {
-	New-Item -Path $dataFolder -ItemType Directory | Write-Host
-}
-
 $useAzureStorage = $true
 
 $studentSlug = $studentInfo.StudentSlug

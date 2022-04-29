@@ -46,6 +46,9 @@ foreach ($appEnv in $appEnvs) {
 	$studentInfo.AzureApps += $appInfo
 }
 
+if (!(Test-Path -Path $dataFolder)) {
+	New-Item -Path $dataFolder -ItemType Directory | Write-Host
+}
 $studentInfo | ConvertTo-Json | Out-File "$dataFolder\$studentSlug.json"
 
 Write-Host "Provisioning student"

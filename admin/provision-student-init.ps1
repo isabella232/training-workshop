@@ -46,6 +46,8 @@ foreach ($appEnv in $appEnvs) {
 	$studentInfo.AzureApps += $appInfo
 }
 
+$studentInfo | ConvertTo-Json | Out-File "$dataFolder\$studentSlug.json"
+
 Write-Host "Provisioning student"
 Write-Host " - Name: $studentName ($studentEmail)"
 Write-Host " - Slug: $studentSlug"

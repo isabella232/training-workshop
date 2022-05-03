@@ -31,7 +31,7 @@ foreach ($instructionDocFile in $instructionDocFiles) {
 
 # update the GitHub actions file with their space
 $fileText = Get-Content $githubActionsFile
-$fileText = $fileText.Replace("Spaces-1", $studentSpaceId)
+$fileText = $fileText.Replace("Spaces-1", $studentInfo.SpaceId)
 Out-File -Force -FilePath $githubActionsFile -InputObject $fileText
 # make sure the CICD parts are commented
 ."$PSScriptRoot\ensure-yaml-comments.ps1" -yamlFile $githubActionsFile -startBeacon "<cd-start>" -endBeacon "<cd-end>"

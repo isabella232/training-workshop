@@ -41,7 +41,7 @@ if ($useAzureStorage -and !$skipBlob) {
 Write-Host "========================================"
 Write-Host $studentInfoJson
 
-if (!$skipEmail) {
+if (!$skipEmail -and !$studentInfo.SkipEmail) {
 	# $emailTemplateFile = "$PSScriptRoot/email-template.txt"
 
 	# $emailBody = Get-Content $emailTemplateFile
@@ -59,6 +59,8 @@ if (!$skipEmail) {
 		-to $studentInfo.StudentEmail `
 		-mailAccount $mailAccount -mailSecret $mailSecret -smtpServer $smtpServer `
 		-instructionsLink $studentInfo.InstructionsUrl
+} else {
+	Write-Warning "Skipping student instructions email."
 }
 
 Write-Host "========================================"

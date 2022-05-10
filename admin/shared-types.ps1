@@ -10,6 +10,7 @@ class StudentInfo
 	[string] $SpaceId
 	[string] $SpaceUrl
 	[string] $OctopusUserId
+	[bool] $SkipEmail
 	[System.Collections.ArrayList]$AzureApps = @()
 }
 

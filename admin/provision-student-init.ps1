@@ -8,6 +8,8 @@ $ErrorActionPreference = 'Stop'
 
 . "$PSScriptRoot\shared-types.ps1"
 
+$studentInfo = [StudentInfo]::new()
+
 if ($studentName.Length -eq 0) {
 	Write-Host "################################################"
 	Write-Host "## No student information supplied, generating random student identity"
@@ -15,13 +17,12 @@ if ($studentName.Length -eq 0) {
 	$studentName = "Z-Student " + $randoId.ToString().SubString(24)
 	if ($studentEmail.Length -eq 0) {
 		$studentEmail = "z-student+$($randoId.ToString().SubString(0, 8))@octopus.com"
+		$studentInfo.SkipEmail = $true
 	}
 	Write-Host "## Student Name: $studentName"
 	Write-Host "## Student Email: $studentEmail"
 	Write-Host "################################################"
 }
-
-$studentInfo = [StudentInfo]::new()
 
 $studentInfo.StudentName = $studentName
 $studentInfo.StudentEmail = $studentEmail

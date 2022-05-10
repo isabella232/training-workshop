@@ -55,10 +55,15 @@ if (!$skipAzure) {
 			Write-Host "   App name: $($item.AppSlug)"
 		}
 		Write-Host "Deleting apps:"
-		foreach ($item in $studentInfo.AzureApps) {
-			Write-Host "   Deleting '$($item.AppSlug)' ($($item.ResourceId))..."
-			Remove-AzWebApp -ResourceGroupName $azResourceGroupName -Name $item.AppSlug -Force
+		$studentInfo.AzureApps | Foreach-Object -ThrottleLimit 5 -Parallel {
+			#Action that will run in Parallel. Reference the current object via $PSItem and bring in outside variables with $USING:varname
+			Write-Host "   Deleting '$($PSItem.AppSlug)' ($($PSItem.ResourceId))..."
+			Remove-AzWebApp -ResourceGroupName $USING:azResourceGroupName -Name $PSItem.AppSlug -Force
 		}
+		# foreach ($item in $studentInfo.AzureApps) {
+		# 	Write-Host "   Deleting '$($item.AppSlug)' ($($item.ResourceId))..."
+		# 	Remove-AzWebApp -ResourceGroupName $azResourceGroupName -Name $item.AppSlug -Force
+		# }
 	} else {
 		."$PSScriptRoot\delete-student-webapps.ps1" `
 			-studentSlug $studentSlug `

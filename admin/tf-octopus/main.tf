@@ -25,7 +25,7 @@ resource "octopusdeploy_space" "student_space" {
   description                 = var.space_description
   is_default                  = false
   is_task_queue_stopped       = false
-  space_managers_team_members = [octopusdeploy_user.new_student.id, var.automation_userid]
+  space_managers_team_members = [octopusdeploy_user.new_student.id, var.automation_userid, var.instructor_userid]
   space_managers_teams        = ["Teams-1"]
 }
 

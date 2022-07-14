@@ -15,7 +15,7 @@ param (
 
 . "$PSScriptRoot\shared-config.ps1"
 
-$description = "Space for workshop student $studentName."
+$description = "Space for workshop student $($studentInfo.StudentName)."
 
 try {
 	$popLoc = Get-Location
@@ -39,9 +39,10 @@ try {
 		-var="azure_subscription=$azSubscriptionId" `
 		-var="azure_app_id=$azUser" `
 		-var="student_display_name=$($studentInfo.DisplayName)" -var="student_email=$($studentInfo.studentEmail)" `
-		-var="student_username=$($studentInfo.studentEmail)" -var="student_password=$($studentInfo.StudentId)" `
+		-var="student_username=$($studentInfo.StudentEmail)" -var="student_password=$($studentInfo.StudentId)" `
 		-var="space_name=$($studentInfo.StudentSlug)" -var="space_description=$description" `
 		-var="automation_userid=$automationUserId" `
+		-var="instructor_userid=$instructorUserId" `
 		-var="azure_sp_secret=$azSecret" `
 		-var="variableSetName=$varSetName" -var="description=$varSetDesc" `
 		-var="slack_url=$slackUrl" `

@@ -33,6 +33,10 @@ variable "automation_userid"{
     type = string
 }
 
+variable "instructor_userid" {
+    type= string
+}
+
 variable "azure_tenant_id"{
     type = string
 }

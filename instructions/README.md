@@ -122,12 +122,14 @@ This workshop is split into a few parts with a few lessons each.
 - Bonus Lesson: [Continuous Delivery and Deployment](part-3-lesson-1.md)
 
 # Before your session
-## Watch Sample Demo
-Please watch [this quick sample demo video](https://drive.google.com/file/d/1ejl6Ma0GGYmYYCXXSth7TxkGmB5La_2P/view?usp=sharing). You aren't expected to learn directly from this, it's just to help set the stage as an example of the kind of quick demo we would give to a prospective customer.
-
 ## Test your Octopus access
 Ensure that you can access your Octopus sandbox area. See the [Octopus Space](#octopus-space) section above.
 
+## Member of the Sales team?
+Sales team members will need to put what is learned in this workshop (plus anything else you've picked up about the product!) towards being able to do a basic product demo.
+
+Please watch [this quick sample demo video](https://drive.google.com/file/d/1ejl6Ma0GGYmYYCXXSth7TxkGmB5La_2P/view?usp=sharing). You aren't expected to learn directly from this, it's just to help set the stage as an example of the kind of quick demo we would give to a prospective customer.
+
 # Let's Go!
 
-It's time to dive into the first lesson: [Application build and artifacts](part-1-lesson-1.md)
+When it's time to dive into the first lesson, start here: [Application build and artifacts](part-1-lesson-1.md)

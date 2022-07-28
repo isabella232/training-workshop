@@ -15,10 +15,12 @@ You can find them here: [instruction-link]
 Please read over just the first welcome page (linked to above) prior to the workshop. You don't need to start any of the lessons.
 </p>
 <p>
-<em><strong>Important:</strong></em> At the end of the instructions page is the "Before your session" section, please review this.<br />
-</p>
-<p>
-Also, make sure you can access the session classroom. See below for details.
+<em><strong>Important: Please complete this list before the session. Not being prepared will slow everyone down.</strong></em>
+<ul>
+<li>At the end of the instructions page is the "Before your session" section, please review it.</li>
+<li>Make sure you can access the session classroom. See below for details. Please test your access and ensure that you can share your screen or browser (Macs are finicky with permissions, sharing just the browser window is sometimes easier).</li>
+<li>Please try to have some kind of earphone (buds, headset, etc.). This is an interactive session and participation/questions are encouraged, but feedback/echo is problematic (and Gather behaves different than Zoom).</li>
+</ul>
 </p>
 <p>
 <h2>Joining the Session</h2>
@@ -30,5 +32,5 @@ Classroom access info is in the session invite.<br />
 Not sure if you're in a session yet or when it is? Try <a href="https://calendar.google.com/calendar/u/0/r/search?q=basics%20workshop&tab=uc">searching your calendar for "basics workshop"</a>
 </p>
 <p>
-See you in the training session!
+See you in the workshop!
 </p>

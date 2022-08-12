@@ -42,3 +42,20 @@ function CheckCommandResult(){
 		Exit-PSSession
 	}
 }
+
+function UpdateLocalStudentData(){
+	Write-Host "Getting student list from Azure storage."
+	$storageContext = (Get-AzStorageAccount -ResourceGroupName $azResourceGroupName -Name $azStorageAccount).Context
+	$blobItems = Get-AzStorageBlob -Container $azStorageStudentContainer -Context $storageContext
+	Write-Host "Blob items found: $($blobItems.Length)"
+
+	foreach ($item in $blobItems) {
+		$filePath = "$dataFolder\$($item.Name)"
+		if (!(Test-Path "$filePath")) {
+			Write-Host "Getting blob file for '$($item.Name)'..."
+			Get-AzStorageBlobContent -Container $azStorageStudentContainer -Context $storageContext -Blob $item.Name -Destination $filePath
+		}
+	}
+
+	return $blobItems
+}

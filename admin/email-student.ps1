@@ -26,8 +26,6 @@ $bodyFile = "$PSScriptRoot/email-template.txt"
 $Body = Get-Content $bodyFile
 
 $Body = $Body.Replace("[instruction-link]", $instructionsLink)
-$Body = $Body.Replace("[classroom-link]", $classroomLink)
-$Body = $Body.Replace("[classroom-passcode]", $classroomPassword)
 
 $mailSecretSecure = ConvertTo-SecureString -String $mailSecret -AsPlainText -Force
 

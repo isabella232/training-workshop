@@ -1,5 +1,6 @@
 [CmdletBinding()]
 param (
+	[Parameter(Mandatory = $true)]
 	[object] $studentInfo,
 
 	[string] $azTenantId,

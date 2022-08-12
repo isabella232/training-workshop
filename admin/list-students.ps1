@@ -2,7 +2,9 @@
 param (
 	[switch] $Local,
 	[switch] $ShortForm,
-	[switch] $ForBlobInfo
+	[switch] $ListForm,
+	[switch] $ForBlobInfo,
+	[string] $commandPrefix
 )
 
 . "$PSScriptRoot\shared-octo-utils.ps1"
@@ -24,7 +26,18 @@ $studentFiles = Get-ChildItem "$dataFolder\*.json"
 foreach ($file in $studentFiles) {
 	$slug = $file.Name.Replace(".json", "")
 
-	if ($ShortForm) {
+	if ($commandPrefix) {
+		Write-Host "$commandPrefix$slug"
+		continue
+	}
+
+	if ($ShortForm -and !$ListForm) {
+		$studentInfo = Get-Content $file | ConvertFrom-Json
+		Write-Host "$slug - $($studentInfo.StudentName)"
+		continue
+	}
+
+	if ($ListForm -and !$ShortForm) {
 		Write-Host $slug
 		continue
 	}

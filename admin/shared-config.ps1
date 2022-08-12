@@ -15,3 +15,4 @@ $azLocation = "West US 2"
 $azStorageAccount = "trainingworkshopdata"
 $azStorageStudentContainer = "students"
 
+$pathToODClient = "C:\Program Files\Octopus Deploy\Tentacle\Octopus.Client.dll"

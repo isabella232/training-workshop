@@ -59,3 +59,16 @@ function UpdateLocalStudentData(){
 
 	return $blobItems
 }
+
+function UseOctoClient(){
+	if ((Get-Package -Name Octopus.Client).Count -eq 1) {
+		Write-Host "Octopus.Client package installed"
+	} else {
+		Write-Host "Installing Octopus.Client package..."
+		Get-Package -Name Octopus.Client
+		[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+		Install-Package Octopus.Client -source https://www.nuget.org/api/v2 -SkipDependencies
+		$path = Join-Path (Get-Item ((Get-Package Octopus.Client).source)).Directory.FullName "lib/net452/Octopus.Client.dll"
+		Add-Type -Path $path
+	}
+}

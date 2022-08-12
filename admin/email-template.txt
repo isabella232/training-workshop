@@ -3,10 +3,6 @@
 Here's the information you'll need to know to get started with your upcoming Octopus Basics hands-on workshop sessions.
 </p>
 <p>
-Before you can access the instructions linked below, you'll need to ensure that you have an active GitHub account (https://github.com).<br />
-You can create one using your regular Octopus Google account.
-</p>
-<p>
 <h2>Before the Workshop</h2>
 Customized instructions have been created for you in GitHub.<br />
 You can find them here: [instruction-link]

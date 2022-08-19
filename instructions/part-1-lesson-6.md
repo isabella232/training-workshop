@@ -47,7 +47,7 @@ Once the workflow starts (you'll see your name in the entry)
 - Notice the package version listed under `Latest` for the `workshop-app` entry. This should include your recent application build number.
 - Click the `Save` button
 - Click `Overview` in the project menu
-- Notice the dashboard grid showing the completed deployments of the first release you created and the undeployed second release
+- Notice the dashboard grid showing the completed deployments of the earlier releases you created and the undeployed later releases
 
 ## Deploy the new release
 
